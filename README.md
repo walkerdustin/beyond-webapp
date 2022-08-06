@@ -29,3 +29,19 @@ Typescript - Yes
 ESLint - Yes
 Prettier - Yes
 Playwright - Yes
+
+## developement Journey
+
+### install sveltekit
+https://kit.svelte.dev/  
+Startet with the SvelteKit demo app (simple ToDo app)  
+Typescript - Yes
+ESLint - Yes
+Prettier - Yes
+Playwright - Yes
+
+## setup git LFC
+
+## setup static adapter
+https://github.com/sveltejs/kit/tree/master/packages/adapter-static
+npm i -D @sveltejs/adapter-static
