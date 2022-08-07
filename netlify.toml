@@ -1,0 +1,5 @@
+[build]
+    # This is the directory to change to before starting a build.
+    base    = "app/"
+    command = "npm run build"
+    publish = "build/"  # ends up in app/build/
