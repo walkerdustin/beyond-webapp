@@ -1,7 +1,8 @@
 # Beyond Web App
 Web app for our beyond Service
 
-www.service-beyond.de
+www.service-beyond.de  
+[![Netlify Status](https://api.netlify.com/api/v1/badges/45ba1b8d-677f-4139-a2bf-1cabdbd4eaaf/deploy-status)](https://app.netlify.com/sites/service-beyond/deploys)
 
 # Installation
 I use git lfs for large binary files like images and other media  
