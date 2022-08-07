@@ -8,6 +8,11 @@
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
-		"strict": true
+		"strict": true,
+
+		"paths": { // to fix the vsCode $lib bug
+			"$lib": ["src/lib"],
+			"$lib/*": ["src/lib/*"]
+		}
 	}
 }
