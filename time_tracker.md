@@ -17,8 +17,8 @@ track the time this project takes me
 | 1h | trello aufgaben überlegen |
 | 0.5h | supabase account erstellen + explore UI |
 | 1h | migrate to new sveltekit version |
-|  |  |
-|  |  |
+| 0.5h | setup svelte material UI |
+| 0.5h | setup favicon |
 |  |  |
 |  |  |
 |  |  |
