@@ -16,8 +16,8 @@ cd app
 npm install  
 npm run dev -- --open
 ```
-
-Whenever you add a new SMUI package, run <code>npm run prepare</code> again to rebuild your CSS file with the new component’s styles included.
+create your theme files with smiu-theme > `npx smui-theme template src/theme`
+Whenever you add a new SMUI package, run > `npm run prepare` again to rebuild your CSS file with the new component’s styles included.
 
 # Architecture
 
@@ -110,5 +110,17 @@ it worked after (less then) 2 min
 ---
 ## Trello Aufgaben überlegen
 https://svelte.dev/tutorial/basics
-
+---
 ## migrate Sveltekit
+https://github.com/sveltejs/kit/discussions/5774
+
+one fix was needed  
+https://github.com/sveltejs/svelte-preprocess
+
+---
+## setup SMUI
+https://sveltematerialui.com/SVELTEKIT.md
+
+one Issue due to the new sveltekit version  needed to be fixed.  
+https://github.com/hperrin/svelte-material-ui/issues/507
+

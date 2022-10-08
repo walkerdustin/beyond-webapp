@@ -16,7 +16,7 @@ track the time this project takes me
 | 1h | researching some GUI library's |
 | 1h | trello aufgaben überlegen |
 | 0.5h | supabase account erstellen + explore UI |
-|  |  |
+| 1h | migrate to new sveltekit version |
 |  |  |
 |  |  |
 |  |  |
