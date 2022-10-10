@@ -19,6 +19,20 @@ npm run dev -- --open
 create your theme files with smiu-theme > `npx smui-theme template src/theme`
 Whenever you add a new SMUI package, run > `npm run prepare` again to rebuild your CSS file with the new component’s styles included.
 
+# Usage
+
+## How to do Icons
+choose icon from here https://materialdesignicons.com/  
+and import it in the script as follows `import { mdiMenu } from '@mdi/js';`  
+and then:
+```html
+<Icon component={Svg} viewBox="0 0 24 24">
+    <path fill="currentColor" d={mdiMenu} />
+</Icon>
+```
+
+
+
 # Architecture
 
 ![architecture](docs/images/architecture.PNG)
@@ -124,3 +138,16 @@ https://sveltematerialui.com/SVELTEKIT.md
 one Issue due to the new sveltekit version  needed to be fixed.  
 https://github.com/hperrin/svelte-material-ui/issues/507
 
+### Learn SCSS and SASS
+https://www.youtube.com/watch?v=Zz6eOVaaelI  
+https://www.youtube.com/watch?v=TymGwiNMlh0&t=389s  
+
+### figure out and setup icons
+https://youtu.be/OyjZ7dezADw?t=859  
+https://materialdesignicons.com/  
+`npm i -D @mdi/js`
+
+### scss thing was not working
+`@use 'smui-theme';` had to be put in some scss thing.  
+There was one thing missing in the `npm run prepare` script  
+`"site-light": "sass --no-source-map -I src/theme -I node_modules -I ../smui-theme/node_modules -I ../../node_modules src/site.scss static/site.css"`  

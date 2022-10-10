@@ -19,9 +19,9 @@ track the time this project takes me
 | 1h | migrate to new sveltekit version |
 | 0.5h | setup svelte material UI |
 | 0.5h | setup favicon |
-|  |  |
-|  |  |
-|  |  |
+| 4h | trying to figure out how SMUI and styling and scss and stuff works |
+| 2h | figuring out how to fiy this scss b*tch |
+| 2h | learn scss |
 |  |  |
 |  |  |
 |  |  |

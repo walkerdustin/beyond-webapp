@@ -1,0 +1,33 @@
+// Elevation mixins.
+@use '@material/elevation/index' as elevation;
+
+// Theme Colors (because MDC Elevation uses them)
+@use 'smui-theme';
+ 
+//
+// MDC Elevation Classes
+//
+@use '@material/elevation/mdc-elevation';
+
+// Paper mixins.
+@use '@smui/paper/index' as paper;
+@use '@material/theme/index' as theme;
+
+// Typography mixins.
+@use '@material/typography/index' as typography;
+
+// Main Top App Bar styling.
+@use '@material/top-app-bar/index' as top-app-bar;
+.mdc-top-app-bar.demo-top-app-bar {
+  // Color the top bar with "surface" colors.
+  @include top-app-bar.fill-color(surface);
+  @include top-app-bar.ink-color(on-surface);
+  @include top-app-bar.icon-ink-color(on-surface);
+  // Give it a shadow.
+  @include elevation.elevation(4);
+  // Position it above the drawer.
+  z-index: 7;
+}
+
+p{background-color: green;
+color: red;}
