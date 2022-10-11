@@ -21,12 +21,22 @@
 </svelte:head>
 
 <header class="mdc-elevation--z8">
-	<Paper class="header-paper">
+	<img src="/images/beyond-logo.png" alt="beyond logo" height="70" />
+	<!-- <Paper class="header-paper">
 		<img src="/images/beyond-logo.png" alt="beyond logo" height="70" />
 		<Title>beyond</Title>
 
 		some links
-	</Paper>
+	</Paper> -->
+	<!-- <TopAppBar>
+		<Row>
+			<Section>
+				<img src="/images/beyond-logo.png" alt="beyond logo" height="55" />
+				<Title>beyond</Title>
+			</Section>
+			<Section>some links</Section>
+		</Row>
+	</TopAppBar> -->
 </header>
 
 <Paper>
@@ -34,11 +44,11 @@
 	<Content>This is elevated</Content>
 </Paper>
 
-<div class="flexy-dad">
+<!-- <div class="flexy-dad">
 	{#each [...Array(24)].map((_v, i) => i + 1) as n}
 		<div class="mdc-elevation--z{n} flexy-boy">Elevation: {n}</div>
 	{/each}
-</div>
+</div> -->
 
 <main>
 	<slot />
@@ -49,9 +59,9 @@
 <style lang="scss">
 	header {
 		display: flex;
-		background-color: rgb(30, 140, 140);
+		background-color: $secondary;
 		align-items: center;
-		justify-content: center;
+		// justify-content: center;
 	}
 	.header-paper {
 		width: 100%;

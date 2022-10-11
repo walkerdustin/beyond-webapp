@@ -31,6 +31,9 @@ and then:
 </Icon>
 ```
 
+## material UI colors
+need to be set in src/variables.scss and src/theme/_smui-theme.scss
+
 
 
 # Architecture

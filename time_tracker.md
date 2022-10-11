@@ -22,7 +22,7 @@ track the time this project takes me
 | 4h | trying to figure out how SMUI and styling and scss and stuff works |
 | 2h | figuring out how to fiy this scss b*tch |
 | 2h | learn scss |
-|  |  |
+| 0.5h | setup variables.scss |
 |  |  |
 |  |  |
 |  |  |
