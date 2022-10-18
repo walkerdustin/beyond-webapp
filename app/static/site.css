@@ -818,8 +818,3 @@ a:visited {
 .mdc-top-app-bar.demo-top-app-bar .mdc-top-app-bar__navigation-icon.mdc-ripple-upgraded {
   --mdc-ripple-fg-opacity: var(--mdc-ripple-press-opacity, 0.12);
 }
-
-p {
-  background-color: green;
-  color: red;
-}
