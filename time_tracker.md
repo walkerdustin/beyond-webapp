@@ -23,8 +23,8 @@ track the time this project takes me
 | 2h | figuring out how to fiy this scss b*tch |
 | 2h | learn scss |
 | 0.5h | setup variables.scss |
-|  |  |
-|  |  |
+| 1h | research and setup tailwind |
+| 1h | reset css styles |
 |  |  |
 |  |  |
 |  |  |

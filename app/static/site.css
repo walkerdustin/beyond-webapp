@@ -1,22 +1,15 @@
+@charset "UTF-8";
 html,
 body {
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
   color: #000;
 }
 
-a {
-  color: #40b3ff;
-}
-
-a:visited {
-  color: #007dcf;
-}
-
 :root {
-  --mdc-theme-primary: #ff3e00;
-  --mdc-theme-secondary: #676778;
-  --mdc-theme-background: #fff;
-  --mdc-theme-surface: #fff;
+  --mdc-theme-primary: #192c3e;
+  --mdc-theme-secondary: #24433d;
+  --mdc-theme-background: rgb(195, 195, 195);
+  --mdc-theme-surface: rgb(255, 255, 255);
   --mdc-theme-error: #b71c1c;
   --mdc-theme-on-primary: #fff;
   --mdc-theme-on-secondary: #fff;
@@ -40,27 +33,27 @@ a:visited {
 }
 
 .mdc-theme--primary {
-  color: #ff3e00  !important;
+  color: #192c3e  !important;
   /* @alternate */
-  color: var(--mdc-theme-primary, #ff3e00) !important;
+  color: var(--mdc-theme-primary, #192c3e) !important;
 }
 
 .mdc-theme--secondary {
-  color: #676778  !important;
+  color: #24433d  !important;
   /* @alternate */
-  color: var(--mdc-theme-secondary, #676778) !important;
+  color: var(--mdc-theme-secondary, #24433d) !important;
 }
 
 .mdc-theme--background {
-  background-color: #fff;
+  background-color: rgb(195, 195, 195);
   /* @alternate */
-  background-color: var(--mdc-theme-background, #fff);
+  background-color: var(--mdc-theme-background, rgb(195, 195, 195));
 }
 
 .mdc-theme--surface {
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
   /* @alternate */
-  background-color: var(--mdc-theme-surface, #fff);
+  background-color: var(--mdc-theme-surface, rgb(255, 255, 255));
 }
 
 .mdc-theme--error {
@@ -184,15 +177,293 @@ a:visited {
 }
 
 .mdc-theme--primary-bg {
-  background-color: #ff3e00  !important;
+  background-color: #192c3e  !important;
   /* @alternate */
-  background-color: var(--mdc-theme-primary, #ff3e00) !important;
+  background-color: var(--mdc-theme-primary, #192c3e) !important;
 }
 
 .mdc-theme--secondary-bg {
-  background-color: #676778  !important;
+  background-color: #24433d  !important;
   /* @alternate */
-  background-color: var(--mdc-theme-secondary, #676778) !important;
+  background-color: var(--mdc-theme-secondary, #24433d) !important;
+}
+
+/* resset.dev • v5.0.2 */
+/* # =================================================================
+   # Global selectors
+   # ================================================================= */
+html {
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%; /* Prevent adjustments of font size after orientation changes in iOS */
+  word-break: normal;
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
+*,
+::before,
+::after {
+  background-repeat: no-repeat; /* Set `background-repeat: no-repeat` to all elements and pseudo elements */
+  box-sizing: inherit;
+}
+
+::before,
+::after {
+  text-decoration: inherit; /* Inherit text-decoration and vertical align to ::before and ::after pseudo elements */
+  vertical-align: inherit;
+}
+
+* {
+  padding: 0; /* Reset `padding` and `margin` of all elements */
+  margin: 0;
+}
+
+/* # =================================================================
+   # General elements
+   # ================================================================= */
+hr {
+  overflow: visible; /* Show the overflow in Edge and IE */
+  height: 0; /* Add the correct box sizing in Firefox */
+  color: inherit; /* Correct border color in Firefox. */
+}
+
+details,
+main {
+  display: block; /* Render the `main` element consistently in IE. */
+}
+
+summary {
+  display: list-item; /* Add the correct display in all browsers */
+}
+
+small {
+  font-size: 80%; /* Set font-size to 80% in `small` elements */
+}
+
+[hidden] {
+  display: none; /* Add the correct display in IE */
+}
+
+abbr[title] {
+  border-bottom: none; /* Remove the bottom border in Chrome 57 */
+  /* Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari */
+  text-decoration: underline;
+  text-decoration: underline dotted;
+}
+
+a {
+  background-color: transparent; /* Remove the gray background on active links in IE 10 */
+  text-decoration: none;
+  color: inherit;
+}
+
+a:active,
+a:hover {
+  outline-width: 0; /* Remove the outline when hovering in all browsers */
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace; /* Specify the font family of code elements */
+}
+
+pre {
+  font-size: 1em; /* Correct the odd `em` font sizing in all browsers */
+}
+
+b,
+strong {
+  font-weight: bolder; /* Add the correct font weight in Chrome, Edge, and Safari */
+}
+
+/* https://gist.github.com/unruthless/413930 */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+table {
+  border-color: inherit; /* Correct border color in all Chrome, Edge, and Safari. */
+  text-indent: 0; /* Remove text indentation in Chrome, Edge, and Safari */
+}
+
+iframe {
+  border-style: none;
+}
+
+/* # =================================================================
+   # Forms
+   # ================================================================= */
+input {
+  border-radius: 0;
+}
+
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+  height: auto; /* Correct the cursor style of increment and decrement buttons in Chrome */
+}
+
+[type=search] {
+  -webkit-appearance: textfield; /* Correct the odd appearance in Chrome and Safari */
+  outline-offset: -2px; /* Correct the outline style in Safari */
+}
+
+[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none; /* Remove the inner padding in Chrome and Safari on macOS */
+}
+
+textarea {
+  overflow: auto; /* Internet Explorer 11+ */
+  resize: vertical; /* Specify textarea resizability */
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font: inherit; /* Specify font inheritance of form elements */
+}
+
+optgroup {
+  font-weight: bold; /* Restore the font weight unset by the previous rule */
+}
+
+button {
+  overflow: visible; /* Address `overflow` set to `hidden` in IE 8/9/10/11 */
+}
+
+button,
+select {
+  text-transform: none; /* Firefox 40+, Internet Explorer 11- */
+}
+
+/* Apply cursor pointer to button elements */
+button,
+[type=button],
+[type=reset],
+[type=submit],
+[role=button] {
+  cursor: pointer;
+}
+
+/* Remove inner padding and border in Firefox 4+ */
+button::-moz-focus-inner,
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/* Replace focus style removed in the border reset above */
+button:-moz-focusring,
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner {
+  outline: 1px dotted ButtonText;
+}
+
+button,
+html [type=button],
+[type=reset],
+[type=submit] {
+  -webkit-appearance: button; /* Correct the inability to style clickable types in iOS */
+}
+
+/* Remove the default button styling in all browsers */
+button,
+input,
+select,
+textarea {
+  background-color: transparent;
+  border-style: none;
+}
+
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline-width: 0;
+}
+
+/* Style select like a standard input */
+select {
+  -moz-appearance: none; /* Firefox 36+ */
+  -webkit-appearance: none; /* Chrome 41+ */
+}
+
+select::-ms-expand {
+  display: none; /* Internet Explorer 11+ */
+}
+
+select::-ms-value {
+  color: currentColor; /* Internet Explorer 11+ */
+}
+
+legend {
+  border: 0; /* Correct `color` not being inherited in IE 8/9/10/11 */
+  color: inherit; /* Correct the color inheritance from `fieldset` elements in IE */
+  display: table; /* Correct the text wrapping in Edge and IE */
+  max-width: 100%; /* Correct the text wrapping in Edge and IE */
+  white-space: normal; /* Correct the text wrapping in Edge and IE */
+  max-width: 100%; /* Correct the text wrapping in Edge 18- and IE */
+}
+
+::-webkit-file-upload-button {
+  /* Correct the inability to style clickable types in iOS and Safari */
+  -webkit-appearance: button;
+  color: inherit;
+  font: inherit; /* Change font properties to `inherit` in Chrome and Safari */
+}
+
+/* Replace pointer cursor in disabled elements */
+[disabled] {
+  cursor: default;
+}
+
+/* # =================================================================
+   # Specify media element style
+   # ================================================================= */
+img {
+  border-style: none; /* Remove border when inside `a` element in IE 8/9/10 */
+}
+
+/* Add the correct vertical alignment in Chrome, Firefox, and Opera */
+progress {
+  vertical-align: baseline;
+}
+
+/* # =================================================================
+   # Accessibility
+   # ================================================================= */
+/* Specify the progress cursor of updating elements */
+[aria-busy=true] {
+  cursor: progress;
+}
+
+/* Specify the pointer cursor of trigger elements */
+[aria-controls] {
+  cursor: pointer;
+}
+
+/* Specify the unstyled cursor of disabled, not-editable, or otherwise inoperable elements */
+[aria-disabled=true] {
+  cursor: default;
 }
 
 .mdc-elevation--z0 {
@@ -329,9 +600,9 @@ a:visited {
   padding: 24px 16px;
 }
 .smui-paper.smui-paper--raised, .smui-paper.smui-paper--unelevated {
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
   /* @alternate */
-  background-color: var(--mdc-theme-surface, #fff);
+  background-color: var(--mdc-theme-surface, rgb(255, 255, 255));
   color: #000;
   /* @alternate */
   color: var(--mdc-theme-on-surface, #000);
@@ -533,241 +804,241 @@ a:visited {
 }
 
 .smui-paper.smui-paper--color-primary.smui-paper--raised, .smui-paper.smui-paper--color-primary.smui-paper--unelevated {
-  background-color: #ff3e00;
+  background-color: #192c3e;
   /* @alternate */
-  background-color: var(--mdc-theme-primary, #ff3e00);
+  background-color: var(--mdc-theme-primary, #192c3e);
   color: #fff;
   /* @alternate */
   color: var(--mdc-theme-on-primary, #fff);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z0 {
   /* @alternate */
-  box-shadow: 0px 0px 0px 0px rgba(255, 62, 0, 0.2), 0px 0px 0px 0px rgba(255, 62, 0, 0.14), 0px 0px 0px 0px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 0px 0px 0px rgba(25, 44, 62, 0.2), 0px 0px 0px 0px rgba(25, 44, 62, 0.14), 0px 0px 0px 0px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z1 {
   /* @alternate */
-  box-shadow: 0px 2px 1px -1px rgba(255, 62, 0, 0.2), 0px 1px 1px 0px rgba(255, 62, 0, 0.14), 0px 1px 3px 0px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 2px 1px -1px rgba(25, 44, 62, 0.2), 0px 1px 1px 0px rgba(25, 44, 62, 0.14), 0px 1px 3px 0px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z2 {
   /* @alternate */
-  box-shadow: 0px 3px 1px -2px rgba(255, 62, 0, 0.2), 0px 2px 2px 0px rgba(255, 62, 0, 0.14), 0px 1px 5px 0px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 3px 1px -2px rgba(25, 44, 62, 0.2), 0px 2px 2px 0px rgba(25, 44, 62, 0.14), 0px 1px 5px 0px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z3 {
   /* @alternate */
-  box-shadow: 0px 3px 3px -2px rgba(255, 62, 0, 0.2), 0px 3px 4px 0px rgba(255, 62, 0, 0.14), 0px 1px 8px 0px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 3px 3px -2px rgba(25, 44, 62, 0.2), 0px 3px 4px 0px rgba(25, 44, 62, 0.14), 0px 1px 8px 0px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z4 {
   /* @alternate */
-  box-shadow: 0px 2px 4px -1px rgba(255, 62, 0, 0.2), 0px 4px 5px 0px rgba(255, 62, 0, 0.14), 0px 1px 10px 0px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 2px 4px -1px rgba(25, 44, 62, 0.2), 0px 4px 5px 0px rgba(25, 44, 62, 0.14), 0px 1px 10px 0px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z5 {
   /* @alternate */
-  box-shadow: 0px 3px 5px -1px rgba(255, 62, 0, 0.2), 0px 5px 8px 0px rgba(255, 62, 0, 0.14), 0px 1px 14px 0px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 3px 5px -1px rgba(25, 44, 62, 0.2), 0px 5px 8px 0px rgba(25, 44, 62, 0.14), 0px 1px 14px 0px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z6 {
   /* @alternate */
-  box-shadow: 0px 3px 5px -1px rgba(255, 62, 0, 0.2), 0px 6px 10px 0px rgba(255, 62, 0, 0.14), 0px 1px 18px 0px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 3px 5px -1px rgba(25, 44, 62, 0.2), 0px 6px 10px 0px rgba(25, 44, 62, 0.14), 0px 1px 18px 0px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z7 {
   /* @alternate */
-  box-shadow: 0px 4px 5px -2px rgba(255, 62, 0, 0.2), 0px 7px 10px 1px rgba(255, 62, 0, 0.14), 0px 2px 16px 1px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 4px 5px -2px rgba(25, 44, 62, 0.2), 0px 7px 10px 1px rgba(25, 44, 62, 0.14), 0px 2px 16px 1px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z8 {
   /* @alternate */
-  box-shadow: 0px 5px 5px -3px rgba(255, 62, 0, 0.2), 0px 8px 10px 1px rgba(255, 62, 0, 0.14), 0px 3px 14px 2px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 5px 5px -3px rgba(25, 44, 62, 0.2), 0px 8px 10px 1px rgba(25, 44, 62, 0.14), 0px 3px 14px 2px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z9 {
   /* @alternate */
-  box-shadow: 0px 5px 6px -3px rgba(255, 62, 0, 0.2), 0px 9px 12px 1px rgba(255, 62, 0, 0.14), 0px 3px 16px 2px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 5px 6px -3px rgba(25, 44, 62, 0.2), 0px 9px 12px 1px rgba(25, 44, 62, 0.14), 0px 3px 16px 2px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z10 {
   /* @alternate */
-  box-shadow: 0px 6px 6px -3px rgba(255, 62, 0, 0.2), 0px 10px 14px 1px rgba(255, 62, 0, 0.14), 0px 4px 18px 3px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 6px 6px -3px rgba(25, 44, 62, 0.2), 0px 10px 14px 1px rgba(25, 44, 62, 0.14), 0px 4px 18px 3px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z11 {
   /* @alternate */
-  box-shadow: 0px 6px 7px -4px rgba(255, 62, 0, 0.2), 0px 11px 15px 1px rgba(255, 62, 0, 0.14), 0px 4px 20px 3px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 6px 7px -4px rgba(25, 44, 62, 0.2), 0px 11px 15px 1px rgba(25, 44, 62, 0.14), 0px 4px 20px 3px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z12 {
   /* @alternate */
-  box-shadow: 0px 7px 8px -4px rgba(255, 62, 0, 0.2), 0px 12px 17px 2px rgba(255, 62, 0, 0.14), 0px 5px 22px 4px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 7px 8px -4px rgba(25, 44, 62, 0.2), 0px 12px 17px 2px rgba(25, 44, 62, 0.14), 0px 5px 22px 4px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z13 {
   /* @alternate */
-  box-shadow: 0px 7px 8px -4px rgba(255, 62, 0, 0.2), 0px 13px 19px 2px rgba(255, 62, 0, 0.14), 0px 5px 24px 4px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 7px 8px -4px rgba(25, 44, 62, 0.2), 0px 13px 19px 2px rgba(25, 44, 62, 0.14), 0px 5px 24px 4px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z14 {
   /* @alternate */
-  box-shadow: 0px 7px 9px -4px rgba(255, 62, 0, 0.2), 0px 14px 21px 2px rgba(255, 62, 0, 0.14), 0px 5px 26px 4px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 7px 9px -4px rgba(25, 44, 62, 0.2), 0px 14px 21px 2px rgba(25, 44, 62, 0.14), 0px 5px 26px 4px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z15 {
   /* @alternate */
-  box-shadow: 0px 8px 9px -5px rgba(255, 62, 0, 0.2), 0px 15px 22px 2px rgba(255, 62, 0, 0.14), 0px 6px 28px 5px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 8px 9px -5px rgba(25, 44, 62, 0.2), 0px 15px 22px 2px rgba(25, 44, 62, 0.14), 0px 6px 28px 5px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z16 {
   /* @alternate */
-  box-shadow: 0px 8px 10px -5px rgba(255, 62, 0, 0.2), 0px 16px 24px 2px rgba(255, 62, 0, 0.14), 0px 6px 30px 5px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 8px 10px -5px rgba(25, 44, 62, 0.2), 0px 16px 24px 2px rgba(25, 44, 62, 0.14), 0px 6px 30px 5px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z17 {
   /* @alternate */
-  box-shadow: 0px 8px 11px -5px rgba(255, 62, 0, 0.2), 0px 17px 26px 2px rgba(255, 62, 0, 0.14), 0px 6px 32px 5px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 8px 11px -5px rgba(25, 44, 62, 0.2), 0px 17px 26px 2px rgba(25, 44, 62, 0.14), 0px 6px 32px 5px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z18 {
   /* @alternate */
-  box-shadow: 0px 9px 11px -5px rgba(255, 62, 0, 0.2), 0px 18px 28px 2px rgba(255, 62, 0, 0.14), 0px 7px 34px 6px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 9px 11px -5px rgba(25, 44, 62, 0.2), 0px 18px 28px 2px rgba(25, 44, 62, 0.14), 0px 7px 34px 6px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z19 {
   /* @alternate */
-  box-shadow: 0px 9px 12px -6px rgba(255, 62, 0, 0.2), 0px 19px 29px 2px rgba(255, 62, 0, 0.14), 0px 7px 36px 6px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 9px 12px -6px rgba(25, 44, 62, 0.2), 0px 19px 29px 2px rgba(25, 44, 62, 0.14), 0px 7px 36px 6px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z20 {
   /* @alternate */
-  box-shadow: 0px 10px 13px -6px rgba(255, 62, 0, 0.2), 0px 20px 31px 3px rgba(255, 62, 0, 0.14), 0px 8px 38px 7px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 10px 13px -6px rgba(25, 44, 62, 0.2), 0px 20px 31px 3px rgba(25, 44, 62, 0.14), 0px 8px 38px 7px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z21 {
   /* @alternate */
-  box-shadow: 0px 10px 13px -6px rgba(255, 62, 0, 0.2), 0px 21px 33px 3px rgba(255, 62, 0, 0.14), 0px 8px 40px 7px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 10px 13px -6px rgba(25, 44, 62, 0.2), 0px 21px 33px 3px rgba(25, 44, 62, 0.14), 0px 8px 40px 7px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z22 {
   /* @alternate */
-  box-shadow: 0px 10px 14px -6px rgba(255, 62, 0, 0.2), 0px 22px 35px 3px rgba(255, 62, 0, 0.14), 0px 8px 42px 7px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 10px 14px -6px rgba(25, 44, 62, 0.2), 0px 22px 35px 3px rgba(25, 44, 62, 0.14), 0px 8px 42px 7px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z23 {
   /* @alternate */
-  box-shadow: 0px 11px 14px -7px rgba(255, 62, 0, 0.2), 0px 23px 36px 3px rgba(255, 62, 0, 0.14), 0px 9px 44px 8px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 11px 14px -7px rgba(25, 44, 62, 0.2), 0px 23px 36px 3px rgba(25, 44, 62, 0.14), 0px 9px 44px 8px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--raised.smui-paper--elevation-z24 {
   /* @alternate */
-  box-shadow: 0px 11px 15px -7px rgba(255, 62, 0, 0.2), 0px 24px 38px 3px rgba(255, 62, 0, 0.14), 0px 9px 46px 8px rgba(255, 62, 0, 0.12);
+  box-shadow: 0px 11px 15px -7px rgba(25, 44, 62, 0.2), 0px 24px 38px 3px rgba(25, 44, 62, 0.14), 0px 9px 46px 8px rgba(25, 44, 62, 0.12);
 }
 .smui-paper.smui-paper--color-primary.smui-paper--outlined {
   border-width: 1px;
   border-style: solid;
-  border-color: #ff3e00;
+  border-color: #192c3e;
   /* @alternate */
-  border-color: var(--mdc-theme-primary, #ff3e00);
+  border-color: var(--mdc-theme-primary, #192c3e);
 }
 
 .smui-paper.smui-paper--color-secondary.smui-paper--raised, .smui-paper.smui-paper--color-secondary.smui-paper--unelevated {
-  background-color: #676778;
+  background-color: #24433d;
   /* @alternate */
-  background-color: var(--mdc-theme-secondary, #676778);
+  background-color: var(--mdc-theme-secondary, #24433d);
   color: #fff;
   /* @alternate */
   color: var(--mdc-theme-on-secondary, #fff);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z0 {
   /* @alternate */
-  box-shadow: 0px 0px 0px 0px rgba(103, 103, 120, 0.2), 0px 0px 0px 0px rgba(103, 103, 120, 0.14), 0px 0px 0px 0px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 0px 0px 0px rgba(36, 67, 61, 0.2), 0px 0px 0px 0px rgba(36, 67, 61, 0.14), 0px 0px 0px 0px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z1 {
   /* @alternate */
-  box-shadow: 0px 2px 1px -1px rgba(103, 103, 120, 0.2), 0px 1px 1px 0px rgba(103, 103, 120, 0.14), 0px 1px 3px 0px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 2px 1px -1px rgba(36, 67, 61, 0.2), 0px 1px 1px 0px rgba(36, 67, 61, 0.14), 0px 1px 3px 0px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z2 {
   /* @alternate */
-  box-shadow: 0px 3px 1px -2px rgba(103, 103, 120, 0.2), 0px 2px 2px 0px rgba(103, 103, 120, 0.14), 0px 1px 5px 0px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 3px 1px -2px rgba(36, 67, 61, 0.2), 0px 2px 2px 0px rgba(36, 67, 61, 0.14), 0px 1px 5px 0px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z3 {
   /* @alternate */
-  box-shadow: 0px 3px 3px -2px rgba(103, 103, 120, 0.2), 0px 3px 4px 0px rgba(103, 103, 120, 0.14), 0px 1px 8px 0px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 3px 3px -2px rgba(36, 67, 61, 0.2), 0px 3px 4px 0px rgba(36, 67, 61, 0.14), 0px 1px 8px 0px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z4 {
   /* @alternate */
-  box-shadow: 0px 2px 4px -1px rgba(103, 103, 120, 0.2), 0px 4px 5px 0px rgba(103, 103, 120, 0.14), 0px 1px 10px 0px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 2px 4px -1px rgba(36, 67, 61, 0.2), 0px 4px 5px 0px rgba(36, 67, 61, 0.14), 0px 1px 10px 0px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z5 {
   /* @alternate */
-  box-shadow: 0px 3px 5px -1px rgba(103, 103, 120, 0.2), 0px 5px 8px 0px rgba(103, 103, 120, 0.14), 0px 1px 14px 0px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 3px 5px -1px rgba(36, 67, 61, 0.2), 0px 5px 8px 0px rgba(36, 67, 61, 0.14), 0px 1px 14px 0px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z6 {
   /* @alternate */
-  box-shadow: 0px 3px 5px -1px rgba(103, 103, 120, 0.2), 0px 6px 10px 0px rgba(103, 103, 120, 0.14), 0px 1px 18px 0px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 3px 5px -1px rgba(36, 67, 61, 0.2), 0px 6px 10px 0px rgba(36, 67, 61, 0.14), 0px 1px 18px 0px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z7 {
   /* @alternate */
-  box-shadow: 0px 4px 5px -2px rgba(103, 103, 120, 0.2), 0px 7px 10px 1px rgba(103, 103, 120, 0.14), 0px 2px 16px 1px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 4px 5px -2px rgba(36, 67, 61, 0.2), 0px 7px 10px 1px rgba(36, 67, 61, 0.14), 0px 2px 16px 1px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z8 {
   /* @alternate */
-  box-shadow: 0px 5px 5px -3px rgba(103, 103, 120, 0.2), 0px 8px 10px 1px rgba(103, 103, 120, 0.14), 0px 3px 14px 2px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 5px 5px -3px rgba(36, 67, 61, 0.2), 0px 8px 10px 1px rgba(36, 67, 61, 0.14), 0px 3px 14px 2px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z9 {
   /* @alternate */
-  box-shadow: 0px 5px 6px -3px rgba(103, 103, 120, 0.2), 0px 9px 12px 1px rgba(103, 103, 120, 0.14), 0px 3px 16px 2px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 5px 6px -3px rgba(36, 67, 61, 0.2), 0px 9px 12px 1px rgba(36, 67, 61, 0.14), 0px 3px 16px 2px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z10 {
   /* @alternate */
-  box-shadow: 0px 6px 6px -3px rgba(103, 103, 120, 0.2), 0px 10px 14px 1px rgba(103, 103, 120, 0.14), 0px 4px 18px 3px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 6px 6px -3px rgba(36, 67, 61, 0.2), 0px 10px 14px 1px rgba(36, 67, 61, 0.14), 0px 4px 18px 3px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z11 {
   /* @alternate */
-  box-shadow: 0px 6px 7px -4px rgba(103, 103, 120, 0.2), 0px 11px 15px 1px rgba(103, 103, 120, 0.14), 0px 4px 20px 3px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 6px 7px -4px rgba(36, 67, 61, 0.2), 0px 11px 15px 1px rgba(36, 67, 61, 0.14), 0px 4px 20px 3px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z12 {
   /* @alternate */
-  box-shadow: 0px 7px 8px -4px rgba(103, 103, 120, 0.2), 0px 12px 17px 2px rgba(103, 103, 120, 0.14), 0px 5px 22px 4px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 7px 8px -4px rgba(36, 67, 61, 0.2), 0px 12px 17px 2px rgba(36, 67, 61, 0.14), 0px 5px 22px 4px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z13 {
   /* @alternate */
-  box-shadow: 0px 7px 8px -4px rgba(103, 103, 120, 0.2), 0px 13px 19px 2px rgba(103, 103, 120, 0.14), 0px 5px 24px 4px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 7px 8px -4px rgba(36, 67, 61, 0.2), 0px 13px 19px 2px rgba(36, 67, 61, 0.14), 0px 5px 24px 4px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z14 {
   /* @alternate */
-  box-shadow: 0px 7px 9px -4px rgba(103, 103, 120, 0.2), 0px 14px 21px 2px rgba(103, 103, 120, 0.14), 0px 5px 26px 4px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 7px 9px -4px rgba(36, 67, 61, 0.2), 0px 14px 21px 2px rgba(36, 67, 61, 0.14), 0px 5px 26px 4px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z15 {
   /* @alternate */
-  box-shadow: 0px 8px 9px -5px rgba(103, 103, 120, 0.2), 0px 15px 22px 2px rgba(103, 103, 120, 0.14), 0px 6px 28px 5px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 8px 9px -5px rgba(36, 67, 61, 0.2), 0px 15px 22px 2px rgba(36, 67, 61, 0.14), 0px 6px 28px 5px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z16 {
   /* @alternate */
-  box-shadow: 0px 8px 10px -5px rgba(103, 103, 120, 0.2), 0px 16px 24px 2px rgba(103, 103, 120, 0.14), 0px 6px 30px 5px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 8px 10px -5px rgba(36, 67, 61, 0.2), 0px 16px 24px 2px rgba(36, 67, 61, 0.14), 0px 6px 30px 5px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z17 {
   /* @alternate */
-  box-shadow: 0px 8px 11px -5px rgba(103, 103, 120, 0.2), 0px 17px 26px 2px rgba(103, 103, 120, 0.14), 0px 6px 32px 5px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 8px 11px -5px rgba(36, 67, 61, 0.2), 0px 17px 26px 2px rgba(36, 67, 61, 0.14), 0px 6px 32px 5px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z18 {
   /* @alternate */
-  box-shadow: 0px 9px 11px -5px rgba(103, 103, 120, 0.2), 0px 18px 28px 2px rgba(103, 103, 120, 0.14), 0px 7px 34px 6px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 9px 11px -5px rgba(36, 67, 61, 0.2), 0px 18px 28px 2px rgba(36, 67, 61, 0.14), 0px 7px 34px 6px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z19 {
   /* @alternate */
-  box-shadow: 0px 9px 12px -6px rgba(103, 103, 120, 0.2), 0px 19px 29px 2px rgba(103, 103, 120, 0.14), 0px 7px 36px 6px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 9px 12px -6px rgba(36, 67, 61, 0.2), 0px 19px 29px 2px rgba(36, 67, 61, 0.14), 0px 7px 36px 6px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z20 {
   /* @alternate */
-  box-shadow: 0px 10px 13px -6px rgba(103, 103, 120, 0.2), 0px 20px 31px 3px rgba(103, 103, 120, 0.14), 0px 8px 38px 7px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 10px 13px -6px rgba(36, 67, 61, 0.2), 0px 20px 31px 3px rgba(36, 67, 61, 0.14), 0px 8px 38px 7px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z21 {
   /* @alternate */
-  box-shadow: 0px 10px 13px -6px rgba(103, 103, 120, 0.2), 0px 21px 33px 3px rgba(103, 103, 120, 0.14), 0px 8px 40px 7px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 10px 13px -6px rgba(36, 67, 61, 0.2), 0px 21px 33px 3px rgba(36, 67, 61, 0.14), 0px 8px 40px 7px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z22 {
   /* @alternate */
-  box-shadow: 0px 10px 14px -6px rgba(103, 103, 120, 0.2), 0px 22px 35px 3px rgba(103, 103, 120, 0.14), 0px 8px 42px 7px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 10px 14px -6px rgba(36, 67, 61, 0.2), 0px 22px 35px 3px rgba(36, 67, 61, 0.14), 0px 8px 42px 7px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z23 {
   /* @alternate */
-  box-shadow: 0px 11px 14px -7px rgba(103, 103, 120, 0.2), 0px 23px 36px 3px rgba(103, 103, 120, 0.14), 0px 9px 44px 8px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 11px 14px -7px rgba(36, 67, 61, 0.2), 0px 23px 36px 3px rgba(36, 67, 61, 0.14), 0px 9px 44px 8px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--raised.smui-paper--elevation-z24 {
   /* @alternate */
-  box-shadow: 0px 11px 15px -7px rgba(103, 103, 120, 0.2), 0px 24px 38px 3px rgba(103, 103, 120, 0.14), 0px 9px 46px 8px rgba(103, 103, 120, 0.12);
+  box-shadow: 0px 11px 15px -7px rgba(36, 67, 61, 0.2), 0px 24px 38px 3px rgba(36, 67, 61, 0.14), 0px 9px 46px 8px rgba(36, 67, 61, 0.12);
 }
 .smui-paper.smui-paper--color-secondary.smui-paper--outlined {
   border-width: 1px;
   border-style: solid;
-  border-color: #676778;
+  border-color: #24433d;
   /* @alternate */
-  border-color: var(--mdc-theme-secondary, #676778);
+  border-color: var(--mdc-theme-secondary, #24433d);
 }
 
 .mdc-top-app-bar.demo-top-app-bar {
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
   /* @alternate */
-  background-color: var(--mdc-theme-surface, #fff);
+  background-color: var(--mdc-theme-surface, rgb(255, 255, 255));
   color: #000;
   /* @alternate */
   color: var(--mdc-theme-on-surface, #000);

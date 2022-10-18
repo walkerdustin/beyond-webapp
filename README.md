@@ -154,3 +154,14 @@ https://materialdesignicons.com/
 `@use 'smui-theme';` had to be put in some scss thing.  
 There was one thing missing in the `npm run prepare` script  
 `"site-light": "sass --no-source-map -I src/theme -I node_modules -I ../smui-theme/node_modules -I ../../node_modules src/site.scss static/site.css"`  
+
+## setup tailwind 
+
+with https://github.com/svelte-add/tailwindcss
+
+## reset css styles
+
+user agent stylesheet is anoying me  
+i copyed the reset style thing from https://github.com/filipelinhares/ress 
+into my scss
+and added some resets for the \<a> element

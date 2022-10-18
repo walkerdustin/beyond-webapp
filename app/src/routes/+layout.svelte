@@ -9,6 +9,7 @@
 	// for the icons
 	import { Icon } from '@smui/common';
 	import { Svg } from '@smui/common/elements';
+	import Button, { Label } from '@smui/button';
 
 	import Paper, { Subtitle, Content } from '@smui/paper';
 
@@ -20,29 +21,23 @@
 	<link rel="stylesheet" href="{assets}/site.css" />
 </svelte:head>
 <div class="mdc-elevation--z8 ">
-	<header class="mdc-elevation--z8">
-		<img src="/images/beyond-logo.png" alt="beyond logo" height="60" class="margin-standard" />
+	<header class="mdc-elevation--z8 flex flex-row w-full">
+		<img src="/images/beyond-logo.png" alt="beyond logo" height="60" class="m-4" />
 
 		<div>
-			<h1 style="margin-bottom: 5px;" class="text-blue-900">Beyond</h1>
-			<p style="margin-top: 5px;">After Life Management</p>
+			<h1 class="mb-1">Beyond</h1>
+			<p class="mt-1">After Life Management</p>
 		</div>
-		<div style="float: left;" />
-		<!-- <Paper class="header-paper">
-		<img src="/images/beyond-logo.png" alt="beyond logo" height="70" />
-		<Title>beyond</Title>
-
-		some links
-	</Paper> -->
-		<!-- <TopAppBar>
-		<Row>
-			<Section>
-				<img src="/images/beyond-logo.png" alt="beyond logo" height="55" />
-				<Title>beyond</Title>
-			</Section>
-			<Section>some links</Section>
-		</Row>
-	</TopAppBar> -->
+		<!-- just whitespace -->
+		<div class="grow" />
+		<nav>
+			<div class="float-right">
+				<Button>
+					<a href="/about"><Label>Default</Label></a>
+				</Button>
+				<div />
+			</div>
+		</nav>
 	</header>
 </div>
 <p class="mdc-elevation--z8">elevated?</p>
