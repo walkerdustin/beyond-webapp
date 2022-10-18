@@ -19,14 +19,15 @@
 	<!-- Site Styles -->
 	<link rel="stylesheet" href="{assets}/site.css" />
 </svelte:head>
-<div class="mdc-elevation--z8">
+<div class="mdc-elevation--z8 ">
 	<header class="mdc-elevation--z8">
 		<img src="/images/beyond-logo.png" alt="beyond logo" height="60" class="margin-standard" />
 
 		<div>
-			<h1 style="margin-bottom: 5px;">Beyond</h1>
+			<h1 style="margin-bottom: 5px;" class="text-blue-900">Beyond</h1>
 			<p style="margin-top: 5px;">After Life Management</p>
 		</div>
+		<div style="float: left;" />
 		<!-- <Paper class="header-paper">
 		<img src="/images/beyond-logo.png" alt="beyond logo" height="70" />
 		<Title>beyond</Title>
@@ -64,6 +65,10 @@
 <footer />
 
 <style>
+	/* @tailwind base;*/
+	@tailwind components;
+	@tailwind utilities;
+
 	header {
 		display: flex;
 		background-color: white;
