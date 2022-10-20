@@ -22,7 +22,15 @@
 </svelte:head>
 <div class="mdc-elevation--z8 ">
 	<header class="mdc-elevation--z8 flex flex-row w-full">
-		<img src="/images/beyond-logo.png" alt="beyond logo" height="60" class="m-4" />
+		<a href="/" draggable="false"
+			><img
+				src="/images/beyond-logo.png"
+				alt="beyond logo"
+				height="60"
+				class="m-4"
+				draggable="false"
+			/></a
+		>
 
 		<div>
 			<h1 class="mb-1">Beyond</h1>
@@ -33,19 +41,23 @@
 		<nav>
 			<div class="float-right">
 				<Button>
-					<a href="/about"><Label>Default</Label></a>
+					<a href="/nachlassplan"><Label>Nachlassplan</Label></a>
 				</Button>
-				<div />
+				<Button>
+					<a href="/meine-dokumente" draggable="false"><Label>Meine Dokumente</Label></a>
+				</Button>
+				<Button>
+					<a href="/beratung" draggable="false"><Label>Individuelle Beratung</Label></a>
+				</Button>
+				<span class="mr-2">
+					<Button variant="raised">
+						<a href="/home" draggable="false"><Label>Kostenlos Starten</Label></a>
+					</Button>
+				</span>
 			</div>
 		</nav>
 	</header>
 </div>
-<p class="mdc-elevation--z8">elevated?</p>
-
-<Paper>
-	<Title>elevated Paper</Title>
-	<Content>This is elevated</Content>
-</Paper>
 
 <!-- <div class="flexy-dad">
 	{#each [...Array(24)].map((_v, i) => i + 1) as n}
