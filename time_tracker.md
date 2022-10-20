@@ -25,8 +25,8 @@ track the time this project takes me
 | 0.5h | setup variables.scss |
 | 1h | research and setup tailwind |
 | 1h | reset css styles |
-|  |  |
-|  |  |
+| 0.5h | fix draggable issue |
+| 1h | develop header |
 |  |  |
 |  |  |
 |  |  |

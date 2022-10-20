@@ -19,6 +19,14 @@ npm run dev -- --open
 create your theme files with smiu-theme > `npx smui-theme template src/theme`
 Whenever you add a new SMUI package, run > `npm run prepare` again to rebuild your CSS file with the new component’s styles included.
 
+## VS Code extensions
+These extensions are neccessary
+- German - Code Spell Checker
+- HTML CSS Support
+- Svelte for VS Code
+- Svelte 3 Snippets
+- Tailwind CSS IntelliSense
+
 # Usage
 
 ## How to do Icons
@@ -165,3 +173,8 @@ user agent stylesheet is anoying me
 i copyed the reset style thing from https://github.com/filipelinhares/ress 
 into my scss
 and added some resets for the \<a> element
+
+## stupid links are draggable and mess with dem being abel to be clicked.
+that is stupid  
+fixed it with this css in my reset.scss  
+from https://github.com/hammerjs/hammer.js/issues/641#issuecomment-397554017  

@@ -1,4 +1,4 @@
 <script>
 </script>
 
-<h1>Index</h1>
+<h1>Beratung</h1>
