@@ -28,7 +28,7 @@ track the time this project takes me
 | 0.5h | fix draggable issue |
 | 1h | develop header |
 | 2h | dev and design |
-| 2h | dev and design |
+| 2h | dev and design login page |
 |  |  |
 |  |  |
 |  |  |
