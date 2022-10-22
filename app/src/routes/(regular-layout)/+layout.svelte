@@ -14,17 +14,9 @@
 
 	import Paper, { Subtitle, Content } from '@smui/paper';
 
-	import { assets } from '$app/paths';
-
 	import { mdiAccount } from '@mdi/js';
 </script>
 
-<svelte:head>
-	<!-- Site Styles -->
-	<link rel="stylesheet" href="{assets}/site.css" />
-</svelte:head>
-
-<svelte:body />
 <div class="mdc-elevation--z8 ">
 	<header class="mdc-elevation--z8 flex flex-row w-full">
 		<a href="/" draggable="false"
@@ -80,9 +72,8 @@
 		<div class="mdc-elevation--z{n} flexy-boy">Elevation: {n}</div>
 	{/each}
 </div> -->
-
 <main>
-	<slot />
+	<slot><!-- optional fallback --></slot>
 </main>
 
 <footer class="mt-auto mdc-elevation--z8 py-3">
@@ -105,7 +96,7 @@
 	</div>
 </footer>
 
-<style lang="postcss">
+<style>
 	/* @tailwind base;*/
 	@tailwind components;
 	@tailwind utilities;
