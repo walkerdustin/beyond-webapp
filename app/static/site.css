@@ -1110,6 +1110,3 @@ progress {
   /* @alternate */
   stroke: var(--mdc-theme-secondary, #b7deff);
 }
-
-@tailwind components;
-@tailwind utilities;

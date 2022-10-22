@@ -10,10 +10,13 @@
 	import { Icon } from '@smui/common';
 	import { Svg } from '@smui/common/elements';
 	import Button, { Label } from '@smui/button';
+	import IconButton from '@smui/icon-button';
 
 	import Paper, { Subtitle, Content } from '@smui/paper';
 
 	import { assets } from '$app/paths';
+
+	import { mdiAccount } from '@mdi/js';
 </script>
 
 <svelte:head>
@@ -41,7 +44,7 @@
 		<!-- just whitespace -->
 		<div class="grow" />
 		<nav>
-			<div class="float-right">
+			<div class="float-right mr-2">
 				<Button>
 					<a href="/nachlassplan"><Label>Nachlassplan</Label></a>
 				</Button>
@@ -51,11 +54,22 @@
 				<Button>
 					<a href="/beratung" draggable="false"><Label>Individuelle Beratung</Label></a>
 				</Button>
-				<span class="mr-2">
-					<Button variant="raised">
-						<a href="/home" draggable="false"><Label>Kostenlos Starten</Label></a>
-					</Button>
-				</span>
+
+				<IconButton>
+					<a href="/home" draggable="false">
+						<Icon component={Svg} viewBox="0 0 24 24">
+							<path fill="currentColor" d={mdiAccount} />
+						</Icon>
+					</a>
+				</IconButton>
+
+				<!-- <Button variant="raised">
+					
+						<Icon component={Svg} viewBox="0 0 24 24">
+							<path fill="currentColor" d={mdiAccount} />
+						</Icon>
+					</a>
+				</Button> -->
 			</div>
 		</nav>
 	</header>
@@ -91,7 +105,7 @@
 	</div>
 </footer>
 
-<style>
+<style lang="postcss">
 	/* @tailwind base;*/
 	@tailwind components;
 	@tailwind utilities;
@@ -103,7 +117,7 @@
 		/* justify-content: center; */
 		height: 80px;
 	}
-	.header-paper {
+	/* .header-paper {
 		width: 100%;
 	}
 	.margin-standard {
@@ -143,5 +157,5 @@
 		height: 0;
 		flex-grow: 1;
 		overflow: auto;
-	}
+	} */
 </style>

@@ -25,6 +25,7 @@
 		"@smui/circular-progress": "^6.1.4",
 		"@smui/common": "^6.1.4",
 		"@smui/dialog": "^6.1.4",
+		"@smui/icon-button": "^7.0.0-beta.0",
 		"@smui/linear-progress": "^6.1.4",
 		"@smui/paper": "^6.1.4",
 		"@smui/snackbar": "^6.1.4",
