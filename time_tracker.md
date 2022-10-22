@@ -27,8 +27,8 @@ track the time this project takes me
 | 1h | reset css styles |
 | 0.5h | fix draggable issue |
 | 1h | develop header |
-|  |  |
-|  |  |
+| 2h | dev and design |
+| 2h | dev and design |
 |  |  |
 |  |  |
 |  |  |

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
 	<title>beyond</title>
@@ -21,9 +21,13 @@
 
 	%sveltekit.head%
 </head>
+<style>
+	@tailwind components;
+	@tailwind utilities;
+</style>
 
-<body style="margin: 0;">
-	<div>%sveltekit.body%</div>
+<body style="margin: 0; display: flex; flex-direction: column; min-height: 100vh;">
+	%sveltekit.body%
 </body>
 
 </html>

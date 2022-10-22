@@ -58,6 +58,11 @@ ESLint - Yes
 Prettier - Yes
 Playwright - Yes
 
+# What data does my database need to store?
+
+- progress [0%, 100%] für die cards in nachlassplan
+- link von user zu seinen dokumenten
+
 # developement Journey
 
 ## install sveltekit
@@ -119,18 +124,18 @@ it worked after (less then) 2 min
 
 
 ## Evaluate UI Library
-| Library | link| note | gitHub Stars
-|----|-----------|-----|----------------| 
-| Svelte UI | [link](https://svelte-headlessui.goss.io/docs) |  very barebones   |          |  
-| Attractions | [link](https://www.svelteui.org/) |  very barebones   |          |
-| Smelt | [link](https://smeltejs.com/) | Smelte is a UI framework built on top of Svelte and Tailwind CSS using Material Design spec    |  1.3k        |
-| SMUI | [link](https://sveltematerialui.com/) |     |    2.6k      |
-| Svelterial | [link](https://svelterialjs.github.io/svelterial/?path=/story/introduction--introduction) |     |          |
-| Svelma | link |    |   152       |
-| Svelte Strap | link |     |          |
-| Svelte Atoms | link |     |          |
-| Agnostic UI | link |     |          |
-| Framework 7 | link |     |          |
+| Library      | link                                                                                      | note                                                                                        | gitHub Stars |
+| ------------ | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------ |
+| Svelte UI    | [link](https://svelte-headlessui.goss.io/docs)                                            | very barebones                                                                              |              |
+| Attractions  | [link](https://www.svelteui.org/)                                                         | very barebones                                                                              |              |
+| Smelt        | [link](https://smeltejs.com/)                                                             | Smelte is a UI framework built on top of Svelte and Tailwind CSS using Material Design spec | 1.3k         |
+| SMUI         | [link](https://sveltematerialui.com/)                                                     |                                                                                             | 2.6k         |
+| Svelterial   | [link](https://svelterialjs.github.io/svelterial/?path=/story/introduction--introduction) |                                                                                             |              |
+| Svelma       | link                                                                                      |                                                                                             | 152          |
+| Svelte Strap | link                                                                                      |                                                                                             |              |
+| Svelte Atoms | link                                                                                      |                                                                                             |              |
+| Agnostic UI  | link                                                                                      |                                                                                             |              |
+| Framework 7  | link                                                                                      |                                                                                             |              |
 
 ---
 ## Trello Aufgaben überlegen
@@ -178,3 +183,6 @@ and added some resets for the \<a> element
 that is stupid  
 fixed it with this css in my reset.scss  
 from https://github.com/hammerjs/hammer.js/issues/641#issuecomment-397554017  
+
+## make the footer stick to bottom
+https://www.youtube.com/watch?v=yc2olxLgKLk&t=143s

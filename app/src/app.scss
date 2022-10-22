@@ -20,6 +20,9 @@
 // Typography mixins.
 @use '@material/typography/index' as typography;
 
+//circle mixins
+@use '@material/circular-progress/index' as circular-progress;
+
 // Main Top App Bar styling.
 @use '@material/top-app-bar/index' as top-app-bar;
 .mdc-top-app-bar.demo-top-app-bar {
@@ -32,3 +35,11 @@
   // Position it above the drawer.
   z-index: 7;
 }
+
+.my-colored-circle {
+  @include circular-progress.color(primary);
+  @include circular-progress.track-color(secondary);
+}
+
+@tailwind components;
+@tailwind utilities;

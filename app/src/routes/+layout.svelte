@@ -20,6 +20,8 @@
 	<!-- Site Styles -->
 	<link rel="stylesheet" href="{assets}/site.css" />
 </svelte:head>
+
+<svelte:body />
 <div class="mdc-elevation--z8 ">
 	<header class="mdc-elevation--z8 flex flex-row w-full">
 		<a href="/" draggable="false"
@@ -29,8 +31,8 @@
 				height="60"
 				class="m-4"
 				draggable="false"
-			/></a
-		>
+			/>
+		</a>
 
 		<div>
 			<h1 class="mb-1">Beyond</h1>
@@ -69,7 +71,25 @@
 	<slot />
 </main>
 
-<footer />
+<footer class="mt-auto mdc-elevation--z8 py-3">
+	<div class="grid grid-cols-3">
+		<div class="justify-self-center">
+			<div><b>Beyond</b></div>
+			<div>Rotebühlstraße</div>
+			<div>70078 Stuttgart</div>
+			<div>Deutschland</div>
+		</div>
+		<div class="justify-self-center">
+			<b>Kontakt</b>
+			<div>+4917642632218</div>
+			<div>infoqservice-beyond.de</div>
+		</div>
+		<div class="justify-self-center">
+			<div>Copyright 2022 beyond</div>
+			<div>Powered by beyond</div>
+		</div>
+	</div>
+</footer>
 
 <style>
 	/* @tailwind base;*/
