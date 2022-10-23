@@ -33,35 +33,11 @@
 
 		<Button size="normal" fullwidth>Login</Button>
 
-		<p class={loginError ? 'opacity-100' : 'opacity-0 scale-90'}>wrong credentials</p>
+		<p class="text-red-700 mx-auto {loginError ? '' : 'hidden'}">wrong credentials</p>
 	</form>
 </div>
 
 <style>
 	@tailwind components;
 	@tailwind utilities;
-	.login {
-		width: 360px;
-		margin: 0 auto;
-		margin-top: 10%;
-		display: block;
-	}
-
-	.login .field {
-		display: block;
-		width: 100%;
-	}
-
-	.login .field:nth-child(2) {
-		margin-top: 10px;
-	}
-
-	.submit {
-		margin-top: 20px;
-	}
-
-	.submit :global(.button) {
-		width: 100%;
-		text-align: center;
-	}
 </style>
