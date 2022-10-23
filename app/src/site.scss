@@ -10,3 +10,7 @@
 
 // App styles.
 @use './app';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

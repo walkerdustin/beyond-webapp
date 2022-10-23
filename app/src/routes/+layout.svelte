@@ -1,5 +1,7 @@
 <script>
 	import { assets } from '$app/paths';
+	// import '../../../styles/app.css';
+	import '../../src/tailwind.css';
 </script>
 
 <svelte:head>

@@ -1,5 +1,5 @@
 {
-	"name": "app",
+	"name": "beyond-webapp",
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev",
@@ -28,9 +28,11 @@
 		"@smui/icon-button": "^7.0.0-beta.0",
 		"@smui/linear-progress": "^6.1.4",
 		"@smui/paper": "^6.1.4",
+		"@smui/ripple": "^7.0.0-beta.0",
 		"@smui/snackbar": "^6.1.4",
 		"@smui/tab": "^6.1.4",
 		"@smui/tab-bar": "^6.1.4",
+		"@smui/textfield": "^7.0.0-beta.0",
 		"@smui/tooltip": "^6.1.4",
 		"@smui/top-app-bar": "^6.1.4",
 		"@sveltejs/adapter-auto": "next",

@@ -29,7 +29,7 @@ track the time this project takes me
 | 1h | develop header |
 | 2h | dev and design |
 | 2h | dev and design login page |
-|  |  |
+| 2h | check out other smui login implementations from github |
 |  |  |
 |  |  |
 |  |  |
