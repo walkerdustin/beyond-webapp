@@ -1,99 +1,59 @@
-<!-- <script>
+<script lang="ts">
+	import Button, { Label, Icon } from '@smui/button';
+	import TextField from '@smui/textfield';
 	import { supabase } from '$lib/supabaseClient';
-	import { user } from '$lib/sessionStore';
-
-	let loading = true;
-	let username: String = null;
-	let website: URL = null;
-	let avatar_url: URL = null;
-
-	function getProfile(node) {
-		try {
-			loading = true;
-			const user = supabase.auth.getUser();
-
-			supabase
-				.from('profiles')
-				.select(`username, website, avatar_url`)
-				.eq('id', user?.id)
-				.single()
-				.then(({ data, error, status }) => {
-					if (data) {
-						username = data.username;
-						website = data.website;
-						avatar_url = data.avatar_url;
-					}
-					if (error && status !== 406) throw error;
-				});
-		} catch (error) {
-			alert(error.message);
-		} finally {
-			loading = false;
-		}
-	}
-
-	async function updateProfile() {
-		try {
-			loading = true;
-			const user = supabase.auth.getUser();
-
-			const updates = {
-				id: user.id,
-				username: String,
-				website: URL,
-				avatar_url: URL,
-				updated_at: new Date()
-			};
-
-			let { error } = await supabase.from('profiles').upsert(updates, {
-				returning: 'minimal' // Don't return the value after inserting
-			});
-
-			if (error) throw error;
-		} catch (error) {
-			alert(error.message);
-		} finally {
-			loading = false;
-		}
-	}
-
+	import { Svg } from '@smui/common/elements';
+	import { mdiLogout } from '@mdi/js';
+	import { mdiFormTextboxPassword } from '@mdi/js';
+	import { mdiDelete } from '@mdi/js';
+	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
+	import type { AuthSession } from '@supabase/supabase-js';
 	async function signOut() {
-		try {
-			loading = true;
-			let { error } = await supabase.auth.signOut();
-			if (error) throw error;
-		} catch (error) {
-			alert(error.message);
-		} finally {
-			loading = false;
+		console.log('SignOut');
+		const { error } = await supabase.auth.signOut();
+		if (!error) {
+			console.log('logging out');
+			document.cookie = '';
+			document.cookie = '';
+			// await goto('/loggedOut', { replaceState: true });
+			window.location.href = '/loggedOut';
 		}
 	}
+
+	let clicked = 0;
+
+	let loading = false;
+	let username: string | null = null;
+	let website: string | null = null;
+	let email = '';
+	let avatarUrl: string | null = null;
 </script>
 
-<form use:getProfile class="form-widget" on:submit|preventDefault={updateProfile}>
-	<div>
-		<label for="email">Email</label>
-		<input id="email" type="text" value={user.email} disabled />
-	</div>
-	<div>
-		<label for="username">Name</label>
-		<input id="username" type="text" bind:value={username} />
-	</div>
-	<div>
-		<label for="website">Website</label>
-		<input id="website" type="website" bind:value={website} />
-	</div>
+<div class="mdc-elevation--z8 mx-auto m-3 w-60 bg-white rounded-lg p-3 flex flex-col">
+	<Button on:click={signOut}>
+		<Icon component={Svg} viewBox="0 0 24 24">
+			<path fill="currentColor" d={mdiLogout} />
+		</Icon>
+		<Label>ausloggen</Label>
+	</Button>
 
-	<div>
-		<input
-			type="submit"
-			class="button block primary"
-			value={loading ? 'Loading...' : 'Update'}
-			disabled={loading}
-		/>
-	</div>
+	<Button on:click={() => clicked++}>
+		<Icon component={Svg} viewBox="0 0 24 24">
+			<path fill="currentColor" d={mdiFormTextboxPassword} />
+		</Icon>
+		<Label>passwort ändern</Label>
+	</Button>
 
-	<div>
-		<button class="button block" on:click={signOut} disabled={loading}> Sign Out </button>
-	</div>
-</form> -->
+	<Button disabled>
+		<Icon component={Svg} viewBox="0 0 24 24">
+			<path fill="currentColor" d={mdiDelete} />
+		</Icon>
+		<Label>Account Löschen</Label>
+	</Button>
+</div>
+
+<style>
+	@tailwind components;
+	@tailwind utilities;
+</style>

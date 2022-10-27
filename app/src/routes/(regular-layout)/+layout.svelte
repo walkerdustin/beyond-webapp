@@ -15,86 +15,121 @@
 	import Paper, { Subtitle, Content } from '@smui/paper';
 
 	import { mdiAccount } from '@mdi/js';
+
+	import { onMount } from 'svelte';
+	import { supabase } from '$lib/supabaseClient';
+	import { goto } from '$app/navigation';
+
+	onMount(async () => {
+		const {
+			data: { user }
+		} = await supabase.auth.getUser();
+		console.log('user', user);
+
+		if (!user) {
+			await goto('/signUp');
+		}
+	});
+
+	async function getAuthUser() {
+		const {
+			data: { user }
+		} = await supabase.auth.getUser();
+
+		return user;
+	}
+
+	let promise = getAuthUser();
 </script>
 
-<div class="mdc-elevation--z8 ">
-	<header class="mdc-elevation--z8 flex flex-row w-full">
-		<a href="/" draggable="false"
-			><img
-				src="/images/beyond-logo.png"
-				alt="beyond logo"
-				height="60"
-				class="m-4"
-				draggable="false"
-			/>
-		</a>
+{#await promise}
+	<h1 class="mx-auto">LOGGING IN ... loading</h1>
+{:then user}
+	{#if user}
+		<div class="mdc-elevation--z8 ">
+			<header class="mdc-elevation--z8 flex flex-row w-full">
+				<a href="/" draggable="false"
+					><img
+						src="/images/beyond-logo.png"
+						alt="beyond logo"
+						height="60"
+						class="m-4"
+						draggable="false"
+					/>
+				</a>
 
-		<div>
-			<h1 class="mb-1">Beyond</h1>
-			<p class="mt-1">After Life Management</p>
-		</div>
-		<!-- just whitespace -->
-		<div class="grow" />
-		<nav>
-			<div class="float-right mr-2">
-				<Button>
-					<a href="/nachlassplan"><Label>Nachlassplan</Label></a>
-				</Button>
-				<Button>
-					<a href="/meine-dokumente" draggable="false"><Label>Meine Dokumente</Label></a>
-				</Button>
-				<Button>
-					<a href="/beratung" draggable="false"><Label>Individuelle Beratung</Label></a>
-				</Button>
+				<div>
+					<h1 class="mb-1">Beyond</h1>
+					<p class="mt-1">After Life Management</p>
+				</div>
+				<!-- just whitespace -->
+				<div class="grow" />
+				<nav>
+					<div class="float-right mr-2">
+						<Button>
+							<a href="/nachlassplan"><Label>Nachlassplan</Label></a>
+						</Button>
+						<Button>
+							<a href="/meine-dokumente" draggable="false"><Label>Meine Dokumente</Label></a>
+						</Button>
+						<Button>
+							<a href="/beratung" draggable="false"><Label>Individuelle Beratung</Label></a>
+						</Button>
 
-				<IconButton>
-					<a href="/login" draggable="false">
-						<Icon component={Svg} viewBox="0 0 24 24">
-							<path fill="currentColor" d={mdiAccount} />
-						</Icon>
-					</a>
-				</IconButton>
+						<IconButton>
+							<a href="/account" draggable="false">
+								<Icon component={Svg} viewBox="0 0 24 24">
+									<path fill="currentColor" d={mdiAccount} />
+								</Icon>
+							</a>
+						</IconButton>
 
-				<!-- <Button variant="raised">
+						<!-- <Button variant="raised">
 					
 						<Icon component={Svg} viewBox="0 0 24 24">
 							<path fill="currentColor" d={mdiAccount} />
 						</Icon>
 					</a>
 				</Button> -->
-			</div>
-		</nav>
-	</header>
-</div>
+					</div>
+				</nav>
+			</header>
+		</div>
 
-<!-- <div class="flexy-dad">
+		<!-- <div class="flexy-dad">
 	{#each [...Array(24)].map((_v, i) => i + 1) as n}
 		<div class="mdc-elevation--z{n} flexy-boy">Elevation: {n}</div>
 	{/each}
 </div> -->
-<main>
-	<slot><!-- optional fallback --></slot>
-</main>
+		<main>
+			<slot><!-- optional fallback --></slot>
+		</main>
 
-<footer class="mt-auto mdc-elevation--z8 py-3">
-	<div class="grid grid-cols-3">
-		<div class="justify-self-center">
-			<div><b>Beyond</b></div>
-			<div>Rotebühlstraße</div>
-			<div>70078 Stuttgart</div>
-			<div>Deutschland</div>
-		</div>
-		<div class="justify-self-center">
-			<b>Kontakt</b>
-			<div>+4917642632218</div>
-			<div>infoqservice-beyond.de</div>
-		</div>
-		<div class="justify-self-center">
-			<div>Copyright 2022 beyond</div>
-			<div>Powered by beyond</div>
-		</div>
-	</div>
-</footer>
+		<footer class="mt-auto mdc-elevation--z8 py-3">
+			<div class="grid grid-cols-3">
+				<div class="justify-self-center">
+					<div><b>Beyond</b></div>
+					<div>Rotebühlstraße</div>
+					<div>70078 Stuttgart</div>
+					<div>Deutschland</div>
+				</div>
+				<div class="justify-self-center">
+					<b>Kontakt</b>
+					<div>+4917642632218</div>
+					<div>infoqservice-beyond.de</div>
+				</div>
+				<div class="justify-self-center">
+					<div>Copyright 2022 beyond</div>
+					<div>Powered by beyond</div>
+				</div>
+			</div>
+		</footer>
+	{:else}
+		<h1 class="mx-auto">redirecting ...</h1>
+	{/if}
+{:catch error}
+	<p class="mx-auto">there was an arror</p>
+{/await}
 
 <style>
 	/* @tailwind base;*/

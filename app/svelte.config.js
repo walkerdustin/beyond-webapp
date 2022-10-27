@@ -11,7 +11,7 @@ const config = {
 				prependData: `@import './src/variables.scss';`
 			},
 
-			postcss: true
+			postcss: true,
 		})
 	],
 

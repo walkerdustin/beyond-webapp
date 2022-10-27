@@ -31,7 +31,9 @@ These extensions are neccessary
 
 ## How to do Icons
 choose icon from here https://materialdesignicons.com/  
-and import it in the script as follows `import { mdiMenu } from '@mdi/js';`  
+and import it in the script as follows   
+`import { mdiMenu } from '@mdi/js';`  
+`import { Svg } from '@smui/common/elements';`  
 and then:
 ```html
 <Icon component={Svg} viewBox="0 0 24 24">
@@ -186,3 +188,50 @@ from https://github.com/hammerjs/hammer.js/issues/641#issuecomment-397554017
 
 ## make the footer stick to bottom
 https://www.youtube.com/watch?v=yc2olxLgKLk&t=143s
+
+
+## try out the official tailwind installation, to fix bug
+https://tailwindcss.com/docs/guides/sveltekit  
+but it didnt change anything
+
+## check out supabase ui
+https://ui.supabase.io/components/auth  
+https://github.com/supabase-community/supabase-ui-svelte  
+
+But this is not really customizable and kinda wierd and kinda ugly
+so, ... no thank you.
+
+## do auth based on the supabase-js documentation
+make sure you use the v2 version
+
+https://supabase.com/docs/reference/javascript/
+
+## connect supabase with my email server (mail.zoho.eu)
+
+It just worked! first try! I am in disbelief!
+
+https://www.zoho.com/zeptomail/help/smtp-api.html#alink1
+SMTP Hostname is smtp.zoho.eu  
+Port number   is 465  
+SMTP username is email  
+SMTP password is password  
+
+
+I also decreased delay and increased the rate limit, because   
+Zoho probably has solid servers I guess...  
+
+Also all of this is somehow free?
+
+
+## stupid problem with supabase auth.
+I can not signOut() There are still cookies left in the browser.
+sb-refresh-token  2ZvVVGcpuMJjc-mOAUxXqA  
+sb-access-token   jwt Token  
+
+User is thus still not really signed out.  
+signOut Docs
+Inside a browser context, signOut() will remove the logged in user from the browser session and log them out - removing all items from localstorage and then trigger a "SIGNED_OUT" event.
+
+I cant manually delete the cookie, because it is from the supabase domain.  
+
+

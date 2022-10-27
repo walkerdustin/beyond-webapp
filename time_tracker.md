@@ -30,12 +30,13 @@ track the time this project takes me
 | 2h | dev and design |
 | 2h | dev and design login page |
 | 2h | check out other smui login implementations from github |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
+| 2h | try implementing supabase auth |
+| 2h | try implementing supabase auth |
+| 2h | implement and design login |
+| 1h | implement and design login / connect own email smtp server|
+| 1h | create issue for supabase documentation |
+| 3h | struggeling with stupid auth; sign out does not delete cookies |
+| 3h | finalizing auth |
 |  |  |
 |  |  |
 |  |  |

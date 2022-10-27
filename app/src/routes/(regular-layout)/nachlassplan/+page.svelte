@@ -4,6 +4,18 @@
 	let progress = 0.4;
 	import { Title } from '@smui/top-app-bar';
 	import NachlassplanCard from './nachlassplan_card.svelte';
+	import { supabase } from '$lib/supabaseClient';
+
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		let user = supabase.auth.getUser().then((value) => {
+			console.log(value.data.user);
+			return value.data.user;
+		});
+		console.log(supabase.auth.getUser());
+		console.log(user);
+	});
 </script>
 
 <div class="">
