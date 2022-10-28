@@ -61,7 +61,5 @@
 </div>
 
 <style>
-	.Auth-container {
-		@apply w-96;
-	}
+
 </style>
