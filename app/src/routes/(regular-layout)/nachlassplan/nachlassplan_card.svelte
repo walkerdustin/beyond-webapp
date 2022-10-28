@@ -15,6 +15,4 @@
 </div>
 
 <style>
-	@tailwind components;
-	@tailwind utilities;
 </style>

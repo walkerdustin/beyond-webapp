@@ -1,13 +1,13 @@
 // Elevation mixins.
-@use './reset.scss';
+
 @use '@material/elevation/index' as elevation;
 
 // Theme Colors (because MDC Elevation uses them)
 @use 'smui-theme';
 
-@use "./variables";
+// @use "./variables";
+@use './reset.scss';
 
- 
 //
 // MDC Elevation Classes
 //

@@ -44,9 +44,6 @@
 <div class="mt-auto grow" />
 
 <style>
-	@tailwind components;
-	@tailwind utilities;
-
 	header {
 		display: flex;
 		background-color: white;

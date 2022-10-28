@@ -91,6 +91,4 @@
 {/if}
 
 <style>
-	@tailwind components;
-	@tailwind utilities;
 </style>

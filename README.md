@@ -235,3 +235,7 @@ Inside a browser context, signOut() will remove the logged in user from the brow
 I cant manually delete the cookie, because it is from the supabase domain.  
 
 
+## setup protected route with svelte await blocks
+
+https://svelte.dev/tutorial/await-blocks
+

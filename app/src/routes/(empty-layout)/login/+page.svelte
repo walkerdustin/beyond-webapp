@@ -61,9 +61,6 @@
 </div>
 
 <style>
-	@tailwind components;
-	@tailwind utilities;
-
 	.Auth-container {
 		@apply w-96;
 	}

@@ -2,6 +2,8 @@
 	import { assets } from '$app/paths';
 	// import '../../../styles/app.css';
 	import '../../src/tailwind.css';
+	// import '../../src/tailwind-build.css';
+	// import '../../src/smui.css';
 
 	import { user } from '$lib/sessionStore';
 	import { supabase } from '$lib/supabaseClient';
