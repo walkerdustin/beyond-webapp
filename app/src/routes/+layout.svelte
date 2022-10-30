@@ -1,7 +1,7 @@
 <script>
 	import { assets } from '$app/paths';
 	// import '../../../styles/app.css';
-	import '../../src/tailwind.css';
+	// import '../../src/tailwind.css';
 
 	import { user } from '$lib/sessionStore';
 	import { supabase } from '$lib/supabaseClient';
@@ -28,6 +28,6 @@
 <slot />
 
 <style>
-	@tailwind components;
-	@tailwind utilities;
+	/* @tailwind components;
+	@tailwind utilities; */
 </style>

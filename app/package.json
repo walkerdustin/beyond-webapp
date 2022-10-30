@@ -2,8 +2,9 @@
 	"name": "beyond-webapp",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
+		"dev": "npm run build-tailwind && vite dev",
+		"build": "npm run build-tailwind && vite build",
+		"build-tailwind": "npx tailwindcss -o static/tailwind-build.css --minify",
 		"package": "svelte-kit package",
 		"preview": "vite preview",
 		"test": "playwright test",
