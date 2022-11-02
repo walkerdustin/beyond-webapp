@@ -28,7 +28,7 @@
 		<nav>
 			<div class="float-right mr-2">
 				<Button>
-					<a href="/logIn" draggable="false">
+					<a href="/login" draggable="false">
 						<Icon component={Svg} viewBox="0 0 24 24">
 							<path fill="currentColor" d={mdiAccount} />
 						</Icon>

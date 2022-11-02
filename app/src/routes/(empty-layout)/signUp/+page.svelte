@@ -80,7 +80,7 @@
 
 <div class="flex mx-auto m-3">
 	<p class="text-blue-700">
-		<a href="/logIn">Du hast schon einen account? Hier einloggen.</a>
+		<a href="/login">Du hast schon einen account? Hier einloggen.</a>
 	</p>
 </div>
 
