@@ -46,19 +46,19 @@
 		});
 	}
 
-	///////////////////// This is for signUp
-	async function checkForSession() {
-		const { data, error } = await supabase.auth.getSession();
-		console.log('session = ', data.session);
-		if (data.session) {
-			await goto('/');
-		} else {
-			console.log('email not yet confirmed');
-		}
-	}
-	const checkForSessionInterval = setInterval(checkForSession, 1000);
-	onDestroy(() => clearInterval(checkForSessionInterval));
-	// if the user has confirmed their email, the session should exist
+	// ///////////////////// This is for signUp
+	// async function checkForSession() {
+	// 	const { data, error } = await supabase.auth.getSession();
+	// 	console.log('session = ', data.session);
+	// 	if (data.session) {
+	// 		await goto('/');
+	// 	} else {
+	// 		console.log('email not yet confirmed');
+	// 	}
+	// }
+	// const checkForSessionInterval = setInterval(checkForSession, 1000);
+	// onDestroy(() => clearInterval(checkForSessionInterval));
+	// // if the user has confirmed their email, the session should exist
 </script>
 
 <div class="flex mx-auto m-3">
