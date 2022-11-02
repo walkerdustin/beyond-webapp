@@ -27,7 +27,7 @@
 		console.log('user', user);
 
 		if (!user) {
-			await goto('/logIn');
+			await goto('/signUp');
 		}
 	});
 
@@ -133,8 +133,6 @@
 
 <style>
 	/* @tailwind base;*/
-	/* @tailwind components;
-	@tailwind utilities; */
 
 	header {
 		display: flex;

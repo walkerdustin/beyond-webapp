@@ -58,8 +58,6 @@
 </div>
 
 <style>
-	/* @tailwind components;
-	@tailwind utilities; */
 	/* .background {
 		background-color: var(--mdc-theme-background, #fff);
 	} */
