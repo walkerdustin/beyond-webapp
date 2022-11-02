@@ -27,7 +27,7 @@
 		console.log('user', user);
 
 		if (!user) {
-			await goto('/login');
+			await goto('/logIn');
 		}
 	});
 
