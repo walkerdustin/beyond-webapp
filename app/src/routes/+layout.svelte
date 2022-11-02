@@ -1,14 +1,13 @@
 <script>
 	import { assets } from '$app/paths';
 	// import '../../../styles/app.css';
-	import '../../src/tailwind.css';
-	// import '../../src/tailwind-build.css';
-	// import '../../src/smui.css';
+	// import '../../src/tailwind.css';
 
 	import { user } from '$lib/sessionStore';
 	import { supabase } from '$lib/supabaseClient';
 	// import Auth from '$lib/Auth.svelte';
 	// import Profile from '$lib/Profile.svelte';
+	import { redirect } from '@sveltejs/kit';
 </script>
 
 <svelte:head>

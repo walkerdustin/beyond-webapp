@@ -51,7 +51,6 @@
 		"prettier-plugin-svelte": "^2.7.0",
 		"sass": "^1.55.0",
 		"smui-theme": "^6.2.0",
-		"supabase-ui-svelte": "^0.1.1",
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.7.1",
 		"svelte-preprocess": "^4.10.7",

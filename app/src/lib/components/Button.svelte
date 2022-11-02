@@ -18,6 +18,9 @@
 </button>
 
 <style>
+	/* @tailwind components;
+	@tailwind utilities; */
+
 	button {
 		color: var(--text-color-strong);
 		border-color: var(--text-color-light);

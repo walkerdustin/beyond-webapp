@@ -71,7 +71,7 @@
 		<TextField variant="filled" bind:value={email} label="email" />
 		<TextField variant="filled" bind:value={password} label="password" />
 
-		<Button size="normal" fullwidth disabled={requestSent}>registrieren</Button>
+		<Button fullwidth disabled={requestSent}>registrieren</Button>
 		{#if loginError}
 			<p class="text-red-700 mx-auto">{signUp_errorMessage}</p>
 		{/if}

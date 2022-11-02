@@ -35,6 +35,9 @@
 </div>
 
 <style>
+	/* @tailwind components;
+	@tailwind utilities; */
+
 	div {
 		@apply grid;
 		@apply border;
