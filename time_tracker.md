@@ -39,7 +39,7 @@ track the time this project takes me
 | 3h | finalizing auth |
 | 7h | auth did not compile on netlify, because of set Interval :( |
 | 2.5h | Dev Setup und Tutorial mit Leon |
-|  |  |
+| 1.5h | make password field have hidden chars |
 |  |  |
 |  |  |
 |  |  |

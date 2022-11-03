@@ -239,3 +239,14 @@ I cant manually delete the cookie, because it is from the supabase domain.
 
 https://svelte.dev/tutorial/await-blocks
 
+## implement static optimized tailwind for production
+https://tailwindcss.com/docs/optimizing-for-production  
+
+with this we dont need the @tailwind utilities and @tailwind components thing 
+but for local develpopement we still want to use it, because else we have to recompile the tailwind
+everytime we add a new class.
+
+## make the password field have the correct type and have hidden characters
+i used a checkbox and some svelte interactivity
+
+

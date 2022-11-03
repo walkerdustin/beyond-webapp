@@ -1,8 +1,13 @@
 <script lang="ts">
 	import Button, { Label, Icon } from '@smui/button';
 	import TextField from '@smui/textfield';
+	import Checkbox from '@smui/checkbox';
 	import { supabase } from '$lib/supabaseClient';
 	import { goto } from '$app/navigation';
+
+	import { mdiMenu } from '@mdi/js'; 
+	import { Svg } from '@smui/common/elements'; 
+	import { mdiEyeOff } from '@mdi/js';
 
 	let email = '';
 	let password = '';
@@ -35,6 +40,18 @@
 			await goto('/');
 		}
 	}
+	function passwordvisible(visible:boolean) {
+		return visible? "text": "password"
+	}
+	let show_password = false;
+	let password_input_type = 'password';
+	$: password_input_type = passwordvisible(show_password);
+	// $: {
+	// 	console.log('the password type is '+ password_input_type);
+	// }
+	// $: {
+	// 	console.log('show_password is '+ show_password);
+	// }
 </script>
 
 <div class="flex mx-auto m-3">
@@ -44,10 +61,13 @@
 <div class="mdc-elevation--z8 mx-auto m-3 w-96 bg-white rounded-lg p-3">
 	<form on:submit|preventDefault={submit} class="flex flex-col gap-4">
 		<h2 class="font-bold mb-2 mx-auto">Hier einloggen</h2>
-		<TextField variant="filled" bind:value={email} label="email" />
-		<TextField variant="filled" bind:value={password} label="password" />
+		<TextField variant="filled" bind:value={email} label="email" type="email" required />
+		<TextField variant="filled" bind:value={password} label="password" type={password_input_type} required />
+		<div class="flex flex-row">
+			<Checkbox bind:checked={show_password} /> <span class="my-auto">show password</span> 
+		</div>
 
-		<Button size="normal" fullwidth disabled={requestSent}>einloggen</Button>
+		<Button size="normal" fullwidth disabled={requestSent} >einloggen</Button>
 		{#if loginError}
 			<p class="text-red-700 mx-auto">{signUp_errorMessage}</p>
 		{/if}
