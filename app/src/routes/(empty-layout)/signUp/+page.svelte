@@ -62,7 +62,7 @@
 </script>
 
 <div class="flex mx-auto m-3">
-	<h2>Hier registrieren</h2>
+	<h2 class="text-xl text-sky-400">Willkommen bei Beyond</h2>
 </div>
 
 <div class="mdc-elevation--z8 mx-auto m-3 w-96 bg-white rounded-lg p-3">
@@ -91,4 +91,8 @@
 {/if}
 
 <style>
+	@tailwind components;
+	@tailwind utilities;
+
 </style>
+

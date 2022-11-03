@@ -16,7 +16,7 @@ cd app
 npm install  
 npm run dev -- --open
 ```
-create your theme files with smiu-theme > `npx smui-theme template src/theme`
+create your theme files with smui-theme > `npx smui-theme template src/theme`
 Whenever you add a new SMUI package, run > `npm run prepare` again to rebuild your CSS file with the new component’s styles included.
 
 ## VS Code extensions
