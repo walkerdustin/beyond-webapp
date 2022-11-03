@@ -37,7 +37,7 @@ track the time this project takes me
 | 1h | create issue for supabase documentation |
 | 3h | struggeling with stupid auth; sign out does not delete cookies |
 | 3h | finalizing auth |
-|  |  |
+| 7h | auth did not compile on netlify, because of set Interval :( |
 |  |  |
 |  |  |
 |  |  |
