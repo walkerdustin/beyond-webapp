@@ -30,7 +30,7 @@ track the time this project takes me
 | 2h | dev and design |
 | 2h | dev and design login page |
 | 2h | check out other smui login implementations from github |
-|  |  |
+| 0.5h | test preview deploy |
 |  |  |
 |  |  |
 |  |  |
