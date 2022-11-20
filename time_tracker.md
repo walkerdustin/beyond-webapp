@@ -42,8 +42,8 @@ track the time this project takes me
 | 1.5h | make password field have hidden chars |
 | 1h | figuring out how to do default typography with tailwind.|
 | 2h | meine Dokumente erstellen |
-|  |  |
-|  |  |
+| 2h | develop testamentgenerator |
+| 1h | figure out fonts |
 |  |  |
 |  |  |
 |  |  |
