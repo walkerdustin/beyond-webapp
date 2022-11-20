@@ -19,8 +19,8 @@
 </script>
 
 <div class="">
-	<div class="mx-auto my-2 flex flex-row justify-center">
-		<h1>Nachlassplan</h1>
+	<div class="m-3 flex">
+		<h1 class="mx-auto">Nachlassplan</h1>
 	</div>
 
 	<div class="flex flex-row flex-wrap justify-center max-w-4xl mx-auto">

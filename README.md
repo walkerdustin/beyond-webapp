@@ -34,9 +34,10 @@ choose icon from here https://materialdesignicons.com/
 and import it in the script as follows   
 `import { mdiMenu } from '@mdi/js';`  
 `import { Svg } from '@smui/common/elements';`  
+`import { Icon } from '@smui/common';`
 and then:
 ```html
-<Icon component={Svg} viewBox="0 0 24 24">
+<Icon component={Svg} viewBox="0 0 24 24" width="20px" height="20px">
     <path fill="currentColor" d={mdiMenu} />
 </Icon>
 ```
