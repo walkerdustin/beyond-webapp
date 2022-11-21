@@ -52,20 +52,23 @@
 					><img
 						src="/images/beyond-logo.png"
 						alt="beyond logo"
-						height="60"
+						width="60"
 						class="m-4"
 						draggable="false"
 					/>
 				</a>
 
 				<div>
-					<h1 class="mb-1">Beyond</h1>
+					<h1 class="mb-1 font-extrabold">beyond</h1>
 					<p class="mt-1">After Life Management</p>
 				</div>
 				<!-- just whitespace -->
 				<div class="grow" />
 				<nav>
 					<div class="float-right mr-2">
+						<Button>
+							<a href="/testamentgenerator"><Label>Testament</Label></a>
+						</Button>
 						<Button>
 							<a href="/nachlassplan"><Label>Nachlassplan</Label></a>
 						</Button>
