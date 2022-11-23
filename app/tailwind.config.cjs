@@ -6,8 +6,25 @@ const config = {
 			sans: ['Roboto', 'sans-serif'],
 			serif: ['Merriweather', 'serif'],
 		  },
-		extend: {}
+		
+		colors: {
+			extend: {
+				'primary': '#314f69',
+				'secondary': '#b7deff',
+				'surface': '#ffffff',
+				'background': '#e2e2e2',
+			}
+		},
+		extend: {
+			colors: {
+				'primary': '#314f69',
+				'secondary': '#b7deff',
+				'surface': '#ffffff',
+				'background': '#e2e2e2',
+			},
+		}
 	},
+	
 
 	plugins: []
 };
