@@ -251,3 +251,5 @@ everytime we add a new class.
 i used a checkbox and some svelte interactivity
 
 
+Can I make mermaid stuff?
+
