@@ -12,6 +12,7 @@ const config = {
 				'secondary': '#b7deff',
 				'surface': '#ffffff',
 				'background': '#e2e2e2',
+				'error': '#FF9494',
 			},
 		}
 	},

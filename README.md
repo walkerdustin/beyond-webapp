@@ -26,6 +26,8 @@ These extensions are neccessary
 - Svelte for VS Code
 - Svelte 3 Snippets
 - Tailwind CSS IntelliSense
+- Markdown Preview Mermaid Support
+- Mermaid Markdown Syntax Highlighting
 
 # Usage
 
@@ -250,6 +252,4 @@ everytime we add a new class.
 ## make the password field have the correct type and have hidden characters
 i used a checkbox and some svelte interactivity
 
-
-Can I make mermaid stuff?
 
