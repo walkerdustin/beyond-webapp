@@ -7,10 +7,10 @@ import { PDFDocument } from "https://cdn.skypack.dev/pdf-lib@^1.11.1?dts";
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey",
-};
+export const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey',
+}
 console.log("create-pdf edge function initialized.");
 
 serve(async (req) => {
