@@ -316,6 +316,11 @@ I need a pdf layout
 - oder jsPDF https://github.com/parallax/jsPDF
 
 
-    
+### supabase edge functions
+use the best practices described here
+https://supabase.com/docs/guides/functions/best-practices  
+
+ther is also a snippet to handle CORS, so that you can call your functions from any URL
+like localhost or netlify previews
 
 

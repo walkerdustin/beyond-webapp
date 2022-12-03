@@ -14,6 +14,9 @@ export const corsHeaders = {
 console.log("create-pdf edge function initialized.");
 
 serve(async (req) => {
+  if (req.method === 'OPTIONS') {
+    return new Response('ok', { headers: corsHeaders })
+  }
   const { name } = await req.json();
 
   // read a text file from storage and print its contents
