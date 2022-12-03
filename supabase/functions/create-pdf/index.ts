@@ -24,7 +24,8 @@ serve(async (req) => {
 
   // Create a new PDFDocument
   const pdfDoc = await PDFDocument.create();
-
+  console.log("created empty pdf document");
+  
   // Add a page to the PDFDocument and draw some text
   const page = pdfDoc.addPage();
   page.drawText("Testament", {
@@ -32,7 +33,8 @@ serve(async (req) => {
     x: 100,
     y: 700,
   });
-
+  console.log("write something into the pdf");
+  
   // Save the PDFDocument and write it to a file
   const pdfBytes = await pdfDoc.save();
   // await Deno.writeFile("create.pdf", pdfBytes);
