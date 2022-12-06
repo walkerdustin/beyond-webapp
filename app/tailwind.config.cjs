@@ -8,11 +8,11 @@ const config = {
 		  },
 		extend: {
 			colors: {
-				'primary': '#314f69',
-				'secondary': '#b7deff',
-				'surface': '#ffffff',
-				'background': '#e2e2e2',
-				'error': '#FF9494',
+				'primary': '#1B3F5F',
+				'secondary': '#285F8F',
+				'surface': '#EFF6FB',
+				'background': '#CEE3F3',
+				'error': '#CEE3F3',
 			},
 		}
 	},
