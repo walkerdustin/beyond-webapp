@@ -28,6 +28,7 @@ These extensions are neccessary
 - Tailwind CSS IntelliSense
 - Markdown Preview Mermaid Support
 - Mermaid Markdown Syntax Highlighting
+- deno
 
 # Usage
 
@@ -44,6 +45,29 @@ and then:
 </Icon>
 ```
 
+## supabase edge functions
+For this to work some stuff needs to be installed and set up:
+- docker  
+ https://www.docker.com/products/docker-desktop/
+- deno (language server) ? maybe, i dont know yet  
+ https://deno.land/#installation
+- setup deno extension in vs code  
+ run the Deno: Initialize Workspace Configuration command.
+- 
+
+### usage
+```sh
+supabase functions -h
+```
+  delete      Delete a Function from Supabase  
+  deploy      Deploy a Function to Supabase  
+  new         Create a new Function locally  
+  serve       Serve a Function locally  
+```sh
+supabase start
+```
+
+to start the local supabase docker server
 ## material UI colors
 need to be set in src/variables.scss and src/theme/_smui-theme.scss
 
@@ -251,5 +275,52 @@ everytime we add a new class.
 
 ## make the password field have the correct type and have hidden characters
 i used a checkbox and some svelte interactivity
+
+
+## figure out how to make the storage for the questions
+To create the Testamentgenerator I need a set of questions and answer options.
+These Questions may be layed out in a DAG (directed asyclic graph).
+For example, there are more questions to answer, if you are married.
+
+### Requirements for storage
+- content needs to be accessible in the code in this repo.
+so either an api interface, or the data is saved in this repository.
+- content should be modifyable by my collegues
+- changes in shema need to be versioned
+
+## How do I generate a document from the data
+RPC comes from user pressing a button  
+    user gets shown a loading bar
+    maybe we use some fake processing time, to make the service of creating the document seem more valuable.
+create a supabase edge function  
+create a pdf from html with deno  
+upload the pdf to supabase storage  
+rpc request from client resolves 
+depending on the processing processing time, the client inserts some extra waiting time
+
+## What do I need to create the pdf
+I need the answers from the Testamentgenerator  
+I need extra data, like the name of the user 
+I need a pdf layout   
+    (maybe with header and footer)
+    numbered pages  
+    simple typography  
+    beyond logo  
+
+### ways to create a pdf in a deno function 
+- pdf-lib
+
+    https://gist.github.com/Hopding/8304b9f07c52904587f7b45fae4bcb8c 
+    https://medium.com/swlh/how-to-create-and-modify-pdf-files-in-deno-ffaad7099b0
+
+- oder jsPDF https://github.com/parallax/jsPDF
+
+
+### supabase edge functions
+use the best practices described here
+https://supabase.com/docs/guides/functions/best-practices  
+
+ther is also a snippet to handle CORS, so that you can call your functions from any URL
+like localhost or netlify previews
 
 

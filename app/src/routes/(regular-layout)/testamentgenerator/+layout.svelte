@@ -43,6 +43,6 @@
 </div>
 
 <style>
-	@tailwind utilities;
-	@tailwind components;
+	/* @tailwind utilities;
+	@tailwind components; */
 </style>
