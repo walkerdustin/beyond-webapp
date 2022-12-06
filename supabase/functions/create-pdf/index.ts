@@ -14,6 +14,15 @@ export const corsHeaders = {
 }
 console.log("create-pdf edge function initialized.");
 
+function toReadableStream(value:Uint8Array) {
+	return new ReadableStream({
+		start(controller) {
+			controller.enqueue(value);
+			controller.close();
+		},
+	});
+}
+
 serve(async (req) => {
   console.log("function called");
   // read a text file from storage and print its contents
@@ -63,10 +72,9 @@ serve(async (req) => {
       },
     );
     console.log("supabaseClient", supabaseClient);
-    supabaseClient.storage.from("dokuments-bucket").upload(
+    supabaseClient.storage.from("documents-bucket").upload(
       "TestTestament.pdf",
-      pdfBytes,
-    );
+      toReadableStream(pdfBytes));
     // const { data, error } = await supabaseClient.storage.from("my-bucket")
     //   .download("sample.txt");
     // if (error) throw error;
