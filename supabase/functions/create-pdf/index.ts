@@ -5,7 +5,7 @@
 import { serve } from "https://deno.land/std@0.131.0/http/server.ts";
 import { PDFDocument } from "https://cdn.skypack.dev/pdf-lib@^1.11.1?dts";
 
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.1.2";
 
 export const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -58,7 +58,7 @@ serve(async (req) => {
       // This way your row-level-security (RLS) policies are applied.
       {
         global: {
-          headers: { Authorization: req.headers.get("Authorization") },
+          headers: { Authorization: req.headers.get("Authorization") ?? "" },
         },
       },
     );

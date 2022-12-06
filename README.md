@@ -49,7 +49,7 @@ and then:
 For this to work some stuff needs to be installed and set up:
 - docker  
  https://www.docker.com/products/docker-desktop/
-- deno (language server) ? maybe, i dont know yet  
+- deno (language server) 
  https://deno.land/#installation
 - setup deno extension in vs code  
  run the Deno: Initialize Workspace Configuration command.
