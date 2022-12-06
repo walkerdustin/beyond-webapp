@@ -9,22 +9,26 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 export const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey',
+  "Access-Control-Allow-Methods": "POST",
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
 console.log("create-pdf edge function initialized.");
 
 serve(async (req) => {
-  if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders })
-  }
-  const { name } = await req.json();
-
+  console.log("function called");
   // read a text file from storage and print its contents
   // This is needed if you're planning to invoke your function from a browser.
-  if (req.method === "OPTIONS") {
-    return new Response("ok", { headers: corsHeaders });
-  }
 
+  if (req.method === 'OPTIONS') {
+    console.log("return corsHeaders (Preflight)");
+    return new Response('ok', { headers: corsHeaders });
+  }
+  console.log("awaiting req.json()");
+  
+  const { name } = await req.json();
+
+  console.log("create a new pdf");
+  
   // Create a new PDFDocument
   const pdfDoc = await PDFDocument.create();
   console.log("created empty pdf document");
@@ -54,7 +58,7 @@ serve(async (req) => {
       // This way your row-level-security (RLS) policies are applied.
       {
         global: {
-          headers: { Authorization: req.headers.get("Authorization")! },
+          headers: { Authorization: req.headers.get("Authorization") },
         },
       },
     );
