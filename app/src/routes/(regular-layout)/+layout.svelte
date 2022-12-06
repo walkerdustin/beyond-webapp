@@ -46,69 +46,67 @@
 	<h1 class="mx-auto">LOGGING IN ... loading</h1>
 {:then user}
 	{#if user}
-		<div class="mdc-elevation--z8 ">
-			<header class="mdc-elevation--z8 flex flex-row w-full">
-				<a href="/" draggable="false"
-					><img
-						src="/images/beyond-logo.png"
-						alt="beyond logo"
-						width="60"
-						class="m-4"
-						draggable="false"
-					/>
-				</a>
+		<header class="flex flex-row w-full mdc-elevation--z8 bg-surface">
+			<a href="/" draggable="false"
+				><img
+					src="/images/beyond-logo.png"
+					alt="beyond logo"
+					width="60"
+					class="m-4"
+					draggable="false"
+				/>
+			</a>
 
-				<div>
-					<h1 class="mb-1 font-extrabold">beyond</h1>
-					<p class="mt-1">After Life Management</p>
-				</div>
-				<!-- just whitespace -->
-				<div class="grow" />
-				<nav>
-					<div class="float-right mr-2">
-						<Button>
-							<a href="/testamentgenerator"><Label>Testament</Label></a>
-						</Button>
-						<Button>
-							<a href="/nachlassplan"><Label>Nachlassplan</Label></a>
-						</Button>
-						<Button>
-							<a href="/meine-dokumente" draggable="false"><Label>Meine Dokumente</Label></a>
-						</Button>
-						<Button>
-							<a href="/beratung" draggable="false"><Label>Individuelle Beratung</Label></a>
-						</Button>
+			<div>
+				<h1 class="mb-1 font-extrabold">beyond</h1>
+				<p class="mt-1">After Life Management</p>
+			</div>
+			<!-- just whitespace -->
+			<div class="grow" />
+			<nav>
+				<div class="float-right mr-2">
+					<Button>
+						<a href="/testamentgenerator"><Label>Testament</Label></a>
+					</Button>
+					<Button>
+						<a href="/nachlassplan"><Label>Nachlassplan</Label></a>
+					</Button>
+					<Button>
+						<a href="/meine-dokumente" draggable="false"><Label>Meine Dokumente</Label></a>
+					</Button>
+					<Button>
+						<a href="/beratung" draggable="false"><Label>Individuelle Beratung</Label></a>
+					</Button>
 
-						<IconButton>
-							<a href="/account" draggable="false">
-								<Icon component={Svg} viewBox="0 0 24 24">
-									<path fill="currentColor" d={mdiAccount} />
-								</Icon>
-							</a>
-						</IconButton>
+					<IconButton>
+						<a href="/account" draggable="false">
+							<Icon component={Svg} viewBox="0 0 24 24">
+								<path fill="currentColor" d={mdiAccount} />
+							</Icon>
+						</a>
+					</IconButton>
 
-						<!-- <Button variant="raised">
+					<!-- <Button variant="raised">
 					
 						<Icon component={Svg} viewBox="0 0 24 24">
 							<path fill="currentColor" d={mdiAccount} />
 						</Icon>
 					</a>
 				</Button> -->
-					</div>
-				</nav>
-			</header>
-		</div>
+				</div>
+			</nav>
+		</header>
 
 		<!-- <div class="flexy-dad">
 	{#each [...Array(24)].map((_v, i) => i + 1) as n}
 		<div class="mdc-elevation--z{n} flexy-boy">Elevation: {n}</div>
 	{/each}
 </div> -->
-		<main>
+		<main class="bg-background">
 			<slot><!-- optional fallback --></slot>
 		</main>
 
-		<footer class="mt-auto mdc-elevation--z8 py-3">
+		<footer class="mt-auto mdc-elevation--z8 py-3 bg-surface">
 			<div class="grid grid-cols-3">
 				<div class="justify-self-center">
 					<div><b>Beyond</b></div>
@@ -135,6 +133,8 @@
 {/await}
 
 <style>
+	@tailwind components;
+	@tailwind utilities;
 	/* @tailwind base;*/
 
 	header {
