@@ -323,4 +323,6 @@ https://supabase.com/docs/guides/functions/best-practices
 ther is also a snippet to handle CORS, so that you can call your functions from any URL
 like localhost or netlify previews
 
+#### write to storage (from cloud function)
+
 

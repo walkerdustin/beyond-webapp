@@ -37,11 +37,12 @@ serve(async (req) => {
   const { name } = await req.json();
 
   console.log("create a new pdf");
-  
-  // Create a new PDFDocument
+
+
+
+  // Create a new PDFDocument with PDFDocument
   const pdfDoc = await PDFDocument.create();
   console.log("created empty pdf document");
-  
   // Add a page to the PDFDocument and draw some text
   const page = pdfDoc.addPage();
   page.drawText("Testament", {
@@ -50,7 +51,6 @@ serve(async (req) => {
     y: 700,
   });
   console.log("write something into the pdf");
-  
   // Save the PDFDocument and write it to a file
   const pdfBytes = await pdfDoc.save();
   // await Deno.writeFile("create.pdf", pdfBytes);
@@ -67,23 +67,20 @@ serve(async (req) => {
       // This way your row-level-security (RLS) policies are applied.
       {
         global: {
-          headers: { Authorization: req.headers.get("Authorization") ?? "" },
+          headers: { Authorization: req.headers.get("Authorization")!},
         },
       },
     );
     console.log("supabaseClient", supabaseClient);
-    supabaseClient.storage.from("documents-bucket").upload(
-      "TestTestament.pdf",
-      toReadableStream(pdfBytes));
-    // const { data, error } = await supabaseClient.storage.from("my-bucket")
-    //   .download("sample.txt");
-    // if (error) throw error;
-
-    // file contents are returned as a blob, we can convert it to utf-8 text by calling text() method.
-    // const contents = await data.text();
-
-    // prints out the contents of the file
-    // console.log(contents);
+    const { data: { user } } = await supabaseClient.auth.getUser()
+    const uid =  user?.id
+    if (uid) {
+        supabaseClient.storage.from("documents").upload(`${uid}/TestTestament.pdf`,
+          toReadableStream(pdfBytes));
+    } else {
+      supabaseClient.storage.from("documents").upload(`_forTestingAndDebugging/TestTestament.pdf`,
+          toReadableStream(pdfBytes));
+    }
 
     return new Response(JSON.stringify({ message: 'success' }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -99,16 +96,8 @@ serve(async (req) => {
   }
 
   // // Done! 💥
-  // console.log("PDF file written to create.pdf");
+  console.log("PDF file written to create.pdf");
 
-  // const data = {
-  //   message: `Hello ${name}!`,
-  // };
-
-  // return new Response(
-  //   JSON.stringify(data),
-  //   { headers: { "Content-Type": "application/json" } },
-  // );
 });
 
 // To invoke:
