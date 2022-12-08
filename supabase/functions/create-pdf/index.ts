@@ -3,7 +3,9 @@
 // This enables autocomplete, go to definition, etc.
 
 import { serve } from "https://deno.land/std@0.131.0/http/server.ts";
-import { PDFDocument } from "https://cdn.skypack.dev/pdf-lib@^1.11.1?dts";
+// import { PDFDocument } from "https://cdn.skypack.dev/pdf-lib@^1.11.1?dts";
+import { html, tokens } from "https://deno.land/x/rusty_markdown/mod.ts";
+// import pdfMake from "https://esm.sh/pdfmake"
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.1.2";
 
@@ -14,7 +16,8 @@ export const corsHeaders = {
 }
 console.log("create-pdf edge function initialized.");
 
-function toReadableStream(value:Uint8Array) {
+// create a ReadableStream from a Uint8Array
+function toReadableStream(value:Uint8Array) { 
 	return new ReadableStream({
 		start(controller) {
 			controller.enqueue(value);
@@ -38,23 +41,11 @@ serve(async (req) => {
 
   console.log("create a new pdf");
 
+  // create html from markdown
+  const markdown = "# Testament\n## Kapitel 1\n Das ist mein Testament";
+  const tokenized = tokens(markdown);
+  const renderedHtml = html(tokenized);
 
-
-  // Create a new PDFDocument with PDFDocument
-  const pdfDoc = await PDFDocument.create();
-  console.log("created empty pdf document");
-  // Add a page to the PDFDocument and draw some text
-  const page = pdfDoc.addPage();
-  page.drawText("Testament", {
-    size: 36,
-    x: 100,
-    y: 700,
-  });
-  console.log("write something into the pdf");
-  // Save the PDFDocument and write it to a file
-  const pdfBytes = await pdfDoc.save();
-  // await Deno.writeFile("create.pdf", pdfBytes);
-  console.log("pdfBytes", pdfBytes);
   
   try {
     // Create a Supabase client with the Auth context of the logged in user.
@@ -75,14 +66,12 @@ serve(async (req) => {
     const { data: { user } } = await supabaseClient.auth.getUser()
     const uid =  user?.id
     if (uid) {
-        supabaseClient.storage.from("documents").upload(`${uid}/TestTestament.pdf`,
-          toReadableStream(pdfBytes));
+        supabaseClient.storage.from("documents").upload(`${uid}/Testament.html`, renderedHtml);
     } else {
-      supabaseClient.storage.from("documents").upload(`_forTestingAndDebugging/TestTestament.pdf`,
-          toReadableStream(pdfBytes));
+      supabaseClient.storage.from("documents").upload(`_forTestingAndDebugging/Testament.html`, renderedHtml);
     }
 
-    return new Response(JSON.stringify({ message: 'success' }), {
+    return new Response(JSON.stringify({ message: 'success', testament: renderedHtml }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
