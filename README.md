@@ -29,6 +29,12 @@ These extensions are neccessary
 - Markdown Preview Mermaid Support
 - Mermaid Markdown Syntax Highlighting
 - deno
+- github copilot
+- Node.js Notebooks (REPL)
+
+
+### copilot is actually pretty good
+![flying with copilot](docs/images/flying.PNG)
 
 # Usage
 
@@ -277,18 +283,27 @@ everytime we add a new class.
 i used a checkbox and some svelte interactivity
 
 
-## figure out how to make the storage for the questions
+# Create the Questionaire from a Human Readable and editable flow chart
 To create the Testamentgenerator I need a set of questions and answer options.
 These Questions may be layed out in a DAG (directed asyclic graph).
 For example, there are more questions to answer, if you are married.
 
-### Requirements for storage
+## Requirements for storage
 - content needs to be accessible in the code in this repo.
 so either an api interface, or the data is saved in this repository.
 - content should be modifyable by my collegues
 - changes in shema need to be versioned
+- changes in content need to be versioned
 
-## How do I generate a document from the data
+## Create a Questionaire from the data
+There is a nice function defined in the lib folder, that takes the markdown questions and options and creates a questionaire dictionary and the transitions from it.
+
+Read in the data from the +page.svelte file
+
+I have a component, for the regular question type  
+Other components then handle the special cases
+
+# Generate a Pdf from the data of the questionaire
 RPC comes from user pressing a button  
     user gets shown a loading bar
     maybe we use some fake processing time, to make the service of creating the document seem more valuable.
@@ -324,5 +339,6 @@ ther is also a snippet to handle CORS, so that you can call your functions from 
 like localhost or netlify previews
 
 #### write to storage (from cloud function)
-
+make sure to set the correct policy on the storage bucket
+BECAUSE setting it to public is apparently not enough
 

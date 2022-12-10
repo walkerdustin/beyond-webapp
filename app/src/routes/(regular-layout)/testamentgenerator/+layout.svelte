@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import LinearProgress from '@smui/linear-progress';
 	import IconButton from '@smui/icon-button';
 	import { mdiCommentQuestionOutline } from '@mdi/js';
@@ -18,8 +18,8 @@
 	let activeSection = 0;
 </script>
 
-<div class="bg-gray-300 flex flex-grow">
-	<div class="m-32 mdc-elevation--z8 flex flex-grow flex-col rounded-md bg-white">
+<div class="flex flex-grow">
+	<div class="m-32 mdc-elevation--z8 flex flex-grow flex-col rounded-md bg-surface">
 		<div class="m-4 flex flex-row">
 			{#each generatorSections as section, i}
 				<div class="mr-auto {activeSection === i ? 'font-bold' : ''}">{section}</div>

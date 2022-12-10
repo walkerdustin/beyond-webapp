@@ -1,39 +1,49 @@
 <script lang="ts">
-	import Card, { PrimaryAction } from '@smui/card';
-	import type { PageData } from './$types';
-	export let data: PageData;
+	import RegularQuestion from './regular_question.svelte';
+	import SampleComponentForSpecialCase from './sample_component_for_special_case.svelte';
 
-	let question = 'Was ist ihr Familienstand?';
-	let option1 = 'Verheiratet';
-	let option2 = 'Nicht (mehr) verheiratet';
-	let mehr_erfahren =
+	// Get the questions and transitions for the questionnaire
+	import { get_questions } from '$lib/questionnaire';
+	import type {
+		question,
+		questions_dict,
+		transition_node,
+		transitions_network
+	} from '$lib/questionnaire';
+
+	let data = get_questions();
+	let questions: questions_dict = data.questions;
+	let transitions: transitions_network = data.transitions;
+	console.log(questions);
+	console.log(transitions);
+
+	// Get the first question
+	let current_question: question = questions['00100'];
+	console.log(current_question);
+
+	let frage = 'Wie ist Ihr Familienstand?';
+	let option0 = 'Verheiratet';
+	let option1 = 'Nicht (mehr) verheiratet';
+	let info =
 		'"Hier ist Ihr offizieller Familienstand maßgeblich. Das bedeutet, dass selbst wenn Sie in fester Partnerschaft leben, nur eine Ehe oder eingetragene Lebenspartnerschaft für Ihr Testament entscheidend sind." (ninebarc)';
+
+	function handle_question_answer(option: 0 | 1) {
+		let next_question_id: string;
+		console.log('clicked option ' + option);
+		if (option == 0) {
+			next_question_id = transitions[current_question.state_id].next_state0;
+		} else {
+			next_question_id = transitions[current_question.state_id].next_state1;
+		}
+		current_question = questions[next_question_id];
+	}
 </script>
 
 <div class="flex flex-grow flex-col h-96">
-	<h3 class="text-3xl mx-auto font-bold">{question}</h3>
-	<div class="flex flex-row m-8 justify-center gap-5 p-0">
-		<div class="mdc-elevation--z8 rounded-md bg-secondary">
-			<PrimaryAction on:click={() => console.log('clicked')}>
-				<p class="text-xl w-64 m-6">{option1}</p>
-			</PrimaryAction>
-		</div>
-
-		<div class="mdc-elevation--z8 rounded-md bg-secondary">
-			<PrimaryAction on:click={() => console.log('clicked')}>
-				<p class="text-xl w-64 m-6">{option2}</p>
-			</PrimaryAction>
-		</div>
-	</div>
-
-	<div class="flex bg-stone-200 mdc-elevation--z4 rounded-md mx-auto p-3" style="width:39.25rem">
-		<details>
-			<summary> mehr erfahren</summary>
-			<p>{mehr_erfahren}</p>
-		</details>
-	</div>
+	<RegularQuestion {...current_question} {handle_question_answer} />
 </div>
 
+<!-- <SampleComponentForSpecialCase /> -->
 <style>
 	/* @tailwind components;
 	@tailwind utilities; */
