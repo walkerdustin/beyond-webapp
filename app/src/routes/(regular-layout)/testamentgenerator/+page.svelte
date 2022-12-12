@@ -1,7 +1,7 @@
 <script lang="ts">
 	import RegularQuestion from './regular_question.svelte';
 	import SampleComponentForSpecialCase from './sample_component_for_special_case.svelte';
-
+	import { supabase } from '$lib/supabaseClient';
 	// Get the questions and transitions for the questionnaire
 	import { get_questions } from '$lib/questionnaire';
 	import type {
@@ -27,9 +27,30 @@
 	let info =
 		'"Hier ist Ihr offizieller Familienstand maßgeblich. Das bedeutet, dass selbst wenn Sie in fester Partnerschaft leben, nur eine Ehe oder eingetragene Lebenspartnerschaft für Ihr Testament entscheidend sind." (ninebarc)';
 
-	function handle_question_answer(option: 0 | 1) {
+	async function handle_question_answer(option: 0 | 1) {
+		// handle the chosen option
+		// update database with the chosen answer
+		const {
+			data: { user }
+		} = await supabase.auth.getUser();
+
+		console.log("current question's id: " + current_question.state_id);
+		const { data, error } = await supabase
+			.from('testament_gen_questions')
+			.select('id')
+			.eq('id_in_mermaid', current_question.state_id)
+			.single();
+		console.log(data?.id);
+		if (data) {
+			supabase
+				.from('testament_gen_question_answers')
+				.insert({ question_id: data.id, chosen_option: option, user_id: user?.id });
+		}
+
+		// evaluate transition to get next question
 		let next_question_id: string;
 		console.log('clicked option ' + option);
+
 		if (option == 0) {
 			next_question_id = transitions[current_question.state_id].next_state0;
 		} else {

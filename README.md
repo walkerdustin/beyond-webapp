@@ -33,9 +33,6 @@ These extensions are neccessary
 - Node.js Notebooks (REPL)
 
 
-### copilot is actually pretty good
-![flying with copilot](docs/images/flying.PNG)
-
 # Usage
 
 ## How to do Icons
@@ -50,7 +47,34 @@ and then:
     <path fill="currentColor" d={mdiMenu} />
 </Icon>
 ```
+## setup supabase
+https://supabase.com/docs/guides/cli  
 
+first you may need to install scoop
+it is a command line installer for windows
+https://scoop.sh/
+```sh	
+irm get.scoop.sh | iex
+```
+then install supabase
+
+```
+scoop bucket add supabase https://github.com/supabase/scoop-bucket.git
+scoop install supabase
+``` 
+then you have to link your cli to your supabase project
+```sh
+supabase link --project-ref cpoebtwwvzcrewfytfad --password here-is-your-database-password
+```
+maybe also login to supabase with your cli token
+```sh
+supabase login
+```
+
+## generate typescript types for supabase
+```sh
+supabase gen types typescript --linked
+```
 ## supabase edge functions
 For this to work some stuff needs to be installed and set up:
 - docker  
@@ -80,8 +104,102 @@ need to be set in src/variables.scss and src/theme/_smui-theme.scss
 
 
 # Architecture
-
+## initial architecture idea
 ![architecture](docs/images/architecture.PNG)
+Actually for now, we dont need any external data storage
+notion cms is replaced by a mermaid flowchart in the markdown file
+
+## mermaid flowchart
+
+
+if no diagram is shown, please install the mermaid extension for vs code
+```mermaid
+graph BT
+    sk[Svelte Kit]
+    netlify[Netlify]
+    subgraph supabase
+    direction LR
+        edge[Edge Functions]
+        s-storage[document Storage]
+        s-db[Postgress Database]
+        client[Client API]
+        auth[Auth]
+    end
+
+    subgraph cms
+        direction LR
+        cmsq[Questions and options\n are written in\n a mermaid flowchart\n in\n Testamentgenerator.md]
+    end
+    subgraph styling
+    direction LR
+        smui[Material UI]
+        tailwind[Tailwind]
+    end
+    styling --> sk
+    sk --compile to static html and js --> netlify
+    client --> supabase
+    client --> sk
+    cmsq --> sk
+    s-storage --> client
+    auth --> client
+    s-db --> client
+    edge --> client
+    edge --> s-storage
+    edge --> s-db
+    edge --> auth
+
+
+
+
+
+```
+
+# Database structure
+*if no diagram is shown, please install the mermaid extension for vs code*
+
+```mermaid
+classDiagram
+    Document <|-- User
+    Questions <|-- User
+
+    class User {
+        +id: string
+        +email: string
+        +password: string
+        +name: string
+        +surname: string
+        +phone: string
+        +address: string
+        +city: string
+        +zip: string
+        +country: string
+        +documents: Document[]
+    }
+    class Document {
+        +id: string
+        +name: string
+        +type: string
+        +url: string
+        +user: User
+    }
+    class Question_Answers {
+        +id: string
+        +user: User
+        +answer_option: int
+        +created_at: timestamp
+        +updated_at: timestamp
+    }
+```
+### What Views shoul my database generate?
+
+answers of a User
+
+| question_id | answer_option |
+|----|---------|
+|q-id|0|
+|q-id|1|
+|q-id|0|
+|q-id|null|
 
 ## netlify
 hosts static files (js, html, css, images, media)
@@ -93,11 +211,11 @@ ESLint - Yes
 Prettier - Yes
 Playwright - Yes
 
-# What data does my database need to store?
 
-- progress [0%, 100%] für die cards in nachlassplan
-- link von user zu seinen dokumenten
 
+
+### copilot is actually pretty good
+![flying with copilot](docs/images/flying.PNG)
 # developement Journey
 
 ## install sveltekit
