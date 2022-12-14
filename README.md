@@ -26,6 +26,12 @@ These extensions are neccessary
 - Svelte for VS Code
 - Svelte 3 Snippets
 - Tailwind CSS IntelliSense
+- Markdown Preview Mermaid Support
+- Mermaid Markdown Syntax Highlighting
+- deno
+- github copilot
+- Node.js Notebooks (REPL)
+
 
 # Usage
 
@@ -41,15 +47,159 @@ and then:
     <path fill="currentColor" d={mdiMenu} />
 </Icon>
 ```
+## setup supabase
+https://supabase.com/docs/guides/cli  
 
+first you may need to install scoop
+it is a command line installer for windows
+https://scoop.sh/
+```sh	
+irm get.scoop.sh | iex
+```
+then install supabase
+
+```
+scoop bucket add supabase https://github.com/supabase/scoop-bucket.git
+scoop install supabase
+``` 
+then you have to link your cli to your supabase project
+```sh
+supabase link --project-ref cpoebtwwvzcrewfytfad --password here-is-your-database-password
+```
+maybe also login to supabase with your cli token
+```sh
+supabase login
+```
+
+## generate typescript types for supabase
+```sh
+supabase gen types typescript --linked --schema public > supabase/types/supabase.ts
+```
+## supabase edge functions
+For this to work some stuff needs to be installed and set up:
+- docker  
+ https://www.docker.com/products/docker-desktop/
+- deno (language server) 
+ https://deno.land/#installation
+- setup deno extension in vs code  
+ run the Deno: Initialize Workspace Configuration command.
+- 
+
+### usage
+```sh
+supabase functions -h
+```
+  delete      Delete a Function from Supabase  
+  deploy      Deploy a Function to Supabase  
+  new         Create a new Function locally  
+  serve       Serve a Function locally  
+```sh
+supabase start
+```
+
+to start the local supabase docker server
 ## material UI colors
 need to be set in src/variables.scss and src/theme/_smui-theme.scss
 
 
 
 # Architecture
-
+## initial architecture idea
 ![architecture](docs/images/architecture.PNG)
+Actually for now, we dont need any external data storage
+notion cms is replaced by a mermaid flowchart in the markdown file
+
+## mermaid flowchart
+
+
+if no diagram is shown, please install the mermaid extension for vs code
+```mermaid
+graph BT
+    sk[Svelte Kit]
+    netlify[Netlify]
+    subgraph supabase
+    direction LR
+        edge[Edge Functions]
+        s-storage[document Storage]
+        s-db[Postgress Database]
+        client[Client API]
+        auth[Auth]
+    end
+
+    subgraph cms
+        direction LR
+        cmsq[Questions and options\n are written in\n a mermaid flowchart\n in\n Testamentgenerator.md]
+    end
+    subgraph styling
+    direction LR
+        smui[Material UI]
+        tailwind[Tailwind]
+    end
+    styling --> sk
+    sk --compile to static html and js --> netlify
+    client --> supabase
+    client --> sk
+    cmsq --> sk
+    s-storage --> client
+    auth --> client
+    s-db --> client
+    edge --> client
+    edge --> s-storage
+    edge --> s-db
+    edge --> auth
+
+
+
+
+
+```
+
+# Database structure
+*if no diagram is shown, please install the mermaid extension for vs code*
+
+```mermaid
+classDiagram
+    Document <|-- User
+    Questions <|-- User
+
+    class User {
+        +id: string
+        +email: string
+        +password: string
+        +name: string
+        +surname: string
+        +phone: string
+        +address: string
+        +city: string
+        +zip: string
+        +country: string
+        +documents: Document[]
+    }
+    class Document {
+        +id: string
+        +name: string
+        +type: string
+        +url: string
+        +user: User
+    }
+    class Question_Answers {
+        +id: string
+        +user: User
+        +answer_option: int
+        +created_at: timestamp
+        +updated_at: timestamp
+    }
+```
+### What Views shoul my database generate?
+
+answers of a User
+
+| question_id | answer_option |
+|----|---------|
+|q-id|0|
+|q-id|1|
+|q-id|0|
+|q-id|null|
 
 ## netlify
 hosts static files (js, html, css, images, media)
@@ -61,11 +211,11 @@ ESLint - Yes
 Prettier - Yes
 Playwright - Yes
 
-# What data does my database need to store?
 
-- progress [0%, 100%] für die cards in nachlassplan
-- link von user zu seinen dokumenten
 
+
+### copilot is actually pretty good
+![flying with copilot](docs/images/flying.PNG)
 # developement Journey
 
 ## install sveltekit
@@ -250,4 +400,63 @@ everytime we add a new class.
 ## make the password field have the correct type and have hidden characters
 i used a checkbox and some svelte interactivity
 
+
+# Create the Questionaire from a Human Readable and editable flow chart
+To create the Testamentgenerator I need a set of questions and answer options.
+These Questions may be layed out in a DAG (directed asyclic graph).
+For example, there are more questions to answer, if you are married.
+
+## Requirements for storage
+- content needs to be accessible in the code in this repo.
+so either an api interface, or the data is saved in this repository.
+- content should be modifyable by my collegues
+- changes in shema need to be versioned
+- changes in content need to be versioned
+
+## Create a Questionaire from the data
+There is a nice function defined in the lib folder, that takes the markdown questions and options and creates a questionaire dictionary and the transitions from it.
+
+Read in the data from the +page.svelte file
+
+I have a component, for the regular question type  
+Other components then handle the special cases
+
+# Generate a Pdf from the data of the questionaire
+RPC comes from user pressing a button  
+    user gets shown a loading bar
+    maybe we use some fake processing time, to make the service of creating the document seem more valuable.
+create a supabase edge function  
+create a pdf from html with deno  
+upload the pdf to supabase storage  
+rpc request from client resolves 
+depending on the processing processing time, the client inserts some extra waiting time
+
+## What do I need to create the pdf
+I need the answers from the Testamentgenerator  
+I need extra data, like the name of the user 
+I need a pdf layout   
+    (maybe with header and footer)
+    numbered pages  
+    simple typography  
+    beyond logo  
+
+### ways to create a pdf in a deno function 
+- pdf-lib
+
+    https://gist.github.com/Hopding/8304b9f07c52904587f7b45fae4bcb8c 
+    https://medium.com/swlh/how-to-create-and-modify-pdf-files-in-deno-ffaad7099b0
+
+- oder jsPDF https://github.com/parallax/jsPDF
+
+
+### supabase edge functions
+use the best practices described here
+https://supabase.com/docs/guides/functions/best-practices  
+
+ther is also a snippet to handle CORS, so that you can call your functions from any URL
+like localhost or netlify previews
+
+#### write to storage (from cloud function)
+make sure to set the correct policy on the storage bucket
+BECAUSE setting it to public is apparently not enough
 
