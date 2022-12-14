@@ -73,7 +73,7 @@ supabase login
 
 ## generate typescript types for supabase
 ```sh
-supabase gen types typescript --linked
+supabase gen types typescript --linked --schema public > supabase/types/supabase.ts
 ```
 ## supabase edge functions
 For this to work some stuff needs to be installed and set up:

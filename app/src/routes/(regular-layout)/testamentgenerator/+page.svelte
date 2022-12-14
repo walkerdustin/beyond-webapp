@@ -41,10 +41,25 @@
 			.eq('id_in_mermaid', current_question.state_id)
 			.single();
 		console.log(data?.id);
-		if (data) {
-			supabase
-				.from('testament_gen_question_answers')
-				.insert({ question_id: data.id, chosen_option: option, user_id: user?.id });
+		console.log(
+			'calling upsert_answer with user id: ' +
+				user?.id +
+				' and question id: ' +
+				data?.id +
+				' and chosen option: ' +
+				option
+		);
+		let question_id: number = data?.id;
+
+		if (question_id) {
+			let { data, error } = await supabase.rpc('upsert_answer', {
+				chosen_option_input: option,
+				question_id_input: question_id,
+				user_id_input: user?.id
+			});
+
+			if (error) console.error(error);
+			else console.log(data);
 		}
 
 		// evaluate transition to get next question
