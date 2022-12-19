@@ -10,6 +10,7 @@
 		transition_node,
 		transitions_network
 	} from '$lib/questionnaire';
+	import FamilyGraph from './family_graph.svelte';
 
 	let data = get_questions();
 	let questions: questions_dict = data.questions;
@@ -75,9 +76,10 @@
 	}
 </script>
 
-<div class="flex flex-grow flex-col h-96">
+<!-- <div class="flex flex-grow flex-col h-96">
 	<RegularQuestion {...current_question} {handle_question_answer} />
-</div>
+</div> -->
+<FamilyGraph />
 
 <!-- <SampleComponentForSpecialCase /> -->
 <style>

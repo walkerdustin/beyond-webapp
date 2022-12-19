@@ -460,3 +460,25 @@ like localhost or netlify previews
 make sure to set the correct policy on the storage bucket
 BECAUSE setting it to public is apparently not enough
 
+# Build a family tree
+
+## Find the correct library
+https://dzone.com/articles/top-6-javascript-family-tree-diagram-libraries
+
+https://balkan.app/FamilyTreeJS
+
+
+### YFIles / YWorks
+https://www.yworks.com/products/yfiles-for-html
+https://www.yworks.com/products/yfiles/platforms#html
+
+Features
+- Client Side
+- Pure Javascript
+- Typescript support
+  
+Demos: https://github.com/yWorks/yfiles-for-html-demos  
+Family Tree Demo: https://live.yworks.com/demos/layout/familytree/index.html
+Developer Guide: https://docs.yworks.com/yfileshtml/#/dguide/introduction
+Documentation: https://docs.yworks.com/yfileshtml/#/api/index 
+https://docs.yworks.com/yfileshtml/#/home

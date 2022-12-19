@@ -19,7 +19,7 @@
 </script>
 
 <div class="flex flex-grow">
-	<div class="m-32 mdc-elevation--z8 flex flex-grow flex-col rounded-md bg-surface">
+	<div class="m-10 mdc-elevation--z8 flex flex-grow flex-col rounded-md bg-surface">
 		<div class="m-4 flex flex-row">
 			{#each generatorSections as section, i}
 				<div class="mr-auto {activeSection === i ? 'font-bold' : ''}">{section}</div>
@@ -43,6 +43,6 @@
 </div>
 
 <style>
-	/* @tailwind utilities;
-	@tailwind components; */
+	@tailwind utilities;
+	@tailwind components;
 </style>
