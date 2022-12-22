@@ -9,8 +9,14 @@ export type line = {
 
 export let lines: line[] = [];
 
+export function get_unused_id(nodes:Node[]):number {
+    // go through all nodes and find the highest id
+    let highest_id =  Math.max(...nodes.map((node:Node) => node.id));
+    return highest_id + 1;
+}
 
 export class Node {
+    id: number;
     typ: | 'Elternteil'
     | 'Kind'
     | 'Erblasser'
@@ -30,6 +36,7 @@ export class Node {
     html_element: HTMLDivElement | null;
 
     constructor(
+        id: number,
         typ:
             | 'Elternteil'
             | 'Kind'
@@ -46,6 +53,7 @@ export class Node {
         connecting_nodes: Node[],        
 
     ) {
+        this.id = id;
         this.typ = typ;
         this.active = active;
         this.first_name = first_name;

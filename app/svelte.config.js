@@ -24,7 +24,8 @@ const config = {
 			fallback: null,
 			precompress: false
 		})
-	}
+	},
+	setupFilesAfterEnv: ["<rootDir>/app/jest-setup.js"],
 };
 
 export default config;

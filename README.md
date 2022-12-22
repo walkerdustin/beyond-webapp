@@ -482,3 +482,20 @@ Family Tree Demo: https://live.yworks.com/demos/layout/familytree/index.html
 Developer Guide: https://docs.yworks.com/yfileshtml/#/dguide/introduction
 Documentation: https://docs.yworks.com/yfileshtml/#/api/index 
 https://docs.yworks.com/yfileshtml/#/home
+
+
+
+
+
+
+
+
+
+
+
+
+
+## How to do testing in sveltekit
+https://el3um4s.medium.com/how-to-test-sveltekit-app-with-jest-848afa8edbc7
+
+https://dockyard.com/blog/2022/01/27/how-to-set-up-jest-in-a-sveltekit-app

@@ -16,9 +16,9 @@
 	let erblasser: HTMLElement;
 	let svg_canvas: SVGSVGElement;
 
-	let n = new Node('Erblasser', true, 'Erblasser', '', []);
-	let n2 = new Node('Kind', true, 'Sohn', '1', []);
-
+	let n = new Node(0, 'Erblasser', true, 'Erblasser', '', []);
+	let n2 = new Node(1, 'Kind', true, 'Sohn', '1', []);
+	let ref: HTMLDivElement | null;
 	onMount(async () => {
 		// draw_line_between_elements(erblasser, kind);
 		nodes.push(n);
@@ -46,13 +46,30 @@
 <div class="baum-container bg-primary-hue-400" />
 <div class="baum-container bg-primary-hue-600" />
 <div class="baum-container bg-primary-hue-800">
-	{#each nodes.filter((x) => x.level === 0) as node}
-		<!-- <div
+	{#each nodes.filter((x) => x.level == 0) as node}
+		<div
+			bind:this={ref}
 			class="z-20 relative font-bold text-gray-900 rounded-full bg-white w-24 h-24 flex items-center justify-center"
 		>
-			moin!!
-		</div> -->
-
+			<div>
+				<button
+					class="rounded-full border-2 border-primary border-solid"
+					on:click={() => {
+						nodes.push(n2);
+						console.log('loll');
+						console.log(nodes);
+						console.log(nodes.filter((n) => n.level === 0));
+						nodes = nodes;
+					}}
+					><Icon component={Svg} viewBox="0 0 24 24" width="18px" height="18px">
+						<path fill="currentColor" d={mdiPlus} />
+					</Icon>
+				</button>
+			</div>
+			moin!!! {node.first_name}
+			{node.last_name}
+		</div>
+		<!-- 
 		<div
 			bind:this={node.html_element}
 			class="z-20 relative font-bold text-gray-900 rounded-full bg-white w-24 h-24 flex items-center justify-center flex-col"
@@ -77,7 +94,7 @@
 					</Icon>
 				</button>
 			</div>
-		</div>
+		</div> -->
 	{/each}
 	<!-- <div
 		bind:this={erblasser}
@@ -98,6 +115,7 @@
 				on:click={() => {
 					nodes.push(n);
 					console.log('loll');
+					nodes = nodes;
 				}}
 				><Icon component={Svg} viewBox="0 0 24 24" width="18px" height="18px">
 					<path fill="currentColor" d={mdiPlus} />
