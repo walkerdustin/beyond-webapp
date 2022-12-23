@@ -4,7 +4,7 @@
 	import { Svg } from '@smui/common/elements';
 	import { Icon } from '@smui/common';
 	import { onMount } from 'svelte';
-	import { draw_line_between_elements, Node, lines } from './family_graph_node.js';
+	import { draw_line_between_elements, Node, lines, get_unused_id} from './family_graph_node.js';
 	import type { line } from './family_graph_node.js';
 
 	import { writableNodes } from './family_graph_store.js';
@@ -17,7 +17,9 @@
 	let svg_canvas: SVGSVGElement;
 
 	let n = new Node(0, 'Erblasser', true, 'Erblasser', '', []);
-	let n2 = new Node(1, 'Kind', true, 'Sohn', '1', []);
+	let n2 = new Node(get_unused_id(nodes), 'Kind', true, 'Sohn', '1', []);
+	let n3 = new Node(get_unused_id(nodes), 'Geschwister', true, 'bruder', '1',[0])
+
 	let ref: HTMLDivElement | null;
 	onMount(async () => {
 		// draw_line_between_elements(erblasser, kind);

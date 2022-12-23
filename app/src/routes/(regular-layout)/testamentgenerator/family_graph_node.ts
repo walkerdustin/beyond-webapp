@@ -31,7 +31,7 @@ export class Node {
     last_name: string;
     level: -2 | -1 | 0 | 1 | 2;
     order: 1 | 2 | 3;
-    connecting_nodes: Node[];
+    connecting_nodes: number[];
     connecting_lines: line[];
     html_element: HTMLDivElement | null;
 
@@ -50,7 +50,7 @@ export class Node {
         active = false,
         first_name = '',
         last_name = '',
-        connecting_nodes: Node[],        
+        connecting_nodes: number[],        
 
     ) {
         this.id = id;
