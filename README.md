@@ -493,9 +493,21 @@ https://docs.yworks.com/yfileshtml/#/home
 
 
 
-
-
 ## How to do testing in sveltekit
 https://el3um4s.medium.com/how-to-test-sveltekit-app-with-jest-848afa8edbc7
 
 https://dockyard.com/blog/2022/01/27/how-to-set-up-jest-in-a-sveltekit-app
+
+### No! Jest is actually quite trash.
+because it does not work with vite.
+it requires its own bunder (babel) and a lot of configuration.
+
+it is bad!
+
+### We use vitest
+it is currently still in alpha.
+its been in alpha (pre 1.0.0) for more than a year now ( I think)
+But it is amazing, with very little configuration and it is very fast.
+
+For the tests, it uses mostly the same syntax as jest.
+
