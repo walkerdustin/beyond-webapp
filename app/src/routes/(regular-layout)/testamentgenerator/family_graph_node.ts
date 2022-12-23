@@ -1,17 +1,28 @@
-
+import { get, writable, type Writable } from "svelte/store";
+// the following line needs to be below
+// export let nodes = writable([Node]);
 export type line = {
+    x0: number;
+    y0: number;
     x1: number;
     y1: number;
-    x2: number;
-    y2: number;
     l: undefined | SVGLineElement;
 };
 
-export let lines: line[] = [];
+
+
+
+
+
+// export function add_node(node:Node){
+//     nodes.update(nodes => [...nodes, node] );
+// }
 
 export function get_unused_id(nodes:Node[]):number {
     // go through all nodes and find the highest id
     let highest_id =  Math.max(...nodes.map((node:Node) => node.id));
+    console.log('nodes' + nodes)
+    console.log('highest id: ' + highest_id);
     return highest_id + 1;
 }
 
@@ -106,52 +117,100 @@ export class Node {
                 this.order = 3;
                 break;
         }
+        nodes.update(nodes => [...nodes, this] );
 
-        // create 
-
+        // create the lines to the connecting nodes
+        this.connecting_nodes.forEach((node_id) => {
+            console.log('connecting node: ' + node_id + ' to ' + this.id);
+            draw_line_between_elements(this.id, node_id);
+        });
     }
-
     set_Name(first_name: string, last_name: string) {
         this.first_name = first_name;
         this.last_name = last_name;
     }
     calculate_necessary_neighbour_nodes() {
         if (this.typ == 'Erblasser') {
-            
         }
     }
-
-
 }
 
+export let nodes:Writable<Node[]> = writable([]);
+let local_nodes_copy:Node[] = []
+nodes.subscribe((nodes) => {
+    local_nodes_copy = nodes;
+    });
 
-export function draw_line_between_elements(element_top: HTMLElement, element_bottom: HTMLElement) {
-    // calculate the bottom center position of the top element
-    const pos1_y = element_top.getBoundingClientRect().bottom;
-    const pos1_x =
-        element_top.getBoundingClientRect().left + element_top.getBoundingClientRect().width / 2;
-    const pos2_y = element_bottom.getBoundingClientRect().top;
-    const pos2_x =
-        element_bottom.getBoundingClientRect().left +
-        element_bottom.getBoundingClientRect().width / 2;
+export let lines:Writable<line[]> = writable([]);
+
+
+export function redraw_lines() {
+    // lines.forEach((line) => {
+    //     line.l?.remove();
+    // });
+    lines.set([]);
+    local_nodes_copy.forEach((node:Node) => {
+        node.connecting_nodes.forEach((node_id) => {
+            draw_line_between_elements(node.id, node_id);
+        });
+    });
+}
+
+export function draw_line_between_elements(element_0_id: number, element_1_id: number) {
+    const element_0 = document.querySelector(`[data-id="${element_0_id}"]`)
+    const element_1 = document.querySelector(`[data-id="${element_1_id}"]`)
+    const n0 = local_nodes_copy.find((node:Node) => node.id == element_0_id);
+    const n1 = local_nodes_copy.find((node:Node) => node.id == element_1_id);
+    if (element_0 == null || element_1 == null || n0 == undefined || n1 == undefined) {
+        console.log('element not found');
+        return -1;
+    }
+    console.log("drawing line between " + element_0_id + " and " + element_1_id);
+    
+    const level_0 = n0.level;
+    const level_1 = n1.level;
+
+    let pos0_y:number;
+    let pos0_x:number;
+    let pos1_y:number;
+    let pos1_x:number;
+
+    if (level_0 == level_1) {
+        console.log('same level');
+        // I think it does not matter, if the element is on the left or right side, 
+        // because the edge is hidden below the node anyway
+        
+        // calculate the left center position of element0
+        pos0_y = element_0.getBoundingClientRect().top + element_0.getBoundingClientRect().height / 2;
+        pos0_x = element_0.getBoundingClientRect().right;
+        pos1_y = element_1.getBoundingClientRect().top + element_1.getBoundingClientRect().height / 2;
+        pos1_x = element_1.getBoundingClientRect().left;
+    }
+    if (level_0 < level_1) {
+        console.log('level 0 < level 1');
+        pos0_y = element_0.getBoundingClientRect().bottom;
+        pos0_x = element_0.getBoundingClientRect().left + element_0.getBoundingClientRect().width / 2;
+        pos1_y = element_1.getBoundingClientRect().top;
+        pos1_x = element_1.getBoundingClientRect().left + element_1.getBoundingClientRect().width / 2;
+    }
+    if (level_0 > level_1) {
+        console.log('level 0 > level 1');
+        pos0_y = element_0.getBoundingClientRect().top;
+        pos0_x = element_0.getBoundingClientRect().left + element_0.getBoundingClientRect().width / 2;
+        pos1_y = element_1.getBoundingClientRect().bottom;
+        pos1_x = element_1.getBoundingClientRect().left + element_1.getBoundingClientRect().width / 2;
+    }
     console.log('adding line to array');
 
-    lines.push({
-        x1: pos1_x,
-        y1: pos1_y,
-        x2: pos2_x,
-        y2: pos2_y,
+    lines.update(lines => [...lines, {
+        x0: pos0_x? pos0_x : 0,
+        y0: pos0_y? pos0_y : 0,
+        x1: pos1_x? pos1_x : 0,
+        y1: pos1_y? pos1_y : 0,
         l: undefined,
-    });
+    }]);
+
     lines = lines;
-    // // create a new svg line element
-    // const line = document.createElement('line');
-    // line.setAttribute('x1', pos1_x.toString());
-    // line.setAttribute('y1', pos1_y.toString());
-    // line.setAttribute('x2', pos2_x.toString());
-    // line.setAttribute('y2', pos2_y.toString());
-    // line.setAttribute('stroke', 'black');
-    // svg_canvas.appendChild(line);
     return 0;
 }
 
