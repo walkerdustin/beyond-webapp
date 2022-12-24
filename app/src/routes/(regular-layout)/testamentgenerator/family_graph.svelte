@@ -4,7 +4,7 @@
 	import { Svg } from '@smui/common/elements';
 	import { Icon } from '@smui/common';
 	import { onMount } from 'svelte';
-	import { draw_line_between_elements, Node, lines, get_unused_id, nodes} from './family_graph_node.js';
+	import { draw_line_between_elements, Node, lines, get_unused_id, nodes, redraw_lines} from './family_graph_node.js';
 	import type { line } from './family_graph_node.js';
 	import FamilyNodeElement from './family_node_element.svelte';
 	import { get } from "svelte/store";
@@ -27,9 +27,30 @@
 		console.log(nodes);
 		console.log($nodes.filter((n) => n.level === 0));
 	});
+	let offsetWidth=0;
+	// let offsetHeight=0;
+	// let clientHeight=0;
+	// let clientWidth=0;
+	let scroll_y=0;
+	let scroll_x=0;
+	// $: console.log('offsetWidth: ' + offsetWidth);
+	// $: console.log('offsetHeight: ' + offsetHeight);
+	// $: console.log('clientHeight: ' + clientHeight);
+	// $: console.log('clientWidth: ' + clientWidth);
+	// $: console.log('y: ' + scroll_y);
+	// $: console.log('x: ' + scroll_x);
+	function on_position_change_update_lines(offsetWidth:number, scroll_y:number, scroll_x:number){
+		redraw_lines();
+	}
+	$: on_position_change_update_lines(offsetWidth, scroll_y, scroll_x);
+
 </script>
 
-<div id="family-tree-canvas">
+<svelte:window bind:scrollY={scroll_y} bind:scrollX={scroll_x}/>
+
+
+<!-- bind:offsetHeight={offsetHeight} bind:clientHeight={clientHeight} bind:clientWidth={clientWidth} -->
+<div id="family-tree-canvas" bind:offsetWidth={offsetWidth} >
 	<svg
 		width="100%"
 		height="100%"
