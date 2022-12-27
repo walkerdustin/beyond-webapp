@@ -1,9 +1,12 @@
 <script lang="ts">
 	import RegularQuestion from './regular_question.svelte';
+	import Family from './family.svelte';
+	import Test from './test.svelte';
 	import SampleComponentForSpecialCase from './sample_component_for_special_case.svelte';
 	import { supabase } from '$lib/supabaseClient';
 	// Get the questions and transitions for the questionnaire
 	import { get_questions } from '$lib/questionnaire';
+
 	import type {
 		question,
 		questions_dict,
@@ -75,8 +78,10 @@
 	}
 </script>
 
-<div class="flex flex-grow flex-col h-96">
-	<RegularQuestion {...current_question} {handle_question_answer} />
+<div class="flex flex-grow flex-col min-h-96">
+	<!-- <RegularQuestion {...current_question} {handle_question_answer} /> -->
+	<Family />
+
 </div>
 
 <!-- <SampleComponentForSpecialCase /> -->
