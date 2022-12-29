@@ -1,11 +1,12 @@
 <script lang="ts">
 	import RegularQuestion from './regular_question.svelte';
 	import Family from './family.svelte';
-	import Test from './test.svelte';
+	import Distribution from './distribution.svelte';
 	import SampleComponentForSpecialCase from './sample_component_for_special_case.svelte';
 	import { supabase } from '$lib/supabaseClient';
 	// Get the questions and transitions for the questionnaire
 	import { get_questions } from '$lib/questionnaire';
+	import { user_s } from '$lib/global-store';
 
 	import type {
 		question,
@@ -24,18 +25,12 @@
 	let current_question: question = questions['00100'];
 	console.log(current_question);
 
-	let frage = 'Wie ist Ihr Familienstand?';
-	let option0 = 'Verheiratet';
-	let option1 = 'Nicht (mehr) verheiratet';
-	let info =
-		'"Hier ist Ihr offizieller Familienstand maßgeblich. Das bedeutet, dass selbst wenn Sie in fester Partnerschaft leben, nur eine Ehe oder eingetragene Lebenspartnerschaft für Ihr Testament entscheidend sind." (ninebarc)';
+	let question_typ: String = 'regular';
 
 	async function handle_question_answer(option: 0 | 1) {
 		// handle the chosen option
 		// update database with the chosen answer
-		const {
-			data: { user }
-		} = await supabase.auth.getUser();
+		let user = user_s;
 
 		console.log("current question's id: " + current_question.state_id);
 		const { data, error } = await supabase
@@ -79,8 +74,19 @@
 </script>
 
 <div class="flex flex-grow flex-col min-h-96">
+	{#if current_question.typ == 'regular'}
+	<RegularQuestion {...current_question} {handle_question_answer} />
+	{:else if  current_question.typ == 'Erben'}
+		<Family {handle_question_answer} />
+	{:else if  current_question.typ == 'verteilung'}
+		<Distribution {handle_question_answer} />
+	{:else}
+	<SampleComponentForSpecialCase {handle_question_answer} />
+
+	{/if}
+
 	<!-- <RegularQuestion {...current_question} {handle_question_answer} /> -->
-	<Family />
+	
 
 </div>
 

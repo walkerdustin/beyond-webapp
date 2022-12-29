@@ -3,16 +3,18 @@
   import Select, { Option } from '@smui/select';
   import HelperText from '@smui/textfield/helper-text';
   import Button, { Label } from '@smui/button';
-  import { createAnimationTriggerAction } from 'svelte-trigger-action'
+  import { createAnimationTriggerAction } from 'svelte-trigger-action';
 	import { Hr } from "@smui/common/elements";
 	import { supabase } from '$lib/supabaseClient';
   import { onMount } from "svelte";
 
-  import { mdiPencil, mdiDelete } from '@mdi/js';  
-  import { Svg } from '@smui/common/elements'; 
+  import { mdiPencil, mdiDelete } from '@mdi/js';
+  import { Svg } from '@smui/common/elements';
   import { Icon } from '@smui/common';
 
-  const { triggerAnimation, animationAction } = createAnimationTriggerAction()
+  export let handle_question_answer: (option: 0 | 1) => void;
+
+  const { triggerAnimation, animationAction } = createAnimationTriggerAction();
   let animation_name = 'shake';
 
   let verhältnis_list = ['Elternteil' , 'Kind', 'Partner', 'Großeltern', 'Enkelkind', 'Geschwister', 'Nichte / Neffe', 'Onkel / Tante']
@@ -22,6 +24,7 @@
   let family_members:family_member[] = [];
 
   type family_member = {
+      id: number,
       first_name: String,
       last_name: String,
       verhältnis: String
@@ -30,7 +33,7 @@
   let fn_is_empty = true;
   let ln_is_empty = true;
   let v_is_empty = true;
-  let auswählen = 'auswählen';
+  const auswählen = 'auswählen';
   async function add_family_member(){
     // make sure all fields are filled
     if (first_name == '' || last_name == '' || selected_value == '' || selected_value == auswählen){
@@ -43,11 +46,13 @@
       triggerAnimation()
       return
     }
-    family_members = [...family_members, {first_name: first_name, last_name: last_name, verhältnis: selected_value}]
+    let new_family_member = {id: 0, first_name: first_name, last_name: last_name, verhältnis: selected_value}
+    // the id of 0 gets later replaced with the id from the database
+    family_members = [...family_members, new_family_member]
 
     console.log(family_members)
     family_members = [...family_members]
-    //create the update object
+    //create the insert data object
     let insert_obj = {
       first_name: first_name,
       last_name: last_name,
@@ -58,26 +63,34 @@
     last_name = '';
     selected_value = auswählen;
     const {data: { user }} = await supabase.auth.getUser();
-    const { data, error } = await supabase.from("family_members").insert({family_of_user: user?.id, first_name: insert_obj.first_name, last_name: insert_obj.last_name, relation: insert_obj.selected_value})
-
+    const { data, error } = await supabase.from("family_members").insert({family_of_user: user?.id, first_name: insert_obj.first_name, last_name: insert_obj.last_name, relation: insert_obj.selected_value}).select("id")
+    if (data){
+      new_family_member.id = data[0].id
+      family_members = [...family_members]
+    }
   }
 
   onMount(async () => {
     const {data: { user }} = await supabase.auth.getUser();
     const user_id = user?.id;
-    // get all family members from 
-    const { data, error } = await supabase.from("family_members").select("*").eq('family_of_user', user_id)
-    console.log(data)
+    // get all family members from database
+    const { data, error } = await supabase.from("family_members").select("*").eq('family_of_user', user_id);
+    console.log(data);
     // fill family_members with data
     data?.forEach((member) => {
-      family_members = [...family_members, {first_name: member.first_name, last_name: member.last_name, verhältnis: member.relation}]
+      family_members = [...family_members, {id: member.id, first_name: member.first_name, last_name: member.last_name, verhältnis: member.relation}];
     })
   })
+  async function delete_family_member(id:number){
+    console.log(id);
+    family_members = family_members.filter((member) => member.id != id);
+    await supabase.from("family_members").delete().eq('id', id);
+  }
 </script>
 
 <h2 class="mx-auto mb-4">Tragen Sie Ihre Famillie ein</h2>
 
-<div class="grid grid-cols-4 gap-2 mb-4">
+<div class="grid grid-cols-4 gap-2 mb-4 ml-4">
   {#each family_members as member}
     <p>{member.first_name}</p> <p>{member.last_name}</p> <p>{member.verhältnis}</p> 
     <p>
@@ -89,11 +102,12 @@
         </Icon>
       </Button> -->
 
-      <Button>
+      <Button on:click={()=>delete_family_member(member.id)}>
         <Icon component={Svg} viewBox="0 0 24 24" width="20px" height="20px">
           <path fill="currentColor" d={mdiDelete} />
         </Icon>
       </Button>
+      <span>{member.id}</span>
     </p>
     
   {/each}
@@ -118,7 +132,7 @@
 
 
 <div class="mx-auto mt-auto mb-4">
-  <Button variant="raised" on:click{}>Weiter</Button>
+  <Button variant="raised" on:click={() => handle_question_answer(1)}>Fertig</Button>
 </div>
 
 <style>
