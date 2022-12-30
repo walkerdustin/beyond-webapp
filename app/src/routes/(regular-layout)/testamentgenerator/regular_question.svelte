@@ -26,7 +26,7 @@
 	</div>
 </div>
 
-<div class="flex bg-stone-200 mdc-elevation--z4 rounded-md mx-auto p-3" style="width:39.25rem">
+<div class="flex bg-stone-200 mdc-elevation--z4 rounded-md mx-auto p-3 mb-4" style="width:39.25rem">
 	<details>
 		<summary> mehr erfahren</summary>
 		<p>{info}</p>

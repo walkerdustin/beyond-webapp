@@ -27,10 +27,13 @@
 		"@smui/circular-progress": "^6.1.4",
 		"@smui/common": "^6.1.4",
 		"@smui/dialog": "^6.1.4",
+		"@smui/form-field": "^7.0.0-beta.0",
 		"@smui/icon-button": "^7.0.0-beta.0",
 		"@smui/linear-progress": "^6.1.4",
 		"@smui/paper": "^6.1.4",
 		"@smui/ripple": "^7.0.0-beta.0",
+		"@smui/select": "^7.0.0-beta.0",
+		"@smui/slider": "^7.0.0-beta.0",
 		"@smui/snackbar": "^6.1.4",
 		"@smui/tab": "^6.1.4",
 		"@smui/tab-bar": "^6.1.4",
@@ -64,6 +67,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@supabase/supabase-js": "^2.0.4"
+		"@supabase/supabase-js": "^2.0.4",
+		"daisyui": "^2.46.0",
+		"svelte-trigger-action": "^1.12.0"
 	}
 }

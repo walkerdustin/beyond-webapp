@@ -19,16 +19,17 @@
 	import { onMount } from 'svelte';
 	import { supabase } from '$lib/supabaseClient';
 	import { goto } from '$app/navigation';
+	import {user_s, set_user} from '$lib/global-store'
 
 	onMount(async () => {
 		const {
 			data: { user }
 		} = await supabase.auth.getUser();
 		console.log('user', user);
-
 		if (!user) {
 			await goto('/signUp');
 		}
+		set_user(user);
 	});
 
 	async function getAuthUser() {
