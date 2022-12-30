@@ -7,6 +7,7 @@
 	import { Hr } from "@smui/common/elements";
 	import { supabase } from '$lib/supabaseClient';
   import { onMount } from "svelte";
+	import { user_s } from '$lib/global-store';
 
   import { mdiPencil, mdiDelete } from '@mdi/js';
   import { Svg } from '@smui/common/elements';
@@ -18,16 +19,16 @@
   let animation_name = 'shake';
 
   let verhältnis_list = ['Elternteil' , 'Kind', 'Partner', 'Großeltern', 'Enkelkind', 'Geschwister', 'Nichte / Neffe', 'Onkel / Tante']
-  let selected_value:String;
+  let selected_value:string;
   let first_name = '';
   let last_name = '';
   let family_members:family_member[] = [];
 
   type family_member = {
       id: number,
-      first_name: String,
-      last_name: String,
-      verhältnis: String
+      first_name: string,
+      last_name: string,
+      verhältnis: string
   }
 
   let fn_is_empty = true;
@@ -71,8 +72,7 @@
   }
 
   onMount(async () => {
-    const {data: { user }} = await supabase.auth.getUser();
-    const user_id = user?.id;
+    const user_id = user_s?.id
     // get all family members from database
     const { data, error } = await supabase.from("family_members").select("*").eq('family_of_user', user_id);
     console.log(data);
