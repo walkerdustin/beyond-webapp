@@ -7,6 +7,7 @@
 	// Get the questions and transitions for the questionnaire
 	import { get_questions } from '$lib/questionnaire';
 	import { user_s } from '$lib/global-store';
+	import Vermachtnis from './vermachtnis.svelte';
 
 	import type {
 		question,
@@ -80,6 +81,8 @@
 		<Family {handle_question_answer} />
 	{:else if  current_question.typ == 'verteilung'}
 		<Distribution {handle_question_answer} />
+	{:else if  current_question.typ == 'vermächtnis'}
+		<Vermachtnis {handle_question_answer} />
 	{:else}
 	<SampleComponentForSpecialCase {handle_question_answer} />
 

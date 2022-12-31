@@ -24,8 +24,8 @@
 
   
 <style>
-@tailwind components;
-@tailwind utilities;
+/* @tailwind components;
+@tailwind utilities; */
 :global(.my-smui-slider input){
   margin-top: auto;
   margin-bottom: auto;

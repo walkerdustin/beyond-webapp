@@ -132,7 +132,7 @@
 
 
 <div class="mx-auto mt-auto mb-4">
-  <Button variant="raised" on:click={() => handle_question_answer(1)}>Fertig</Button>
+  <Button variant="raised" on:click={() => handle_question_answer(1)}>Weiter</Button>
 </div>
 
 <style>
@@ -156,8 +156,8 @@
     transform: translate3d(4px, 0, 0);
   }
 }
-    @tailwind components;
-    @tailwind utilities;
+    /* @tailwind components;
+    @tailwind utilities; */
 /* .wiggle { 
   -webkit-animation-name: wiggle;
   animation-name: wiggle; 

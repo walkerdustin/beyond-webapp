@@ -134,9 +134,8 @@
 {/await}
 
 <style>
-	@tailwind components;
-	@tailwind utilities;
-	/* @tailwind base;*/
+	/* @tailwind components;
+	@tailwind utilities; */
 
 	header {
 		display: flex;

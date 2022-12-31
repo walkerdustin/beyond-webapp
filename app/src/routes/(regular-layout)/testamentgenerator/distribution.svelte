@@ -9,10 +9,21 @@
 	import { onMount } from 'svelte';
 	import DistributionBlock from './distribution_block.svelte';
 	import { user_s } from '$lib/global-store';
-
+    import {get} from 'svelte/store';
     import type { family_member_extended } from './testamentgenerator_store';
     import { family_members } from './testamentgenerator_store';
 	export let handle_question_answer: (option: 0 | 1) => void;
+
+    async function weiter(){
+        // set the inheritance quotas for all family members in the database
+        let temp_family_members = get(family_members);
+        for (let i = 0; i < temp_family_members.length; i++) {
+            const element = temp_family_members[i];
+            await supabase.from('family_members').update({inheritance_quota: element.current_percentage}).eq('id', element.id);
+        }
+        handle_question_answer(0);
+
+    }
 
 	type family_member_extended = {
 		id: number;
@@ -50,7 +61,6 @@
 		console.log(data);
 		// fill family_members with data
         let temp_family_members: family_member_extended[] = [];
-
 		data?.forEach((member) => {
 			temp_family_members = [
 				...temp_family_members,
@@ -59,12 +69,14 @@
 					first_name: member.first_name,
 					last_name: member.last_name,
 					verhältnis: member.relation,
-                    current_percentage: 0,
+                    current_percentage: member.inheritance_quota,
                     gesetzliche_erbfolge: undefined ,
                     pflichtanteil: undefined 
 				}
 			];
 		});
+        console.log("temp_family_members");
+        
 		console.log(temp_family_members);
         family_members.set(temp_family_members);
 
@@ -79,7 +91,7 @@
         let order3_members = temp_family_members.filter((member) => order3.includes(member.verhältnis));
 
         // log all the members in the different orders
-        console.log("order1_members", order1_members);
+        console.log("order1_memberss", order1_members);
         console.log("order1_5_members", order1_5_members);
         console.log("order2_members", order2_members);
         console.log("order2_5_members", order2_5_members);
@@ -136,8 +148,13 @@
             we_cant_calculate_the_inheritance = true;
         }
         //set the current percentage to the pflichtanteil value for all family members
+        // make sure the current percentage is not overwritten, if it already exists
         temp_family_members.forEach((member) => {
-            member.current_percentage = member.pflichtanteil;
+            if (member.pflichtanteil ){
+                if(member.current_percentage && member.current_percentage < member.pflichtanteil){
+                    member.current_percentage = member.pflichtanteil;
+                }
+            }
         });
         console.log("family_members after calculation", family_members);
 	});
@@ -160,10 +177,10 @@
     <DistributionBlock id={member.id} current_percentage={(member.current_percentage?member.current_percentage:0)} title={member.first_name + ' ' + member.last_name} pflichtanteil={member.pflichtanteil} gesetzliche_erbfolge ={member.gesetzliche_erbfolge}  />
 {/each}
 <div class="mx-auto mt-auto mb-4">
-	<Button variant="raised" on:click={() => handle_question_answer(1)}>Fertig</Button>
+	<Button variant="raised" on:click={() => weiter()}>Weiter</Button>
 </div>
 
 <style>
-	@tailwind components;
-	@tailwind utilities;
+	/* @tailwind components;
+	@tailwind utilities; */
 </style>
