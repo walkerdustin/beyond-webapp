@@ -66,7 +66,7 @@
 					first_name: member.first_name,
 					last_name: member.last_name,
 					verhältnis: member.relation,
-                    current_percentage: member.inheritance_quota,
+                    current_percentage: ((member.inheritance_quota!=-1)?member.inheritance_quota:0),
                     gesetzliche_erbfolge: undefined ,
                     pflichtanteil: undefined 
 				}
