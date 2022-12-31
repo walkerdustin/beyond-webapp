@@ -138,12 +138,16 @@ export function get_questions() {
 
     let questions_dict: questions_dict = {};
     array_of_questions.forEach((question) => {
-        // this generates text for a manual sql insert statement
-        // if (question.typ ==="regular") {
-        //     console.log(`("${question.state_id}", "${question.state_name}"),`);
-        // }
         questions_dict[question.state_id] = question;
     });
+
+    // this generates text for a manual sql insert statement
+    let temp_s = "";
+    array_of_questions.forEach((question) => {
+        temp_s += `("${question.state_id}", "${question.state_name}"),\n`
+    });
+    console.log(temp_s);
+    
 
     // sample transition
     // __00100-- ja -->__00110
@@ -178,11 +182,6 @@ export function get_questions() {
         array_of_transitions.push(temp_transition_dict);
     }
 
-    // for (const line in questions_arr) {
-    //     if (Object.prototype.hasOwnProperty.call(object, line)) {
-    //         const element = object[line];
-    //     }
-    // }
 
     return  {
         "questions": questions_dict,

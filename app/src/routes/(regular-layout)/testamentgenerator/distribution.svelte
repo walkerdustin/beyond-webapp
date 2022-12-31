@@ -39,7 +39,7 @@
 
 	// let family_members: family_member_extended[] = [];
 	// define the different Orders for the inheritance
-	let order_ehegatte = ['Ehepartner'];
+	let order_ehegatte = ['Partner'];
 	let order1 = ['Kind'];
 	let order1_5 = ['Enkelkind'];
 	let order2 = ['Geschwister', 'Elternteil'];
@@ -66,7 +66,7 @@
 					first_name: member.first_name,
 					last_name: member.last_name,
 					verhältnis: member.relation,
-                    current_percentage: ((member.inheritance_quota!=-1)?member.inheritance_quota:0),
+                    current_percentage: (member.inheritance_quota!=-1)?member.inheritance_quota:0,
                     gesetzliche_erbfolge: undefined ,
                     pflichtanteil: undefined 
 				}
@@ -88,7 +88,8 @@
         let order3_members = temp_family_members.filter((member) => order3.includes(member.verhältnis));
 
         // log all the members in the different orders
-        console.log("order1_memberss", order1_members);
+        console.log("order_ehegatte_member", order_ehegatte_member);
+        console.log("order1_members", order1_members);
         console.log("order1_5_members", order1_5_members);
         console.log("order2_members", order2_members);
         console.log("order2_5_members", order2_5_members);
@@ -148,7 +149,7 @@
         // make sure the current percentage is not overwritten, if it already exists
         temp_family_members.forEach((member) => {
             if (member.pflichtanteil ){
-                if(member.current_percentage && member.current_percentage < member.pflichtanteil){
+                if((member.current_percentage != undefined )&& member.current_percentage < member.pflichtanteil){
                     member.current_percentage = member.pflichtanteil;
                 }
             }

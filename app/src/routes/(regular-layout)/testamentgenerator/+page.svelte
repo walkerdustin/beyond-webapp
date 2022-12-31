@@ -8,6 +8,8 @@
 	import { get_questions } from '$lib/questionnaire';
 	import { user_s } from '$lib/global-store';
 	import Vermachtnis from './vermachtnis.svelte';
+	import Ende from './ende.svelte';
+	import AbschliessendeKlauseln from './abschliessende_klauseln.svelte';
 
 	import type {
 		question,
@@ -83,6 +85,10 @@
 		<Distribution {handle_question_answer} />
 	{:else if  current_question.typ == 'vermächtnis'}
 		<Vermachtnis {handle_question_answer} />
+	{:else if  current_question.typ == 'ende'}
+		<Ende {handle_question_answer} />
+	{:else if  current_question.typ == 'abschließendeKlauseln'}
+		<AbschliessendeKlauseln {handle_question_answer} />
 	{:else}
 	<SampleComponentForSpecialCase {handle_question_answer} />
 
