@@ -62,6 +62,6 @@ and a linear progress bar for visual -->
 
 
 <style>
-    @tailwind components;
-    @tailwind utilities;
+    /* @tailwind components;
+    @tailwind utilities; */
 </style>

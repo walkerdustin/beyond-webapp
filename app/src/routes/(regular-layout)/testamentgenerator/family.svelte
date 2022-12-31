@@ -156,8 +156,8 @@
     transform: translate3d(4px, 0, 0);
   }
 }
-    @tailwind components;
-    @tailwind utilities;
+    /* @tailwind components;
+    @tailwind utilities; */
 /* .wiggle { 
   -webkit-animation-name: wiggle;
   animation-name: wiggle; 
