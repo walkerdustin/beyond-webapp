@@ -103,7 +103,7 @@
 		<div class="mdc-elevation--z{n} flexy-boy">Elevation: {n}</div>
 	{/each}
 </div> -->
-		<main class="bg-background">
+		<main>
 			<slot><!-- optional fallback --></slot>
 		</main>
 
