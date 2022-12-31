@@ -1,9 +1,7 @@
 <script lang="ts">
     import Textfield from "@smui/textfield";
-import Select, { Option } from '@smui/select';
 import HelperText from '@smui/textfield/helper-text';
 import Button, { Label } from '@smui/button';
-import { createAnimationTriggerAction } from 'svelte-trigger-action';
 import { Hr } from "@smui/common/elements";
 import { supabase } from '$lib/supabaseClient';
 import { onMount } from "svelte";
