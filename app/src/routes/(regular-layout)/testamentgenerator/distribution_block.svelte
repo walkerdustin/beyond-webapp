@@ -1,7 +1,5 @@
 <script lang="ts">
     import LinearProgress from "@smui/linear-progress";
-    import Slider from '@smui/slider';
-    import FormField from '@smui/form-field';
     import Textfield from '@smui/textfield';
 
     import { family_members } from './testamentgenerator_store';
