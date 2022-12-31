@@ -1,4 +1,4 @@
-<div class="columns margins" style="justify-content: flex-start;">
+<!-- <div class="columns margins" style="justify-content: flex-start;">
     <div>
       <Select bind:value label="Select Menu">
         {#each fruits as fruit}
@@ -16,4 +16,4 @@
     let fruits = ['Apple', 'Orange', 'Banana', 'Mango'];
    
     let value = 'Orange';
-  </script>
+  </script> -->

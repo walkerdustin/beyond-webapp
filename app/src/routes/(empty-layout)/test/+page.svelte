@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
     import Select, { Option } from '@smui/select';
     import Slider from '@smui/slider';
     import FormField from '@smui/form-field';
@@ -53,4 +53,4 @@
   border-image: initial;
 }
 </style>
-   
+    -->
