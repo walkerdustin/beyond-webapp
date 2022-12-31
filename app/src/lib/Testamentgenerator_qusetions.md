@@ -71,8 +71,8 @@
     __00500(Testamentvollstreckung)
         %%typ 'regular'
         %%frage 'Testamentvollstreckung'
-        %%option0 'ja'
-        %%option1 'nein'
+        %%option0 'Ja'
+        %%option1 'Nein'
         %%info ''
 
     __00510(Wer vollstreckt)
@@ -92,16 +92,25 @@
     __00600(Schlichtung)
         %%typ 'regular'
         %%frage 'Schlichtung'
+        %%option0 'Ja'
+        %%option1 'Nein'
+        %%info ''
+
+    __00900(abschließende Klauseln)
+        %%typ 'abschließendeKlauseln'
+        %%frage 'abschließende Klauseln'
+        %%option0 ''
+        %%option1 ''
+        %%info ''
+    
+    __01000(Ende)
+        %%typ 'ende'
+        %%frage 'Ende'
         %%option0 ''
         %%option1 ''
         %%info ''
 
-    __00900(Klauseln)
-        %%typ 'klauseln'
-        %%frage 'Klauseln'
-        %%option0 ''
-        %%option1 ''
-        %%info ''
+    
 
     %%Transitions
     __00100--ja-->__00110
@@ -120,5 +129,6 @@
     __00510--Nachlassgericht-->__00600
     __00520-->__00600
     __00600-->__00900
+    __00900-->__01000
     %%End
 ```
