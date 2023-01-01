@@ -31,14 +31,19 @@ and a linear progress bar for visual -->
     <p class="my-auto">{title}</p>
     <div class="my-auto">
         <!-- <input bind:value={current_percentage} type="text" placeholder="Type here" class="input input-bordered input-primary w-xs" /> -->
-        <Textfield
-        height="16px"
-        style="width: 5rem; height: 2rem"
-        variant="outlined"
-        bind:value={current_percentage}
-        suffix="%"
-        input$pattern="\d+"
-    />
+        {#if disabled}
+             <span class="font-bold">{current_percentage} %</span>
+        {:else}
+            <Textfield
+            height="16px"
+            style="width: 6rem; height: 2rem"
+            variant="outlined"
+            bind:value={current_percentage}
+            suffix="%"
+            input$pattern="\d+"
+            />
+        {/if}
+        
         <!-- <span class="border-2 p-2 border-gray rounded-md">{current_percentage} %</span> -->
     </div>
     <div class="my-auto">
@@ -60,6 +65,12 @@ and a linear progress bar for visual -->
 
 
 <style>
+    :global(.mdc-text-field__affix--suffix){
+        padding-left: 4px;
+    }
+    :global(.mdc-text-field){
+        padding: 0px 8px;
+    }
     /* @tailwind components;
     @tailwind utilities; */
 </style>
