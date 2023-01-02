@@ -83,7 +83,7 @@
         %%info 'Unter Testamentsvollstreckung versteht man die Aufgaben rund um die Verwaltung und Auseinandersetzung des Nachlasses. Das beinhaltet beispielsweise die korrekte Erfüllung von Vermächtnissen und dem Vorbeugen von Konflikten in der ordnungsgemäßen Verteilung der Erbanteile. Eine Testamentsvollstreckung ist nicht immer notwendig, kann aber dabei helfen, die Erben zu entlasten und eine vermittelnde Rolle einzunehmen.'
 
     __00520(Vertrauensperson hinzufügen) 
-        %%typ 'vertrauensperson'
+        %%typ 'vertrauensperson hinzufügen'
         %%frage 'vertrauensperson'
         %%option0 ''
         %%option1 ''

@@ -10,7 +10,8 @@
 	import Vermachtnis from './vermachtnis.svelte';
 	import Ende from './ende.svelte';
 	import AbschliessendeKlauseln from './abschliessende_klauseln.svelte';
-
+	import VertrauenspersonHinzufugen from './vertrauensperson_hinzufugen.svelte';
+	
 	import type {
 		question,
 		questions_dict,
@@ -89,6 +90,8 @@
 		<Ende {handle_question_answer} />
 	{:else if  current_question.typ == 'abschließendeKlauseln'}
 		<AbschliessendeKlauseln {handle_question_answer} />
+	{:else if  current_question.typ == 'vertrauensperson hinzufügen'}
+		<VertrauenspersonHinzufugen {handle_question_answer} />
 	{:else}
 	<SampleComponentForSpecialCase {handle_question_answer} />
 

@@ -9,13 +9,12 @@
   import { mdiPencil, mdiDelete } from '@mdi/js';
   import { Svg } from '@smui/common/elements';
   import { Icon } from '@smui/common';
-
+  import { verhältnis_list } from "./testamentgenerator_store";
   export let handle_question_answer: (option: 0 | 1) => void;
 
   const { triggerAnimation, animationAction } = createAnimationTriggerAction();
   let animation_name = 'shake';
 
-  let verhältnis_list = ['Elternteil' , 'Kind', 'Partner', 'Großeltern', 'Enkelkind', 'Geschwister', 'Nichte / Neffe', 'Onkel / Tante']
   let selected_value:string;
   let first_name = '';
   let last_name = '';

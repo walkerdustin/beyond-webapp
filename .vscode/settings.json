@@ -1,4 +1,6 @@
 {
+    // "editor.formatOnSave": true,
+    "editor.stickyScroll.enabled": true,
     "deno.enable": true,
     "deno.unstable": true,
     "deno.lint": true
