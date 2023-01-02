@@ -15,6 +15,7 @@
   import { Svg } from '@smui/common/elements';
   import { Icon } from '@smui/common';
   import { mdiArrowDownBold  } from '@mdi/js';
+	import { user_s } from "$lib/global-store";
 
 export let handle_question_answer: (option: 0 | 1) => void;
 
@@ -24,29 +25,62 @@ const auswählen = 'auswählen';
 
 let temp_vermachtnis = 'Schmucksammulung';
 let temp_vermachtnisnehmer:number;
-let temp_geschätzer_wert = 2500;
+let temp_geschätzer_wert:number|null = 2500;
 let temp_als_teil_des_erbes = false;
 let checked = false;
 
 let list_of_vermachtnisse:vermachtnis[] = [];
 type vermachtnis = {
+    id?: number,
     vermachtnis: string,
     vermachtnisnehmer: number,
-    geschätzer_wert: number,
+    geschätzer_wert: number|null,
     als_teil_des_erbes: boolean
 }
 
-function vermachtnis_hinzufugen() {
-
-    list_of_vermachtnisse = [...list_of_vermachtnisse ,
-        {
-            vermachtnis: temp_vermachtnis,
-            vermachtnisnehmer: temp_vermachtnisnehmer,
-            geschätzer_wert: temp_geschätzer_wert,
-            als_teil_des_erbes: temp_als_teil_des_erbes
-        }];
+async function vermachtnis_hinzufugen() {
+  // TODO: should the vermächntis item be unique?
+  let new_vermachtnis:vermachtnis = {
+    id: 0,
+    vermachtnis: temp_vermachtnis,
+    vermachtnisnehmer: temp_vermachtnisnehmer,
+    geschätzer_wert: temp_geschätzer_wert,
+    als_teil_des_erbes: temp_als_teil_des_erbes
+  };
+  // reset the data
+  temp_vermachtnis = '';
+  temp_vermachtnisnehmer = 0;
+  temp_geschätzer_wert = null;
+  temp_als_teil_des_erbes = false;
+  list_of_vermachtnisse = [...list_of_vermachtnisse , new_vermachtnis];
+  const { data, error } = await supabase.from("vermachtnisse").insert([
+    {
+      vermachtnis_of_user: user_s?.id,
+      to_family_member: new_vermachtnis.vermachtnisnehmer,
+      vermachtnis_item: new_vermachtnis.vermachtnis,
+      estimated_value: new_vermachtnis.geschätzer_wert,
+    }
+  ]).select("id");
+  
+  if (data){
+    new_vermachtnis.id = data[0].id;
+    list_of_vermachtnisse = list_of_vermachtnisse;
+  }
 } 
-
+onMount(async () => {
+  const { data, error } = await supabase.from("vermachtnisse").select("*").eq("vermachtnis_of_user", user_s?.id);
+  if (data){
+    list_of_vermachtnisse = data.map((item) => {
+      return {
+        id: item.id,
+        vermachtnis: item.vermachtnis_item,
+        vermachtnisnehmer: item.to_family_member,
+        geschätzer_wert: item.estimated_value,
+        als_teil_des_erbes: item.als_teil_des_erbes
+      }
+    });
+  }
+});
 
 // TODO: Icon for including and excluding circle
 </script>

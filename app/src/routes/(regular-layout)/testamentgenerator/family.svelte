@@ -59,9 +59,8 @@
         // reset the data
         first_name = '';
     last_name = '';
-    selected_value = auswählen;
-    const {data: { user }} = await supabase.auth.getUser();
-    const { data, error } = await supabase.from("family_members").insert({family_of_user: user?.id, first_name: insert_obj.first_name, last_name: insert_obj.last_name, relation: insert_obj.selected_value}).select("id")
+    selected_value = auswählen;    
+    const { data, error } = await supabase.from("family_members").insert({family_of_user: user_s?.id, first_name: insert_obj.first_name, last_name: insert_obj.last_name, relation: insert_obj.selected_value}).select("id");
     if (data){
       new_family_member.id = data[0].id
       family_members = [...family_members]

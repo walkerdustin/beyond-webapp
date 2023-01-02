@@ -190,7 +190,7 @@ classDiagram
         +updated_at: timestamp
     }
 ```
-### What Views shoul my database generate?
+### What Views should my database generate?
 
 answers of a User
 
