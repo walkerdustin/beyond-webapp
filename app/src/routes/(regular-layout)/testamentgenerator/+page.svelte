@@ -11,7 +11,7 @@
 	import Ende from './ende.svelte';
 	import AbschliessendeKlauseln from './abschliessende_klauseln.svelte';
 	import VertrauenspersonHinzufugen from './vertrauensperson_hinzufugen.svelte';
-	
+
 	import type {
 		question,
 		questions_dict,
@@ -79,27 +79,24 @@
 
 <div class="flex flex-grow flex-col min-h-96">
 	{#if current_question.typ == 'regular'}
-	<RegularQuestion {...current_question} {handle_question_answer} />
-	{:else if  current_question.typ == 'Erben'}
+		<RegularQuestion {...current_question} {handle_question_answer} />
+	{:else if current_question.typ == 'Erben'}
 		<Family {handle_question_answer} />
-	{:else if  current_question.typ == 'verteilung'}
+	{:else if current_question.typ == 'verteilung'}
 		<Distribution {handle_question_answer} />
-	{:else if  current_question.typ == 'vermächtnis'}
+	{:else if current_question.typ == 'vermächtnis'}
 		<Vermachtnis {handle_question_answer} />
-	{:else if  current_question.typ == 'ende'}
+	{:else if current_question.typ == 'ende'}
 		<Ende {handle_question_answer} />
-	{:else if  current_question.typ == 'abschließendeKlauseln'}
+	{:else if current_question.typ == 'abschließendeKlauseln'}
 		<AbschliessendeKlauseln {handle_question_answer} />
-	{:else if  current_question.typ == 'vertrauensperson hinzufügen'}
+	{:else if current_question.typ == 'vertrauensperson hinzufügen'}
 		<VertrauenspersonHinzufugen {handle_question_answer} />
 	{:else}
-	<SampleComponentForSpecialCase {handle_question_answer} />
-
+		<SampleComponentForSpecialCase {handle_question_answer} />
 	{/if}
 
 	<!-- <RegularQuestion {...current_question} {handle_question_answer} /> -->
-	
-
 </div>
 
 <!-- <SampleComponentForSpecialCase /> -->

@@ -7,7 +7,7 @@
 
 @use "./variables";
 
- 
+
 //
 // MDC Elevation Classes
 //
@@ -25,6 +25,7 @@
 
 // Main Top App Bar styling.
 @use '@material/top-app-bar/index' as top-app-bar;
+
 .mdc-top-app-bar.demo-top-app-bar {
   // Color the top bar with "surface" colors.
   @include top-app-bar.fill-color(surface);
@@ -40,4 +41,3 @@
   @include circular-progress.color(primary);
   @include circular-progress.track-color(secondary);
 }
-

@@ -21,14 +21,14 @@ import questions from '$lib/Testamentgenerator_qusetions.md?raw';
 export type question = {
     typ: string,
     state_id: string,
-    state_name: string, 
+    state_name: string,
     frage: string,
     option0: string,
     option1: string,
     info: string
 };
 
-export type questions_dict = {[stateid: string]: question};
+export type questions_dict = { [stateid: string]: question };
 
 type transition = {
     state0: string,
@@ -43,16 +43,16 @@ export type transition_node = {
     next_state1: string
 };
 
-export type transitions_network = {[state: string]: transition_node};
+export type transitions_network = { [state: string]: transition_node };
 
 export function get_questions() {
     // Read Lines into an array
     const markdown_text_lines = questions.split("\n");
 
     // find the First definition of a State
-    let current_line=0;
+    let current_line = 0;
     while (true) {
-        if(markdown_text_lines[current_line].includes('%%Questions') ){
+        if (markdown_text_lines[current_line].includes('%%Questions')) {
 
             break;
         }
@@ -67,12 +67,12 @@ export function get_questions() {
     const regex_option1 = /%%option1 '(.*?)'/;
     const regex_info = /%%info '(.*?)'/;
     let state_id = "";
-    let state_name="";
+    let state_name = "";
     let typ = "";
-    let question="";
-    let option0="";
-    let option1="";
-    let info="";
+    let question = "";
+    let option0 = "";
+    let option1 = "";
+    let info = "";
     let regex_array;
 
     // Go through the questions and store them in a dictionary
@@ -87,31 +87,31 @@ export function get_questions() {
     // A: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator
 
     while (true) {
-        if(markdown_text_lines[current_line].includes('__') ){
+        if (markdown_text_lines[current_line].includes('__')) {
 
             regex_array = markdown_text_lines[current_line].match(regex_state_name)
-            state_id = regex_array? regex_array[1] : "";
-            state_name = regex_array? regex_array[2] : "";
+            state_id = regex_array ? regex_array[1] : "";
+            state_name = regex_array ? regex_array[2] : "";
             current_line++;
 
             regex_array = markdown_text_lines[current_line].match(regex_typ)
-            typ = regex_array? regex_array[1] : "";
+            typ = regex_array ? regex_array[1] : "";
             current_line++;
 
             regex_array = markdown_text_lines[current_line].match(regex_frage)
-            question = regex_array? regex_array[1] : "";
+            question = regex_array ? regex_array[1] : "";
             current_line++;
 
             regex_array = markdown_text_lines[current_line].match(regex_option0)
-            option0 = regex_array? regex_array[1] : "";
+            option0 = regex_array ? regex_array[1] : "";
             current_line++;
 
             regex_array = markdown_text_lines[current_line].match(regex_option1)
-            option1 = regex_array? regex_array[1] : "";
+            option1 = regex_array ? regex_array[1] : "";
             current_line++;
 
             regex_array = markdown_text_lines[current_line].match(regex_info)
-            info = regex_array? regex_array[1] : "";
+            info = regex_array ? regex_array[1] : "";
 
 
             temp_question_dict = {
@@ -127,7 +127,7 @@ export function get_questions() {
         }
 
         current_line++;
-        if(markdown_text_lines[current_line].includes('%%Transitions') ){
+        if (markdown_text_lines[current_line].includes('%%Transitions')) {
             break;
         }
     }
@@ -147,7 +147,7 @@ export function get_questions() {
         temp_s += `("${question.state_id}", "${question.state_name}"),\n`
     });
     console.log(temp_s);
-    
+
 
     // sample transition
     // __00100-- ja -->__00110
@@ -161,12 +161,12 @@ export function get_questions() {
     const regex_transition = /__(\d*)-+([a-zA-Z]*?)-+>__(\d*)/;
     while (true) {
         current_line++;
-        if(markdown_text_lines[current_line].includes('%%End') ){
+        if (markdown_text_lines[current_line].includes('%%End')) {
             break;
         }
 
         regex_array = markdown_text_lines[current_line].match(regex_transition);
-        if(!regex_array){
+        if (!regex_array) {
             throw new Error("Error in Transition at line " + current_line + " in Testamentgenerator_questions.md");
         }
         state0 = regex_array[1];
@@ -183,13 +183,13 @@ export function get_questions() {
     }
 
 
-    return  {
+    return {
         "questions": questions_dict,
         "transitions": create_transition_network_from_array(array_of_transitions)
-    }; 
+    };
 }
 
-function create_transition_network_from_array(array_of_transitions: transition[]) : transitions_network {
+function create_transition_network_from_array(array_of_transitions: transition[]): transitions_network {
     let transitions: transitions_network = {};
     let temp_transition_node: transition_node;
     for (const transition of array_of_transitions) {
@@ -209,7 +209,7 @@ function create_transition_network_from_array(array_of_transitions: transition[]
     }
     // go through the transitions
     // if transition.next_state1 is empty, set it equal to transition.next_state0
-    for (const [key, value] of Object.entries(transitions)){
+    for (const [key, value] of Object.entries(transitions)) {
         if (value.next_state1 == "") {
             value.next_state1 = value.next_state0;
         }

@@ -26,7 +26,6 @@
 	</select>
 </div>
 
-
 <div class="mx-auto mt-auto mb-4">
 	<Button variant="raised" on:click={() => handle_question_answer(1)}>Fertig</Button>
 </div>

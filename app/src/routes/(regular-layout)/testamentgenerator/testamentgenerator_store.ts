@@ -6,12 +6,12 @@ export type family_member_extended = {
     first_name: string;
     last_name: string;
     verhältnis: string;
-    current_percentage: number|undefined;
+    current_percentage: number | undefined;
     gesetzliche_erbfolge: number | undefined;
     pflichtanteil: number | undefined;
 };
-export const family_members:Writable<family_member_extended[]> = writable([]);
+export const family_members: Writable<family_member_extended[]> = writable([]);
 
-export const verhältnis_list = ['Elternteil' , 'Kind', 'Partner', 'Großeltern', 'Enkelkind', 'Geschwister', 'Nichte / Neffe', 'Onkel / Tante', 'Cousin / Cousine', 'Freund / Freundin', 'andere'];
+export const verhältnis_list = ['Elternteil', 'Kind', 'Partner', 'Großeltern', 'Enkelkind', 'Geschwister', 'Nichte / Neffe', 'Onkel / Tante', 'Cousin / Cousine', 'Freund / Freundin', 'andere'];
 
 
