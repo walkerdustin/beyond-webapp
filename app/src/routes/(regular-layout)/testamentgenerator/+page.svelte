@@ -11,7 +11,7 @@
 	import Ende from './ende.svelte';
 	import AbschliessendeKlauseln from './abschliessende_klauseln.svelte';
 	import VertrauenspersonHinzufugen from './vertrauensperson_hinzufugen.svelte';
-
+	import { writable_current_question_state_id } from './testamentgenerator_store';
 	import type {
 		question,
 		questions_dict,
@@ -28,6 +28,7 @@
 	// Get the first question
 	let current_question: question = questions['00100'];
 	console.log(current_question);
+	writable_current_question_state_id.set(current_question.state_id);
 
 	let question_typ: String = 'regular';
 
@@ -74,6 +75,7 @@
 			next_question_id = transitions[current_question.state_id].next_state1;
 		}
 		current_question = questions[next_question_id];
+		writable_current_question_state_id.set(current_question.state_id);
 	}
 </script>
 
