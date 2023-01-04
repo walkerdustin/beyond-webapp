@@ -1,6 +1,5 @@
 <!-- use alt + z to deactivate word wrap in vs code editor -->
 
-
 ```mermaid
     flowchart TD;
         %%Template
@@ -12,7 +11,7 @@
         %%info ''
 
     %%Questions
-    __00100(verheiratet?) 
+    __00100(verheiratet?)
         %%typ 'regular'
         %%frage 'Wie ist Ihr Familienstand?'
         %%option0 'Verheiratet'
@@ -34,7 +33,7 @@
         %%info 'Wenn der Längerlebende Partner nach dem Tod des Zuerstversterbenden  vollumfänglich über das Vermögen verfügen kann, wird er als Vollerbe bezeichnet.Das gemeindschaftliche Erbe kann mit einigen Einschränkungen einhergehen. So soll verhindert werden, dass der längerlebende Ehepartner das Erbe komplett ausgeben darf, damit der Nachlass beim Tod des Längerlebenden möglichst ungeschmälert an die Nacherben übergeht." (ninebarc)'
 
     __00130(not available)
-        %%typ 'not available'
+        %% 'not available'
         %%frage 'Diese Option ist bei Beyond aktuell noch nicht verfügbar.'
         %%option0 ''
         %%option1 ''
@@ -46,7 +45,7 @@
         %%option0 ''
         %%option1 ''
         %%info ''
-        
+
     __00300(Verteilung)
         %%typ 'verteilung'
         %%frage 'verteilung'
@@ -82,7 +81,7 @@
         %%option1 'Nachlassgericht'
         %%info 'Unter Testamentsvollstreckung versteht man die Aufgaben rund um die Verwaltung und Auseinandersetzung des Nachlasses. Das beinhaltet beispielsweise die korrekte Erfüllung von Vermächtnissen und dem Vorbeugen von Konflikten in der ordnungsgemäßen Verteilung der Erbanteile. Eine Testamentsvollstreckung ist nicht immer notwendig, kann aber dabei helfen, die Erben zu entlasten und eine vermittelnde Rolle einzunehmen.'
 
-    __00520(Vertrauensperson hinzufügen) 
+    __00520(Vertrauensperson hinzufügen)
         %%typ 'vertrauensperson hinzufügen'
         %%frage 'vertrauensperson'
         %%option0 ''
@@ -102,7 +101,7 @@
         %%option0 ''
         %%option1 ''
         %%info ''
-    
+
     __01000(Ende)
         %%typ 'ende'
         %%frage 'Ende'
@@ -110,14 +109,15 @@
         %%option1 ''
         %%info ''
 
-    
+
 
     %%Transitions
     __00100--ja-->__00110
     __00100--nein-->__00200
     __00110--gemeinsam-->__00120
     __00110--alleine-->__00200
-    __00120-->__00130
+    __00120--einschraenkungen-->__00130
+    __00120--vollerumfang-->__00200
     __00200-->__00300
     __00300-->__00400
     __00400--ja-->__00450
