@@ -47,8 +47,8 @@
 		});
 	}
 
-	function passwordvisible(visible:boolean) {
-		return visible? "text": "password"
+	function passwordvisible(visible: boolean) {
+		return visible ? 'text' : 'password';
 	}
 	let show_password = false;
 	let password_input_type = 'password';
@@ -60,21 +60,19 @@
 	// 	console.log('show_password is '+ show_password);
 	// }
 
-	// ///////////////////// This is for signUp
-	// async function checkForSession() {
-	// 	const { data, error } = await supabase.auth.getSession();
-	// 	console.log('session = ', data.session);
-	// 	if (data.session) {
-	// 		await goto('/');
-	// 	} else {
-	// 		console.log('email not yet confirmed');
-	// 	}
-	// }
-	// const checkForSessionInterval = setInterval(checkForSession, 1000);
-	// onDestroy(() => clearInterval(checkForSessionInterval));
-	// // if the user has confirmed their email, the session should exist
-
-
+	///////////////////// This is for signUp
+	async function checkForSession() {
+		const { data, error } = await supabase.auth.getSession();
+		console.log('session = ', data.session);
+		if (data.session) {
+			await goto('/');
+		} else {
+			console.log('email not yet confirmed');
+		}
+	}
+	const checkForSessionInterval = setInterval(checkForSession, 1000);
+	onDestroy(() => clearInterval(checkForSessionInterval));
+	// if the user has confirmed their email, the session should exist
 </script>
 
 <div class="flex mx-auto m-3">
@@ -85,9 +83,15 @@
 	<form on:submit|preventDefault={submit} class="flex flex-col gap-4">
 		<h2 class="font-bold mb-2 mx-auto">Hier registrieren</h2>
 		<TextField variant="filled" bind:value={email} label="email" type="email" required />
-		<TextField variant="filled" bind:value={password} label="password" type={password_input_type} required />
+		<TextField
+			variant="filled"
+			bind:value={password}
+			label="password"
+			type={password_input_type}
+			required
+		/>
 		<div class="flex flex-row">
-			<Checkbox bind:checked={show_password} /> <span class="my-auto">show password</span> 
+			<Checkbox bind:checked={show_password} /> <span class="my-auto">show password</span>
 		</div>
 
 		<Button fullwidth disabled={requestSent}>registrieren</Button>
@@ -112,6 +116,4 @@
 <style>
 	/* @tailwind components;
 	@tailwind utilities; */
-
 </style>
-
