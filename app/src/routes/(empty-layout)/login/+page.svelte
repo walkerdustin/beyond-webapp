@@ -5,8 +5,8 @@
 	import { supabase } from '$lib/supabaseClient';
 	import { goto } from '$app/navigation';
 
-	import { mdiMenu } from '@mdi/js'; 
-	import { Svg } from '@smui/common/elements'; 
+	import { mdiMenu } from '@mdi/js';
+	import { Svg } from '@smui/common/elements';
 	import { mdiEyeOff } from '@mdi/js';
 
 	let email = '';
@@ -40,8 +40,8 @@
 			await goto('/');
 		}
 	}
-	function passwordvisible(visible:boolean) {
-		return visible? "text": "password"
+	function passwordvisible(visible: boolean) {
+		return visible ? 'text' : 'password';
 	}
 	let show_password = false;
 	let password_input_type = 'password';
@@ -62,24 +62,36 @@
 	<form on:submit|preventDefault={submit} class="flex flex-col gap-4">
 		<h2 class="font-bold mb-2 mx-auto">Hier einloggen</h2>
 		<TextField variant="filled" bind:value={email} label="email" type="email" required />
-		<TextField variant="filled" bind:value={password} label="password" type={password_input_type} required />
+		<TextField
+			variant="filled"
+			bind:value={password}
+			label="password"
+			type={password_input_type}
+			required
+		/>
 		<div class="flex flex-row">
-			<Checkbox bind:checked={show_password} /> <span class="my-auto">show password</span> 
+			<Checkbox bind:checked={show_password} /> <span class="my-auto">show password</span>
 		</div>
 
-		<Button size="normal" fullwidth disabled={requestSent} >einloggen</Button>
+		<Button size="normal" fullwidth disabled={requestSent}>einloggen</Button>
 		{#if loginError}
 			<p class="text-red-700 mx-auto">{signUp_errorMessage}</p>
 		{/if}
 	</form>
 </div>
 
-<div class="flex mx-auto m-3">
-	<p class="text-blue-700">
+<div class="flex flex-col mx-auto m-3">
+	<p class="text-primary">
 		<a href="/signUp"> Du hast noch keinen Account? Hier registrieren.</a>
+	</p>
+	<!-- make a new line to seperate the links -->
+	<br />
+	<p>
+		<a class="text-primary " href="reset-password">Passwort vergessen?</a>
 	</p>
 </div>
 
 <style>
-
+	@tailwind components;
+	@tailwind utilities;
 </style>
