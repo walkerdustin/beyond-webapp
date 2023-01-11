@@ -9,9 +9,9 @@
 		/>
 	</a>
 
-	<div>
+	<div class="flex flex-col justify-center">
 		<h1 class="mb-1 font-extrabold">beyond</h1>
-		<p class="mt-1">After Life Management</p>
+		<p class="">After Life Management</p>
 	</div>
 	<!-- just whitespace -->
 	<div class="grow" />

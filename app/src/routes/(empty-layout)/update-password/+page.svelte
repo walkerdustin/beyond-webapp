@@ -4,26 +4,38 @@
 	import { supabase } from '$lib/supabaseClient';
 	import Checkbox from '@smui/checkbox';
 
-	let loginError: boolean = false;
 	let requestSent = false;
 	let new_password = '';
 
-	supabase.auth.onAuthStateChange(async (event, session) => {
-		if (event == 'PASSWORD_RECOVERY') {
-			const newPassword = prompt('What would you like your new password to be?');
-			if (newPassword) {
-				const { data, error } = await supabase.auth.updateUser({ password: newPassword });
-				console.log(data, error);
-				if (data) alert('Password updated successfully!');
-				if (error) alert('There was an error updating your password.');
-			}
-		}
-	});
+	// supabase.auth.onAuthStateChange(async (event, session) => {
+	// 	if (event == 'PASSWORD_RECOVERY') {
+	// 		const newPassword = prompt('What would you like your new password to be?');
+	// 		if (newPassword) {
+	// 			const { data, error } = await supabase.auth.updateUser({ password: newPassword });
+	// 			console.log(data, error);
+	// 			if (data) alert('Password updated successfully!');
+	// 			if (error) alert('There was an error updating your password.');
+	// 		}
+	// 	}
+	// });
+	let loginError: boolean = false;
+	let signUp_errorMessage: string = '';
+	let signUp_succesfull = false;
 
 	async function submit() {
 		console.log('submit!: ' + '  ' + new_password);
 		requestSent = true;
 		const { data, error } = await supabase.auth.updateUser({ password: new_password });
+		if (error) {
+			console.log('name', error.name);
+			console.log('cause', error.cause);
+			console.log('message', error.message);
+			loginError = true;
+			signUp_errorMessage = error.message;
+		} else {
+			signUp_succesfull = true;
+			loginError = false;
+		}
 	}
 
 	function passwordvisible(visible: boolean) {
@@ -31,7 +43,7 @@
 	}
 	let show_password = false;
 	let password_input_type = 'password';
-	$: password_input_type;
+	$: password_input_type = passwordvisible(show_password);
 </script>
 
 <div class="mdc-elevation--z8 mx-auto m-3 w-96 bg-white rounded-lg p-3">
@@ -49,8 +61,8 @@
 		</div>
 
 		<Button fullwidth disabled={requestSent}>speichern</Button>
-		<!-- {#if loginError}
+		{#if loginError}
 			<p class="text-red-700 mx-auto">{signUp_errorMessage}</p>
-		{/if} -->
+		{/if}
 	</form>
 </div>

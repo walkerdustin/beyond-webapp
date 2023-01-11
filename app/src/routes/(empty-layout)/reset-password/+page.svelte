@@ -16,9 +16,11 @@
 	}
 </script>
 
-<div class="flex flex-col content-center">
-	<h2>Passwort zurückseztzen</h2>
-	<p>geben Sie ihre email ein, um ihr Passwort zurückzusetzten</p>
+<div class="flex flex-col">
+	<div class="mx-auto flex flex-col">
+		<h2 class="mx-auto">Passwort zurückseztzen</h2>
+		<p class="mx-auto">geben Sie ihre email ein, um ihr Passwort zurückzusetzten</p>
+	</div>
 
 	<div class="mdc-elevation--z8 mx-auto m-3 w-96 bg-white rounded-lg p-3">
 		<form on:submit|preventDefault={submit} class="flex flex-col gap-4">
