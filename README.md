@@ -460,3 +460,45 @@ like localhost or netlify previews
 make sure to set the correct policy on the storage bucket
 BECAUSE setting it to public is apparently not enough
 
+# Build a family tree
+
+## Find the correct library
+https://dzone.com/articles/top-6-javascript-family-tree-diagram-libraries
+
+https://balkan.app/FamilyTreeJS
+
+
+### YFIles / YWorks
+https://www.yworks.com/products/yfiles-for-html
+https://www.yworks.com/products/yfiles/platforms#html
+
+Features
+- Client Side
+- Pure Javascript
+- Typescript support
+  
+Demos: https://github.com/yWorks/yfiles-for-html-demos  
+Family Tree Demo: https://live.yworks.com/demos/layout/familytree/index.html
+Developer Guide: https://docs.yworks.com/yfileshtml/#/dguide/introduction
+Documentation: https://docs.yworks.com/yfileshtml/#/api/index 
+https://docs.yworks.com/yfileshtml/#/home
+
+
+## How to do testing in sveltekit
+https://el3um4s.medium.com/how-to-test-sveltekit-app-with-jest-848afa8edbc7
+
+https://dockyard.com/blog/2022/01/27/how-to-set-up-jest-in-a-sveltekit-app
+
+### Problem:
+the most pupular unit testing library is jest, but it does not have a good integration with sveltekit.
+If you want to use jest, you need to seperatly setup the babel bundler.
+
+insead, we use vitest
+
+
+https://jestjs.io/docs/getting-started#using-vite
+
+tut video
+https://www.youtube.com/watch?v=5bQD3dCoyHA
+
+## Vitest is amazing
