@@ -20,7 +20,7 @@
 	// });
 	let loginError: boolean = false;
 	let signUp_errorMessage: string = '';
-	let signUp_succesfull = false;
+	let password_update_succesfull = false;
 
 	async function submit() {
 		console.log('submit!: ' + '  ' + new_password);
@@ -33,9 +33,10 @@
 			loginError = true;
 			signUp_errorMessage = error.message;
 		} else {
-			signUp_succesfull = true;
+			password_update_succesfull = true;
 			loginError = false;
 		}
+		requestSent = false;
 	}
 
 	function passwordvisible(visible: boolean) {
@@ -63,6 +64,10 @@
 		<Button fullwidth disabled={requestSent}>speichern</Button>
 		{#if loginError}
 			<p class="text-red-700 mx-auto">{signUp_errorMessage}</p>
+		{/if}
+
+		{#if loginError}
+			<p class="text-green-700 mx-auto">Passwort erfolgreich geändert</p>
 		{/if}
 	</form>
 </div>
