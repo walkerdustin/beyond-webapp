@@ -54,9 +54,9 @@
 	// }
 </script>
 
-<div class="flex mx-auto m-3">
+<!-- <div class="flex mx-auto m-3">
 	<h2>Hier einloggen</h2>
-</div>
+</div> -->
 
 <div class="mdc-elevation--z8 mx-auto m-3 w-96 bg-white rounded-lg p-3">
 	<form on:submit|preventDefault={submit} class="flex flex-col gap-4">
@@ -73,7 +73,7 @@
 			<Checkbox bind:checked={show_password} /> <span class="my-auto">passwort anzeigen</span>
 		</div>
 
-		<Button size="normal" fullwidth disabled={requestSent}>einloggen</Button>
+		<Button size="normal" fullwidth disabled={requestSent} variant="raised">einloggen</Button>
 		{#if loginError}
 			<p class="text-red-700 mx-auto">{signUp_errorMessage}</p>
 		{/if}

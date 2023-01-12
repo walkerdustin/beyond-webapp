@@ -71,7 +71,7 @@
 
 			<div class="mx-auto">
 				<Button>
-					<a href="/" draggable="false" class="h-">
+					<a href="/" draggable="false">
 						<Label>weiter zur App</Label>
 					</a>
 				</Button>

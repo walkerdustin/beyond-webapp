@@ -75,9 +75,9 @@
 	// if the user has confirmed their email, the session should exist
 </script>
 
-<div class="flex mx-auto m-3">
+<!-- <div class="flex mx-auto m-3">
 	<h2 class="text-xl text-sky-400">Willkommen bei Beyond</h2>
-</div>
+</div> -->
 
 <div class="mdc-elevation--z8 mx-auto m-3 w-96 bg-white rounded-lg p-3">
 	<form on:submit|preventDefault={submit} class="flex flex-col gap-4">
@@ -94,7 +94,7 @@
 			<Checkbox bind:checked={show_password} /> <span class="my-auto">passwort anzeigen</span>
 		</div>
 
-		<Button fullwidth disabled={requestSent}>registrieren</Button>
+		<Button fullwidth disabled={requestSent} variant="raised">registrieren</Button>
 		{#if loginError}
 			<p class="text-red-700 mx-auto">{signUp_errorMessage}</p>
 		{/if}
