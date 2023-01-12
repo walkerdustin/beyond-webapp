@@ -65,12 +65,12 @@
 		<TextField
 			variant="filled"
 			bind:value={password}
-			label="password"
+			label="passwort"
 			type={password_input_type}
 			required
 		/>
 		<div class="flex flex-row">
-			<Checkbox bind:checked={show_password} /> <span class="my-auto">show password</span>
+			<Checkbox bind:checked={show_password} /> <span class="my-auto">passwort anzeigen</span>
 		</div>
 
 		<Button size="normal" fullwidth disabled={requestSent}>einloggen</Button>

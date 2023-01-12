@@ -39,10 +39,12 @@
 	</Button>
 
 	<Button on:click={() => clicked++}>
-		<Icon component={Svg} viewBox="0 0 24 24">
-			<path fill="currentColor" d={mdiFormTextboxPassword} />
-		</Icon>
-		<Label>passwort ändern</Label>
+		<a href="/account/update-password-for-loggedIn-user" draggable="false">
+			<Icon component={Svg} viewBox="0 0 24 24">
+				<path fill="currentColor" d={mdiFormTextboxPassword} />
+			</Icon>
+			<Label>passwort ändern</Label>
+		</a>
 	</Button>
 
 	<Button disabled>

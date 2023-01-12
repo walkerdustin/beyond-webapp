@@ -118,7 +118,7 @@
 				<div class="justify-self-center">
 					<b>Kontakt</b>
 					<div>+4917642632218</div>
-					<div>infoqservice-beyond.de</div>
+					<div>info@service-beyond.de</div>
 				</div>
 				<div class="justify-self-center">
 					<div>Copyright 2022 beyond</div>
