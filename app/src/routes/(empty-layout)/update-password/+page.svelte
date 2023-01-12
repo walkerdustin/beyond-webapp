@@ -68,6 +68,14 @@
 
 		{#if password_update_succesfull}
 			<p class="text-green-700 mx-auto">Passwort erfolgreich geändert</p>
+
+			<div class="mx-auto">
+				<Button>
+					<a href="/" draggable="false" class="h-">
+						<Label>weiter zur App</Label>
+					</a>
+				</Button>
+			</div>
 		{/if}
 	</form>
 </div>
