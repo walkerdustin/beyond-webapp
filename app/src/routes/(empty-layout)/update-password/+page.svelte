@@ -66,7 +66,7 @@
 			<p class="text-red-700 mx-auto">{signUp_errorMessage}</p>
 		{/if}
 
-		{#if loginError}
+		{#if password_update_succesfull}
 			<p class="text-green-700 mx-auto">Passwort erfolgreich geändert</p>
 		{/if}
 	</form>
