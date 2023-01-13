@@ -141,17 +141,17 @@
 		<Button fullwidth disabled={requestSent} variant="raised">speichern</Button>
 		<div class="mt-2" />
 		{#if password_to_short}
-			<p class="text-red-700 mx-auto">{password_to_short_msg}</p>
+			<p class="text-red-700 mt-2">{password_to_short_msg}</p>
 		{/if}
 		{#if password_repeat_error}
-			<p class="text-red-700 mx-auto">{password_repeat_error_msg}</p>
+			<p class="text-red-700 mt-2">{password_repeat_error_msg}</p>
 		{/if}
 		{#if loginError}
-			<p class="text-red-700 mx-auto">{signUp_errorMessage}</p>
+			<p class="text-red-700 mt-2">{signUp_errorMessage}</p>
 		{/if}
 
 		{#if password_update_succesfull}
-			<p class="text-green-700 mx-auto">Passwort erfolgreich geändert</p>
+			<p class="text-green-700 mt-2">Passwort erfolgreich geändert</p>
 		{/if}
 	</form>
 </div>
