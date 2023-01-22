@@ -186,7 +186,7 @@
 <h2 class="mx-auto mb-6">Bestimmen Sie die Erbverteilung</h2>
 
 <DistributionBlock id={-1} current_percentage={verfügbare_quote} {title} disabled={true} />
-<hr />
+<!-- zu verteilender anteil    //   verfügbar    noch nicht verteilt       -->
 {#each $family_members as member}
 	<DistributionBlock
 		id={member.id}
