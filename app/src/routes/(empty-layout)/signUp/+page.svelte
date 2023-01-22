@@ -21,6 +21,7 @@
 		requestSent = false;
 	}
 	async function signUp(email: string, password: string) {
+		console.log('calling SignUp with email: ' + email + ' and password: ');
 		const { data, error } = await supabase.auth.signUp({
 			email: email,
 			password: password

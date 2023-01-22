@@ -16,7 +16,7 @@
 	let signUp_errorMessage: string = '';
 
 	async function submit() {
-		console.log('submit!: ' + email + '  ' + password);
+		console.log('submit!: ');
 		requestSent = true;
 		const res = await signIn(email, password);
 		requestSent = false;
