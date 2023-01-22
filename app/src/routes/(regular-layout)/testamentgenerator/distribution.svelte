@@ -187,6 +187,7 @@
 
 <DistributionBlock id={-1} current_percentage={verfügbare_quote} {title} disabled={true} />
 <!-- zu verteilender anteil    //   verfügbar    noch nicht verteilt       -->
+<!-- <hr class="bg-black h-0.5 rounded max-w-3xl mx-5" /> -->
 {#each $family_members as member}
 	<DistributionBlock
 		id={member.id}
