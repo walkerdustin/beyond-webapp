@@ -77,6 +77,11 @@
 		current_question = questions[next_question_id];
 		writable_current_question_state_id.set(current_question.state_id);
 	}
+	$: change_current_question($writable_current_question_state_id);
+	// the writable_current_question_state_id is set by the layout component as part of the navigation
+	function change_current_question(question_id: string) {
+		current_question = questions[question_id];
+	}
 </script>
 
 <div class="flex flex-grow flex-col min-h-96">

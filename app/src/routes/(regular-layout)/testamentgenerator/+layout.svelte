@@ -36,13 +36,32 @@
 		}
 		progress = id / 1000;
 	}
+
+	const first_question_id_of_section = [
+		'00100',
+		'00200',
+		'00300',
+		'00400',
+		'00500',
+		'00900',
+		'01000'
+	];
+	// this assumes, that the this question does exist
+	function goto_question_id(id: string) {
+		writable_current_question_state_id.set(id);
+	}
+	function goto_section(section: number) {
+		goto_question_id(first_question_id_of_section[section]);
+	}
 </script>
 
 <div class="flex flex-grow">
 	<div class="m-32 mdc-elevation--z8 flex flex-grow flex-col rounded-md bg-surface">
 		<div class="m-4 flex flex-row">
 			{#each generatorSections as section, i}
-				<div class="mr-auto {activeSection === i ? 'font-bold' : ''}">{section}</div>
+				<div class="mr-auto {activeSection === i ? 'font-bold' : ''}">
+					<button on:click={() => goto_section(i)}>{section}</button>
+				</div>
 				{#if i < numSections - 1}
 					<div class="mr-auto font-extrabold ">></div>
 				{/if}
