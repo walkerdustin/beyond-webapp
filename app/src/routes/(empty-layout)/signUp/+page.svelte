@@ -22,6 +22,7 @@
 	}
 	async function signUp(email: string, password: string) {
 		console.log('calling SignUp with email: ' + email + ' and password: ');
+
 		const { data, error } = await supabase.auth.signUp({
 			email: email,
 			password: password
@@ -137,6 +138,7 @@
 		>
 
 		{#if loginError}
+			<p>signup Error</p>
 			<p class="text-red-700 mt-2">{signUp_errorMessage}</p>
 		{/if}
 
@@ -151,17 +153,20 @@
 
 <div class="flex mx-auto m-3">
 	<p class="text-blue-700">
-		<a href="/login">Du hast schon einen account? Hier einloggen.</a>
+		<a href="/login">Schon einen account? Hier anmelden.</a>
 	</p>
 </div>
 
 {#if signUp_succesfull}
-	<div class="flex mx-auto m-3">
-		<p class="text-teal-700">Bestätige deine email adresse.</p>
+	<div class="flex flex-col mx-auto m-3">
+		<p class="text-teal-700 mx-auto mb-2">Bestätigen Sie Ihre e-mail adresse.</p>
+		<p class="mx-auto first-letter:text-xl text-blue-700 ">
+			<a href="/login">Danach hier anmelden.</a>
+		</p>
 	</div>
 {/if}
 
 <style>
-	/* @tailwind components;
-	@tailwind utilities; */
+	@tailwind components;
+	@tailwind utilities;
 </style>

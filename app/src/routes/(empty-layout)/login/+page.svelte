@@ -82,7 +82,7 @@
 
 <div class="flex flex-col mx-auto m-3">
 	<p class="text-primary">
-		<a href="/signUp"> Du hast noch keinen Account? Hier registrieren.</a>
+		<a href="/signUp"> Noch keinen Account? Hier registrieren.</a>
 	</p>
 	<!-- make a new line to seperate the links -->
 	<br />
