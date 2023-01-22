@@ -11,17 +11,17 @@
 	export let handle_question_answer: (option: 0 | 1) => void;
 </script>
 
-<h3 class="text-3xl mx-auto font-bold">{frage}</h3>
+<h3 class="text-2xl mx-auto">{frage}</h3>
 <div class="flex flex-row m-8 justify-center gap-5 p-0">
-	<div class="mdc-elevation--z8 rounded-md bg-secondary">
+	<div class="mdc-elevation--z8 rounded-md bg-blue-100 flex flex-col content-center">
 		<PrimaryAction on:click={() => handle_question_answer(0)}>
-			<p class="text-xl w-64 m-6">{option0}</p>
+			<p class="text-l w-64 m-6  text-center  ">{option0}</p>
 		</PrimaryAction>
 	</div>
 
-	<div class="mdc-elevation--z8 rounded-md bg-secondary">
+	<div class="mdc-elevation--z8 rounded-md bg-blue-100">
 		<PrimaryAction on:click={() => handle_question_answer(1)}>
-			<p class="text-xl w-64 m-6">{option1}</p>
+			<p class="text-l w-64 m-6 text-center">{option1}</p>
 		</PrimaryAction>
 	</div>
 </div>
