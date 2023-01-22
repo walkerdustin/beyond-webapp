@@ -1,7 +1,10 @@
 {
-    "editor.formatOnSave": true,
-    "editor.stickyScroll.enabled": true,
-    "deno.enable": true,
-    "deno.unstable": true,
-    "deno.lint": true
+  "editor.formatOnSave": true,
+  "editor.stickyScroll.enabled": true,
+  "deno.enable": true,
+  "deno.unstable": true,
+  "deno.lint": true,
+  "workbench.editor.labelFormat": "short",
+  "explorer.compactFolders": false,
+  "workbench.tree.indent": 12
 }

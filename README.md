@@ -19,6 +19,12 @@ npm run dev -- --open
 create your theme files with smui-theme > `npx smui-theme template src/theme`
 Whenever you add a new SMUI package, run > `npm run prepare` again to rebuild your CSS file with the new component’s styles included.
 
+## docker + aws cli for developement of supabase edge functions and aws lambda functions
+
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+https://docs.docker.com/get-docker/
+
 ## VS Code extensions
 These extensions are neccessary
 - German - Code Spell Checker
@@ -31,6 +37,7 @@ These extensions are neccessary
 - deno
 - github copilot
 - Node.js Notebooks (REPL)
+- Material Icon Theme
 
 
 # Usage
@@ -100,8 +107,6 @@ supabase start
 to start the local supabase docker server
 ## material UI colors
 need to be set in src/variables.scss and src/theme/_smui-theme.scss
-
-
 
 # Architecture
 ## initial architecture idea
@@ -448,6 +453,10 @@ I need a pdf layout
 
 - oder jsPDF https://github.com/parallax/jsPDF
 
+## I can not do it in deno on the edge
+## lambda function to convert markdown to pdf
+
+
 
 ### supabase edge functions
 use the best practices described here
@@ -502,3 +511,55 @@ tut video
 https://www.youtube.com/watch?v=5bQD3dCoyHA
 
 ## Vitest is amazing
+
+
+# Developement of aws lambda function for generating pdf testamant from markdown
+https://docs.aws.amazon.com/lambda/latest/dg/images-create.html
+
+
+### can I use local file system with aws lambda
+https://stackoverflow.com/questions/35641994/accessing-local-filesystem-in-aws-lambda  
+ you get 500MB scratch space in `/tmp/.   
+ localFilename = '/tmp/{}'.format(os.path.basename(key))
+s3.download_file(Bucket=bucket, Key=key, Filename=localFilename)
+inFile = open(localFilename, "r")
+
+
+
+## plan:
+- make simple hello world function mit berechtigung none, that I can call from browser and curl 
+```bash
+curl https://4pcletpamvkbxlamf3nqc54mcy0qoplq.lambda-url.us-east-1.on.aws/ 
+```
+- make lambda function with params in request body. We shall not use url query params, because my params need to be encrypted.
+- https://docs.aws.amazon.com/lambda/latest/dg/urls-invocation.html
+- for debugging, just do print statements
+- see the logs of the lambda function in the aws console at https://console.aws.amazon.com/cloudwatch/home?#logs:
+- or just look at the Function Logs section if the Execution result after you press the test button in the aws console of your lambda function
+- the function parameters are in the event object as python dict
+- now call this function with thunder client from vscode
+- we pass the params to the function as the headers of the get request
+- in the function, we get the params from the event object as python dict with event["headers"]["secret_key"])
+
+- Now do the same thing with a docker container
+## How to make the edge function secure?
+1. CORS?
+2. make function public, with an if clause checking for som secret key, which I set in the supabase edge function.
+3. use the supabase auth token, to check if the user is logged in, and then allow the function to run.
+4. use aws IAM role. Some secret needs to be set in the supabase edge function.
+
+### Using a random secret key seems like the best option, because it is the easiest to implement.  
+We only need a simple if statement in the function, and we can set the secret key in the supabase edge function.
+__access secrets in supabase edge function__: Deno.env.get(MY_SECRET_NAME)  
+make an env file in supabase folder  
+enter the secret env variable  
+then set the secrets with supabase cli
+supabase secrets set --env-file ./supabase/.env
+
+You can also set secrets individually using:
+supabase secrets set MY_NAME=Chewbacca
+
+To see all the secrets which you have set remotely, use_ 'supabase secrets list'
+
+### env variable in supabase edge function
+https://supabase.com/docs/guides/functions/env-variables
