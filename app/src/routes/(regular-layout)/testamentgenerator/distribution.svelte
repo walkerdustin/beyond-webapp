@@ -9,6 +9,7 @@
 	import { get } from 'svelte/store';
 	import type { family_member_extended } from './testamentgenerator_store';
 	import { family_members } from './testamentgenerator_store';
+	import FloatInput from '$lib/components/float_input.svelte';
 	export let handle_question_answer: (option: 0 | 1) => void;
 
 	async function weiter() {
@@ -33,11 +34,8 @@
 		gesetzliche_erbfolge: number | undefined;
 		pflichtanteil: number | undefined;
 	};
-
-	let current_percentage = 50;
+	let temp_number = 0;
 	let title = 'Verfügbare Quote';
-	let gesetzliche_erbfolge: number | undefined = 50;
-	let pflichtanteil: number | undefined = 25.5;
 
 	// let family_members: family_member_extended[] = [];
 	// define the different Orders for the inheritance
@@ -172,11 +170,15 @@
 
 	// sum of all current percentages of all family members
 	let summe_aktuelle_quote = 0;
+	let all_current_percentages = [];
+	// calculate the sum of all current percentages of all family members
 	$: {
-		summe_aktuelle_quote = $family_members.reduce(
-			(sum, member) => sum + (member.current_percentage ? member.current_percentage : 0),
-			0
+		all_current_percentages = $family_members.map((member) =>
+			member.current_percentage ? member.current_percentage : 0
 		);
+		summe_aktuelle_quote = all_current_percentages.reduce((a, b) => a + b, 0);
+		console.table(all_current_percentages);
+		console.log('summe_aktuelle_quote', summe_aktuelle_quote);
 	}
 	$: verfügbare_quote = 100 - summe_aktuelle_quote;
 
@@ -185,8 +187,13 @@
 
 <h2 class="mx-auto mb-6">Bestimmen Sie die Erbverteilung</h2>
 
-<DistributionBlock id={-1} current_percentage={verfügbare_quote} {title} disabled={true} />
-<!-- zu verteilender anteil    //   verfügbar    noch nicht verteilt       -->
+<DistributionBlock
+	id={-1}
+	current_percentage={Math.round(verfügbare_quote * 100) / 100}
+	{title}
+	disabled={true}
+/>
+<!-- zu verteilender anteil    //   verfügbar    noch nicht verteilt        -->
 <!-- <hr class="bg-black h-0.5 rounded max-w-3xl mx-5" /> -->
 {#each $family_members as member}
 	<DistributionBlock
@@ -197,8 +204,27 @@
 		gesetzliche_erbfolge={member.gesetzliche_erbfolge}
 	/>
 {/each}
-<div class="mx-auto mt-auto mb-4">
-	<Button variant="raised" on:click={() => weiter()}>Weiter</Button>
+<div class="mx-auto mt-auto mb-4 flex flex-row">
+	<!-- <Textfield
+		height="16px"
+		style="width: 6rem; height: 2rem"
+		variant="outlined"
+		bind:value={temp_number}
+		min="0"
+		max="100"
+		step="0.1"
+		type="number"
+		suffix="%"
+		input$pattern="\d+"
+	/> -->
+	<FloatInput bind:value={temp_number} height="16px" suffix="%" />
+	<input
+		pattern="[0-9]+([\.,][0-9]+)?"
+		min="0"
+		max="100"
+		step="0.1"
+		class="input input-bordered max-w-xs"
+	/>
 </div>
 
 <style>

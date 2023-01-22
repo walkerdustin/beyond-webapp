@@ -1,4 +1,5 @@
 <script lang="ts">
+	import FloatInput from '$lib/components/float_input.svelte';
 	import LinearProgress from '@smui/linear-progress';
 	import Textfield from '@smui/textfield';
 
@@ -24,6 +25,7 @@
 			});
 		});
 	}
+	$: console.log(title, ': ', current_percentage);
 </script>
 
 <!--  a block, with the title, a textfield to display the current percentage 
@@ -31,7 +33,7 @@ and a linear progress bar for visual -->
 <div
 	class="{disabled
 		? 'h-20'
-		: 'min-h-16'}  border-2 border-gray-50 rounded-md bg-surface grid grid-cols-3 mdc-elevation--z4  m-4 px-4 max-w-3xl"
+		: 'min-h-16'}  border-2 border-gray-50 rounded-md bg-white grid grid-cols-3 mdc-elevation--z4  m-4 px-4 max-w-3xl"
 >
 	<p class="my-auto  {disabled ? 'font-bold' : ''}">{title}</p>
 	<div class="my-auto">
@@ -39,13 +41,12 @@ and a linear progress bar for visual -->
 		{#if disabled}
 			<span class="font-bold">{current_percentage} %</span>
 		{:else}
-			<Textfield
-				height="16px"
-				style="width: 6rem; height: 2rem"
-				variant="outlined"
+			<!-- <Textfield height="16px" style="width: 6rem; height: 2rem" /> -->
+			<FloatInput
 				bind:value={current_percentage}
+				height="16px"
 				suffix="%"
-				input$pattern="\d+"
+				style="width: 6rem; height: 2rem"
 			/>
 		{/if}
 
@@ -93,6 +94,6 @@ and a linear progress bar for visual -->
 	:global(.mdc-text-field) {
 		padding: 0px 8px;
 	}
-	/* @tailwind components;
-    @tailwind utilities; */
+	@tailwind components;
+	@tailwind utilities;
 </style>
