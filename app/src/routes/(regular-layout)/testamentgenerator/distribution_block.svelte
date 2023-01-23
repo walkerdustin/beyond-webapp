@@ -10,7 +10,7 @@
 	export let gesetzliche_erbfolge: number | undefined = undefined;
 	export let pflichtanteil: number | undefined = undefined;
 	export let disabled: boolean = false;
-	export let round_to_precicion = 3;
+	export let round_to_precision = 3;
 
 	$: {
 		family_members.update((family_members) => {
@@ -49,7 +49,7 @@ and a linear progress bar for visual -->
 				height="16px"
 				suffix="%"
 				style="width: 6rem; height: 2rem"
-				{round_to_precicion}
+				round_to_precicion={round_to_precision}
 			/>
 		{/if}
 
