@@ -1,14 +1,16 @@
 <script lang="ts">
 	import Textfield from '@smui/textfield';
 	import Button, { Label } from '@smui/button';
+	import Dialog, { Title, Content, Actions } from '@smui/dialog';
+	import { Svg } from '@smui/common/elements';
+	import { Icon } from '@smui/common';
+	import { mdiPencil, mdiDelete } from '@mdi/js';
+
 	import { createAnimationTriggerAction } from 'svelte-trigger-action';
 	import { supabase } from '$lib/supabaseClient';
 	import { onMount } from 'svelte';
 	import { user_s } from '$lib/global-store';
 
-	import { mdiPencil, mdiDelete } from '@mdi/js';
-	import { Svg } from '@smui/common/elements';
-	import { Icon } from '@smui/common';
 	import { verhältnis_list } from './testamentgenerator_store';
 	export let handle_question_answer: (option: 0 | 1) => void;
 
@@ -105,8 +107,35 @@
 			];
 		});
 	});
+
+	let dialog_is_open = false;
+	let dialog_choice: boolean | undefined = undefined;
+	let name_of_person_to_delete: string | undefined = '';
 	async function delete_family_member(id: number) {
 		console.log(id);
+		name_of_person_to_delete = family_members?.find((member) => member.id == id)?.first_name;
+		if (!name_of_person_to_delete) {
+			console.log('could not find name of person to delete');
+			return;
+		}
+
+		// make sure that the user really wants to delete the family member, by showing a smui dialog
+		dialog_choice = undefined;
+		dialog_is_open = true;
+		while (dialog_is_open == true) {
+			await new Promise((resolve) => setTimeout(resolve, 10));
+		}
+		console.log('dialog_choice', dialog_choice);
+		if (dialog_choice == false || dialog_choice == undefined) {
+			return;
+		}
+
+		// deltet the vermächtnis of the family member
+		const { data, error } = await supabase
+			.from('vermächtnisse')
+			.delete()
+			.eq('to_family_member', id);
+
 		family_members = family_members.filter((member) => member.id != id);
 		await supabase.from('family_members').delete().eq('id', id);
 	}
@@ -163,6 +192,20 @@
 <div class="mx-auto mt-auto mb-4">
 	<Button variant="raised" on:click={() => handle_question_answer(1)}>Weiter</Button>
 </div>
+
+<Dialog bind:open={dialog_is_open} aria-labelledby="simple-title" aria-describedby="simple-content">
+	<!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+	<Title id="simple-title">Wollen Sie wirklich {name_of_person_to_delete} entfernen?</Title>
+	<Content id="simple-content">Alle erstellten Vermächtnisse werden auch gelöscht.</Content>
+	<Actions>
+		<Button on:click={() => (dialog_choice = false)}>
+			<Label>Nein</Label>
+		</Button>
+		<Button on:click={() => (dialog_choice = true)}>
+			<Label>Ja</Label>
+		</Button>
+	</Actions>
+</Dialog>
 
 <style>
 	:global(.shake) {
