@@ -27,7 +27,7 @@
 		} = await supabase.auth.getUser();
 		console.log('user', user);
 		if (!user) {
-			await goto('/signUp');
+			await goto('/login');
 		}
 		set_user(user);
 	});
