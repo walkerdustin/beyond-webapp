@@ -94,6 +94,6 @@ and a linear progress bar for visual -->
 	:global(.mdc-text-field) {
 		padding: 0px 8px;
 	}
-	@tailwind components;
-	@tailwind utilities;
+	/* @tailwind components;
+	@tailwind utilities; */
 </style>
