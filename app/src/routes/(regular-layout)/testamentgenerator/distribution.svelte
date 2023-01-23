@@ -204,27 +204,8 @@
 		gesetzliche_erbfolge={member.gesetzliche_erbfolge}
 	/>
 {/each}
-<div class="mx-auto mt-auto mb-4 flex flex-row">
-	<!-- <Textfield
-		height="16px"
-		style="width: 6rem; height: 2rem"
-		variant="outlined"
-		bind:value={temp_number}
-		min="0"
-		max="100"
-		step="0.1"
-		type="number"
-		suffix="%"
-		input$pattern="\d+"
-	/> -->
-	<FloatInput bind:value={temp_number} height="16px" suffix="%" />
-	<input
-		pattern="[0-9]+([\.,][0-9]+)?"
-		min="0"
-		max="100"
-		step="0.1"
-		class="input input-bordered max-w-xs"
-	/>
+<div class="mx-auto mt-auto mb-4">
+	<Button variant="raised" on:click={() => weiter()}>Weiter</Button>
 </div>
 
 <style>
