@@ -29,7 +29,7 @@
 			<Button fullwidth disabled={requestSent}>Passwort zurücksetzten</Button>
 			{#if requestSent}
 				<p class="text-primary mx-auto">
-					Wenn ein Konto mit dieser email adresse besteht, wurde Ihnen eine e-mail mit einem link
+					Wenn ein Konto mit dieser e-mail Adresse besteht, wurde Ihnen eine e-mail mit einem link
 					gesendet.
 				</p>
 			{/if}

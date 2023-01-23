@@ -138,7 +138,6 @@
 		>
 
 		{#if loginError}
-			<p>signup Error</p>
 			<p class="text-red-700 mt-2">{signUp_errorMessage}</p>
 		{/if}
 
@@ -159,8 +158,8 @@
 
 {#if signUp_succesfull}
 	<div class="flex flex-col mx-auto m-3">
-		<p class="text-teal-700 mx-auto mb-2">Bestätigen Sie Ihre e-mail adresse.</p>
-		<p class="mx-auto first-letter:text-xl text-blue-700 ">
+		<p class="text-teal-700 mx-auto mb-2">Bestätigen Sie Ihre e-mail Adresse.</p>
+		<p class="mx-auto text-blue-700 ">
 			<a href="/login">Danach hier anmelden.</a>
 		</p>
 	</div>
