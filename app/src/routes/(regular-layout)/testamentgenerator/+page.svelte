@@ -84,7 +84,7 @@
 	}
 </script>
 
-<div class="flex flex-grow flex-col min-h-96">
+<div class="flex flex-grow flex-col min-h-96 items-center">
 	{#if current_question.typ == 'regular'}
 		<RegularQuestion {...current_question} {handle_question_answer} />
 	{:else if current_question.typ == 'Erben'}

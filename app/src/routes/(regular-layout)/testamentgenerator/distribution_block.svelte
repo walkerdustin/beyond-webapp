@@ -30,12 +30,13 @@
 
 <!--  a block, with the title, a textfield to display the current percentage 
 and a linear progress bar for visual -->
+
 <div
 	class="{disabled
 		? 'h-20'
-		: 'min-h-16'}  border-2 border-gray-50 rounded-md bg-white grid grid-cols-3 mdc-elevation--z4  m-4 px-4 max-w-3xl"
+		: 'min-h-16'}  border-2 border-gray-50 rounded-md bg-white grid grid-cols-3 mdc-elevation--z4 my-4 px-4 max-w-3xl w-full"
 >
-	<p class="my-auto  {disabled ? 'font-bold' : ''}">{title}</p>
+	<p class="my-auto w-44  {disabled ? 'font-bold' : ''}">{title}</p>
 	<div class="my-auto">
 		<!-- <input bind:value={current_percentage} type="text" placeholder="Type here" class="input input-bordered input-primary w-xs" /> -->
 		{#if disabled}

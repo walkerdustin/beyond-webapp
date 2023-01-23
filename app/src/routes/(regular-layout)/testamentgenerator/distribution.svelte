@@ -35,7 +35,7 @@
 		pflichtanteil: number | undefined;
 	};
 	let temp_number = 0;
-	let title = 'Verfügbare Quote';
+	let title = 'zu verteilen: ';
 
 	// let family_members: family_member_extended[] = [];
 	// define the different Orders for the inheritance
@@ -185,27 +185,29 @@
 	console.log('summe_aktuelle_quote', summe_aktuelle_quote);
 </script>
 
-<h2 class="mx-auto mb-6">Bestimmen Sie die Erbverteilung</h2>
+<div class="flex flex-col items-center justify-center px-8 w-full">
+	<h2 class="mx-auto">Bestimmen Sie die Erbverteilung</h2>
 
-<DistributionBlock
-	id={-1}
-	current_percentage={Math.round(verfügbare_quote * 100) / 100}
-	{title}
-	disabled={true}
-/>
-<!-- zu verteilender anteil    //   verfügbar    noch nicht verteilt        -->
-<!-- <hr class="bg-black h-0.5 rounded max-w-3xl mx-5" /> -->
-{#each $family_members as member}
 	<DistributionBlock
-		id={member.id}
-		current_percentage={member.current_percentage ? member.current_percentage : 0}
-		title={member.first_name + ' ' + member.last_name}
-		pflichtanteil={member.pflichtanteil}
-		gesetzliche_erbfolge={member.gesetzliche_erbfolge}
+		id={-1}
+		current_percentage={Math.round(verfügbare_quote * 100) / 100}
+		{title}
+		disabled={true}
 	/>
-{/each}
-<div class="mx-auto mt-auto mb-4">
-	<Button variant="raised" on:click={() => weiter()}>Weiter</Button>
+	<!-- zu verteilender anteil    //   verfügbar    noch nicht verteilt        -->
+	<!-- <hr class="bg-black h-0.5 rounded max-w-3xl mx-5" /> -->
+	{#each $family_members as member}
+		<DistributionBlock
+			id={member.id}
+			current_percentage={member.current_percentage ? member.current_percentage : 0}
+			title={member.first_name + ' ' + member.last_name}
+			pflichtanteil={member.pflichtanteil}
+			gesetzliche_erbfolge={member.gesetzliche_erbfolge}
+		/>
+	{/each}
+	<div class="mx-auto mt-4 mb-8">
+		<Button variant="raised" on:click={() => weiter()}>Weiter</Button>
+	</div>
 </div>
 
 <style>
