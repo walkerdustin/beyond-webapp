@@ -6,6 +6,7 @@
 	export let height = '16px';
 	export let suffix = '%';
 	export let style = '';
+	export let round_to_precicion = 3;
 
 	// ############ SORRY,
 	// the way I handle , and . is not very good
@@ -17,7 +18,9 @@
 		// because js is a a stupid language, we need to make a copy like this
 		// var string_copy = (' ' + original_string).slice(1);
 		// see https://stackoverflow.com/questions/31712808/how-to-force-javascript-to-deep-copy-a-string
-		value = parseFloat((' ' + string_value).slice(1).replace(',', '.'));
+		let value_temp = parseFloat((' ' + string_value).slice(1).replace(',', '.'));
+		value = Math.round(value_temp * 10 ** round_to_precicion) / 10 ** round_to_precicion; // why is rounding in js so stupid?
+		string_value = value.toString().replace('.', ',');
 	}
 
 	$: string_value = value.toString().replace('.', ',');

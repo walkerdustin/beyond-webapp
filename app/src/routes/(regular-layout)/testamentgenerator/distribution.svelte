@@ -12,6 +12,8 @@
 	import FloatInput from '$lib/components/float_input.svelte';
 	export let handle_question_answer: (option: 0 | 1) => void;
 
+	const ROUND_TO_PRECISION = 3;
+
 	async function weiter() {
 		// set the inheritance quotas for all family members in the database
 		let temp_family_members = get(family_members);
@@ -190,7 +192,8 @@
 
 	<DistributionBlock
 		id={-1}
-		current_percentage={Math.round(verfügbare_quote * 100) / 100}
+		current_percentage={Math.round(verfügbare_quote * 10 ** (ROUND_TO_PRECISION - 1)) /
+			10 ** (ROUND_TO_PRECISION - 1)}
 		{title}
 		disabled={true}
 	/>
@@ -203,6 +206,7 @@
 			title={member.first_name + ' ' + member.last_name}
 			pflichtanteil={member.pflichtanteil}
 			gesetzliche_erbfolge={member.gesetzliche_erbfolge}
+			round_to_precision={ROUND_TO_PRECISION}
 		/>
 	{/each}
 	<div class="mx-auto mt-4 mb-8">
