@@ -108,11 +108,12 @@
 		});
 	});
 
-	let dialog_is_open = false;
-	let dialog_choice: boolean | undefined = undefined;
+	let dialog_delete_is_open = false;
+	let dialog_delete_choice: boolean | undefined = undefined;
 	let name_of_person_to_delete: string | undefined = '';
 	async function delete_family_member(id: number) {
 		console.log(id);
+		name_of_person_to_delete = undefined; // reset the name of the person to delete, just in case
 		name_of_person_to_delete = family_members?.find((member) => member.id == id)?.first_name;
 		if (!name_of_person_to_delete) {
 			console.log('could not find name of person to delete');
@@ -120,13 +121,13 @@
 		}
 
 		// make sure that the user really wants to delete the family member, by showing a smui dialog
-		dialog_choice = undefined;
-		dialog_is_open = true;
-		while (dialog_is_open == true) {
+		dialog_delete_choice = undefined;
+		dialog_delete_is_open = true;
+		while (dialog_delete_is_open == true) {
 			await new Promise((resolve) => setTimeout(resolve, 10));
 		}
-		console.log('dialog_choice', dialog_choice);
-		if (dialog_choice == false || dialog_choice == undefined) {
+		console.log('dialog_choice', dialog_delete_choice);
+		if (dialog_delete_choice == false || dialog_delete_choice == undefined) {
 			return;
 		}
 
@@ -138,6 +139,60 @@
 
 		family_members = family_members.filter((member) => member.id != id);
 		await supabase.from('family_members').delete().eq('id', id);
+	}
+
+	let dialog_modify_is_open = false;
+	let dialog_modify_choice: boolean | undefined = undefined;
+	let person_to_modify: family_member | undefined = undefined;
+	let firstname_to_modify: string = '';
+	let lastname_to_modify: string = '';
+	async function show_modify_dialog(id: number) {
+		console.log(id);
+		person_to_modify = undefined; // reset the person to modify, just in case
+		firstname_to_modify = '';
+		lastname_to_modify = '';
+		person_to_modify = family_members?.find((member) => member.id == id);
+		if (!person_to_modify) {
+			console.log('could not find name of person to modify');
+			return;
+		}
+		firstname_to_modify = person_to_modify.first_name;
+		lastname_to_modify = person_to_modify.last_name;
+		// show a dialog to modify the family member
+		dialog_modify_choice = undefined;
+		dialog_modify_is_open = true;
+		while (dialog_modify_is_open == true) {
+			await new Promise((resolve) => setTimeout(resolve, 10));
+		}
+
+		// if the user did not click on "ok", do not modify the family member
+		console.log('dialog_choice', dialog_modify_choice);
+		if (dialog_modify_choice == false || dialog_modify_choice == undefined) {
+			return;
+		}
+		// if firstname or lastname is empty, do not modify the family member
+		// and give an allert to the user
+		if (firstname_to_modify == '' || lastname_to_modify == '') {
+			alert('Bitte geben Sie einen Vornamen und einen Nachnamen ein');
+			return;
+		}
+		person_to_modify.first_name = firstname_to_modify;
+		person_to_modify.last_name = lastname_to_modify;
+		family_members = [...family_members];
+
+		// update the family member in the database
+		const { data, error } = await supabase
+			.from('family_members')
+			.update({
+				first_name: firstname_to_modify,
+				last_name: lastname_to_modify
+			})
+			.eq('id', id);
+
+		console.log('data and error of update');
+
+		console.log(data);
+		console.log(error);
 	}
 </script>
 
@@ -156,7 +211,11 @@
           <path fill="currentColor" d={mdiPencil} />
         </Icon>
       </Button> -->
-
+			<Button on:click={() => show_modify_dialog(member.id)}>
+				<Icon component={Svg} viewBox="0 0 24 24" width="20px" height="20px">
+					<path fill="currentColor" d={mdiPencil} />
+				</Icon>
+			</Button>
 			<Button on:click={() => delete_family_member(member.id)}>
 				<Icon component={Svg} viewBox="0 0 24 24" width="20px" height="20px">
 					<path fill="currentColor" d={mdiDelete} />
@@ -193,21 +252,57 @@
 	<Button variant="raised" on:click={() => handle_question_answer(1)}>Weiter</Button>
 </div>
 
-<Dialog bind:open={dialog_is_open} aria-labelledby="simple-title" aria-describedby="simple-content">
+<Dialog
+	bind:open={dialog_delete_is_open}
+	aria-labelledby="simple-title"
+	aria-describedby="simple-content"
+>
 	<!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
 	<Title id="simple-title">Wollen Sie wirklich {name_of_person_to_delete} entfernen?</Title>
 	<Content id="simple-content">Alle erstellten Vermächtnisse werden auch gelöscht.</Content>
 	<Actions>
-		<Button on:click={() => (dialog_choice = false)}>
+		<Button on:click={() => (dialog_delete_choice = false)}>
 			<Label>Nein</Label>
 		</Button>
-		<Button on:click={() => (dialog_choice = true)}>
+		<Button on:click={() => (dialog_delete_choice = true)}>
 			<Label>Ja</Label>
 		</Button>
 	</Actions>
 </Dialog>
 
+<Dialog
+	bind:open={dialog_modify_is_open}
+	aria-labelledby="simple-title"
+	aria-describedby="simple-content"
+>
+	<!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+	<Title id="simple-title">Bearbeiten:</Title>
+	<Content id="simple-content">
+		<div class="flex flex-col gap-1">
+			<div use:animationAction={fn_is_empty ? animation_name : ''}>
+				<Textfield
+					class="wiggle animated"
+					required
+					bind:value={firstname_to_modify}
+					label="Vorname"
+				/>
+			</div>
+			<div use:animationAction={ln_is_empty ? animation_name : ''}>
+				<Textfield required bind:value={lastname_to_modify} label="Nachname" />
+			</div>
+		</div>
+	</Content>
+	<Actions>
+		<Button on:click={() => (dialog_modify_choice = true)}><Label>ändern</Label></Button>
+		<Button on:click={() => (dialog_modify_choice = false)}>
+			<Label>Abbrechen</Label>
+		</Button>
+	</Actions>
+</Dialog>
+
 <style>
+	@tailwind components;
+	@tailwind utilities;
 	:global(.shake) {
 		animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 		transform: translate3d(0, 0, 0);
