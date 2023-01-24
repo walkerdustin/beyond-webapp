@@ -146,6 +146,7 @@
 	let person_to_modify: family_member | undefined = undefined;
 	let firstname_to_modify: string = '';
 	let lastname_to_modify: string = '';
+	let modify_selected_value: string = auswählen;
 	async function show_modify_dialog(id: number) {
 		console.log(id);
 		person_to_modify = undefined; // reset the person to modify, just in case
@@ -158,6 +159,7 @@
 		}
 		firstname_to_modify = person_to_modify.first_name;
 		lastname_to_modify = person_to_modify.last_name;
+		modify_selected_value = person_to_modify.verhältnis;
 		// show a dialog to modify the family member
 		dialog_modify_choice = undefined;
 		dialog_modify_is_open = true;
@@ -178,6 +180,7 @@
 		}
 		person_to_modify.first_name = firstname_to_modify;
 		person_to_modify.last_name = lastname_to_modify;
+		person_to_modify.verhältnis = modify_selected_value;
 		family_members = [...family_members];
 
 		// update the family member in the database
@@ -185,7 +188,8 @@
 			.from('family_members')
 			.update({
 				first_name: firstname_to_modify,
-				last_name: lastname_to_modify
+				last_name: lastname_to_modify,
+				relation: modify_selected_value
 			})
 			.eq('id', id);
 
@@ -290,6 +294,16 @@
 			<div use:animationAction={ln_is_empty ? animation_name : ''}>
 				<Textfield required bind:value={lastname_to_modify} label="Nachname" />
 			</div>
+			<select
+				use:animationAction={v_is_empty ? animation_name : ''}
+				required
+				bind:value={modify_selected_value}
+				class="select select-sm my-auto mt-2"
+			>
+				{#each verhältnis_list as verältnis}
+					<option value={verältnis}>{verältnis}</option>
+				{/each}
+			</select>
 		</div>
 	</Content>
 	<Actions>
