@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Card, { PrimaryAction } from '@smui/card';
+	import Ripple from '@smui/ripple';
+
 	// import type { PageData } from './$types';
 	// export let data: PageData;
 
@@ -13,16 +15,22 @@
 
 <h3 class="text-2xl mx-auto">{frage}</h3>
 <div class="flex flex-row m-8 justify-center gap-5 p-0">
-	<div class="mdc-elevation--z8 rounded-md bg-blue-100 flex flex-col content-center">
-		<PrimaryAction on:click={() => handle_question_answer(0)}>
-			<p class="text-l w-64 m-6  text-center  ">{option0}</p>
-		</PrimaryAction>
+	<div
+		class="mdc-elevation--z8 rounded-md bg-blue-100 h-32 flex flex-row "
+		use:Ripple={{ surface: true, color: 'primary' }}
+	>
+		<button on:click={() => handle_question_answer(0)}>
+			<p class="text-l w-64 m-6  text-center self-center ">{option0}</p>
+		</button>
 	</div>
 
-	<div class="mdc-elevation--z8 rounded-md bg-blue-100">
-		<PrimaryAction on:click={() => handle_question_answer(1)}>
+	<div
+		class="mdc-elevation--z8 rounded-md bg-blue-100 h-32 flex flex-row "
+		use:Ripple={{ surface: true, color: 'primary' }}
+	>
+		<button on:click={() => handle_question_answer(0)}>
 			<p class="text-l w-64 m-6 text-center">{option1}</p>
-		</PrimaryAction>
+		</button>
 	</div>
 </div>
 
@@ -34,6 +42,6 @@
 </div>
 
 <style>
-	/* @tailwind components;
-	@tailwind utilities; */
+	@tailwind components;
+	@tailwind utilities;
 </style>
