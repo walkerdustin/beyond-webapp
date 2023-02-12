@@ -11,6 +11,7 @@
 	import { Svg } from '@smui/common/elements';
 	import Button, { Label } from '@smui/button';
 	import IconButton from '@smui/icon-button';
+	import Ripple from '@smui/ripple';
 
 	import Paper, { Subtitle, Content } from '@smui/paper';
 
@@ -65,19 +66,32 @@
 			<!-- just whitespace -->
 			<div class="grow" />
 			<nav>
-				<div class="float-right mr-2">
-					<Button>
-						<a href="/testamentgenerator"><Label>Testament</Label></a>
-					</Button>
-					<Button>
-						<a href="/nachlassplan"><Label>Nachlassplan</Label></a>
-					</Button>
-					<Button>
-						<a href="/meine-dokumente" draggable="false"><Label>Meine Dokumente</Label></a>
-					</Button>
-					<Button>
-						<a href="/beratung" draggable="false"><Label>Individuelle Beratung</Label></a>
-					</Button>
+				<div class="float-right mr-2 flex flex-row">
+					<div
+						class="flex p-2 rounded items-center text-primary font-medium"
+						use:Ripple={{ surface: true, color: 'primary' }}
+					>
+						<a href="/testamentgenerator">Testament</a>
+					</div>
+
+					<div
+						class="flex p-2 rounded items-center text-primary font-medium"
+						use:Ripple={{ surface: true, color: 'primary' }}
+					>
+						<a href="/nachlassplan">Nachlassplan</a>
+					</div>
+					<div
+						class="flex p-2 rounded items-center text-primary font-medium"
+						use:Ripple={{ surface: true, color: 'primary' }}
+					>
+						<a href="/meine-dokumente" draggable="false">Meine Dokumente</a>
+					</div>
+					<div
+						class="flex p-2 rounded items-center text-primary font-medium"
+						use:Ripple={{ surface: true, color: 'primary' }}
+					>
+						<a href="/beratung" draggable="false">Individuelle Beratung</a>
+					</div>
 
 					<IconButton>
 						<a href="/account" draggable="false">
@@ -134,8 +148,8 @@
 {/await}
 
 <style>
-	/* @tailwind components;
-	@tailwind utilities; */
+	@tailwind components;
+	@tailwind utilities;
 
 	header {
 		display: flex;
