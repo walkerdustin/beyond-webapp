@@ -17,13 +17,17 @@
 	async function weiter() {
 		// set the inheritance quotas for all family members in the database
 		let temp_family_members = get(family_members);
+		let promises_array = [];
 		for (let i = 0; i < temp_family_members.length; i++) {
 			const element = temp_family_members[i];
-			await supabase
-				.from('family_members')
-				.update({ inheritance_quota: element.current_percentage })
-				.eq('id', element.id);
+			promises_array.push(
+				supabase
+					.from('family_members')
+					.update({ inheritance_quota: element.current_percentage })
+					.eq('id', element.id)
+			);
 		}
+		Promise.all(promises_array);
 		handle_question_answer(0);
 	}
 
