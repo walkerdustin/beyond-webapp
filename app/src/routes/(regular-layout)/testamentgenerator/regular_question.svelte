@@ -28,7 +28,7 @@
 		class="mdc-elevation--z8 rounded-md bg-blue-100 h-32 flex flex-row "
 		use:Ripple={{ surface: true, color: 'primary' }}
 	>
-		<button on:click={() => handle_question_answer(0)}>
+		<button on:click={() => handle_question_answer(1)}>
 			<p class="text-l w-64 m-6 text-center">{option1}</p>
 		</button>
 	</div>
