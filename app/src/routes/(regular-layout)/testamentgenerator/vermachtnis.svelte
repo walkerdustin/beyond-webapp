@@ -39,6 +39,7 @@
 
 	async function vermachtnis_hinzufugen() {
 		// TODO: should the vermächntis item be unique?
+		open = false;
 		let new_vermachtnis: vermachtnis = {
 			id: 0,
 			vermachtnis: temp_vermachtnis,
@@ -151,9 +152,15 @@
 		</FormField>
 	</Content>
 	<Actions>
-		<Button on:click={() => vermachtnis_hinzufugen()}>
-			<Label>hinzufügen</Label>
-		</Button>
+		{#if temp_vermachtnisnehmer != undefined && temp_vermachtnisnehmer != 0 && temp_vermachtnis != '' && temp_vermachtnis != ''}
+			<Button on:click={() => vermachtnis_hinzufugen()}>
+				<Label>hinzufügen</Label>
+			</Button>
+		{:else}
+			<Button disabled>
+				<Label>hinzufügen</Label>
+			</Button>
+		{/if}
 	</Actions>
 </Dialog>
 
