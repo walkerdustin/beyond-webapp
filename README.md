@@ -54,6 +54,7 @@ and then:
     <path fill="currentColor" d={mdiMenu} />
 </Icon>
 ```
+or download svg from here https://www.svgrepo.com/svg/485460/right-2
 ## setup supabase
 https://supabase.com/docs/guides/cli  
 
@@ -534,7 +535,7 @@ curl https://4pcletpamvkbxlamf3nqc54mcy0qoplq.lambda-url.us-east-1.on.aws/
 - make lambda function with params in request body. We shall not use url query params, because my params need to be encrypted.
 - https://docs.aws.amazon.com/lambda/latest/dg/urls-invocation.html
 - for debugging, just do print statements
-- see the logs of the lambda function in the aws console at https://console.aws.amazon.com/cloudwatch/home?#logs:
+- see the logs of the lambda function in the aws console at https://console.aws.amazon.com/cloudwatch/home?#logs:   
 - or just look at the Function Logs section if the Execution result after you press the test button in the aws console of your lambda function
 - the function parameters are in the event object as python dict
 - now call this function with thunder client from vscode
