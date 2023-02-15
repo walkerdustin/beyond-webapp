@@ -11,6 +11,7 @@
 	export let pflichtanteil: number | undefined = undefined;
 	export let disabled: boolean = false;
 	export let round_to_precision = 3;
+	export let verfügbare_quote = 100;
 
 	$: {
 		family_members.update((family_members) => {
@@ -27,6 +28,16 @@
 		});
 	}
 	$: console.log(title, ': ', current_percentage);
+
+	// this section is for limiting how far I can slide the slider, so that the sum of all percentages is at most 100
+	// aka, the verfügbare_quote is never negative
+	// the tricky bit is that all distribution blocks are all active at the same time, so I need to figure out
+
+	function handle_slider_change(e) {
+		if (verfügbare_quote <= 0) {
+			current_percentage = current_percentage + verfügbare_quote;
+		}
+	}
 </script>
 
 <!--  a block, with the title, a textfield to display the current percentage 
@@ -79,12 +90,22 @@ and a linear progress bar for visual -->
 				min="0"
 				max="100"
 				class="range range-primary range-xs"
+				on:change={(e) => {
+					handle_slider_change(e);
+				}}
 			/>
 		{/if}
 
 		{#if pflichtanteil}
-			<div class="flex flex-col border-l border-black" style="margin-left: {pflichtanteil}%;">
-				<span class="text-xs font-bold">&nbsp; {pflichtanteil} %</span>
+			<div
+				class="flex flex-col border-l {current_percentage < pflichtanteil
+					? 'border-red-600'
+					: 'border-black'}"
+				style="margin-left: {pflichtanteil}%;"
+			>
+				<span class="text-xs font-bold {current_percentage < pflichtanteil ? 'text-red-600' : ''}"
+					>&nbsp; {pflichtanteil} %</span
+				>
 			</div>
 		{/if}
 	</div>

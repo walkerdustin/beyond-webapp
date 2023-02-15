@@ -207,6 +207,7 @@
 		<DistributionBlock
 			id={member.id}
 			current_percentage={member.current_percentage ? member.current_percentage : 0}
+			{verfügbare_quote}
 			title={member.first_name + ' ' + member.last_name}
 			pflichtanteil={member.pflichtanteil}
 			gesetzliche_erbfolge={member.gesetzliche_erbfolge}
