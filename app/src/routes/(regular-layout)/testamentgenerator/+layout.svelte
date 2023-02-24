@@ -57,9 +57,9 @@
 
 <div class="flex flex-grow justify-center">
 	<div class="m-32 mdc-elevation--z8 flex flex-grow flex-col rounded-md bg-surface max-w-6xl">
-		<div class="m-4 flex flex-row">
+		<div class="m-4 flex flex-row flex-wrap">
 			{#each generatorSections as section, i}
-				<div class="m-auto {activeSection === i ? 'font-bold' : ''}">
+				<div class="my-auto mr-auto {activeSection === i ? 'font-bold' : ''}">
 					<button on:click={() => goto_section(i)}>{section}</button>
 				</div>
 				{#if i < numSections - 1}

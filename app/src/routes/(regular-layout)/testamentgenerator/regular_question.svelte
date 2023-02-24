@@ -14,7 +14,7 @@
 </script>
 
 <h3 class="text-2xl mx-auto">{frage}</h3>
-<div class="flex flex-row m-8 justify-center gap-5 p-0">
+<div class="flex flex-col md:flex-row m-8 justify-center gap-5 p-0">
 	<div
 		class="mdc-elevation--z8 rounded-md bg-blue-100 h-32 flex flex-row "
 		use:Ripple={{ surface: true, color: 'primary' }}
@@ -33,12 +33,13 @@
 		</button>
 	</div>
 </div>
-
-<div class="flex bg-stone-200 mdc-elevation--z4 rounded-md mx-auto p-3 mb-4" style="width:39.25rem">
-	<details>
-		<summary> mehr erfahren</summary>
-		<p>{info}</p>
-	</details>
+<div class="w-full px-4">
+	<div class="bg-stone-200 mdc-elevation--z4 rounded-md p-3 mb-4 w-full">
+		<details>
+			<summary> mehr erfahren</summary>
+			<p>{info}</p>
+		</details>
+	</div>
 </div>
 
 <style>

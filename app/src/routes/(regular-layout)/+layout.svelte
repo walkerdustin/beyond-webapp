@@ -15,12 +15,19 @@
 
 	import Paper, { Subtitle, Content } from '@smui/paper';
 
-	import { mdiAccount } from '@mdi/js';
+	import { mdiAccount, mdiMenu } from '@mdi/js';
 
 	import { onMount } from 'svelte';
 	import { supabase } from '$lib/supabaseClient';
 	import { goto } from '$app/navigation';
 	import { user_s, set_user } from '$lib/global-store';
+
+	import MenuSurface from '@smui/menu-surface';
+	import Textfield from '@smui/textfield';
+	import List, { Item, Separator, Text } from '@smui/list';
+
+	let menu: MenuSurface;
+	let clicked = 'nothing yet';
 
 	onMount(async () => {
 		const {
@@ -59,7 +66,7 @@
 				/>
 			</a>
 
-			<div class="flex flex-col justify-center">
+			<div class="flex flex-col justify-center hidden md:flex">
 				<h1 class="mb-1 font-extrabold">beyond</h1>
 				<p class="">After Life Management</p>
 			</div>
@@ -67,30 +74,52 @@
 			<div class="grow" />
 			<nav>
 				<div class="float-right mr-2 flex flex-row">
-					<div
-						class="flex p-2 rounded items-center text-primary font-medium"
-						use:Ripple={{ surface: true, color: 'primary' }}
-					>
-						<a href="/testamentgenerator">Testament</a>
-					</div>
+					<div class="float-right mr-2 flex flex-row hidden md:flex">
+						<div
+							class="flex p-2 rounded items-center text-primary font-medium"
+							use:Ripple={{ surface: true, color: 'primary' }}
+						>
+							<a href="/testamentgenerator">Testament</a>
+						</div>
 
-					<div
-						class="flex p-2 rounded items-center text-primary font-medium"
-						use:Ripple={{ surface: true, color: 'primary' }}
-					>
-						<a href="/nachlassplan">Nachlassplan</a>
+						<div
+							class="flex p-2 rounded items-center text-primary font-medium"
+							use:Ripple={{ surface: true, color: 'primary' }}
+						>
+							<a href="/nachlassplan">Nachlassplan</a>
+						</div>
+						<div
+							class="flex p-2 rounded items-center text-primary font-medium"
+							use:Ripple={{ surface: true, color: 'primary' }}
+						>
+							<a href="/beratung" draggable="false">Individuelle Beratung</a>
+						</div>
 					</div>
-					<div
-						class="flex p-2 rounded items-center text-primary font-medium"
-						use:Ripple={{ surface: true, color: 'primary' }}
-					>
-						<a href="/meine-dokumente" draggable="false">Meine Dokumente</a>
-					</div>
-					<div
-						class="flex p-2 rounded items-center text-primary font-medium"
-						use:Ripple={{ surface: true, color: 'primary' }}
-					>
-						<a href="/beratung" draggable="false">Individuelle Beratung</a>
+					<div class="dropdown">
+						<button tabindex="0" class="btn btn-ghost md:hidden">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="h-5 w-5"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+								><path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M4 6h16M4 12h8m-8 6h16"
+								/></svg
+							>
+						</button>
+						<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+						<ul
+							tabindex="0"
+							class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 -translate-x-28"
+						>
+							<li><a href="/testamentgenerator">Testament</a></li>
+							<li><a href="/nachlassplan">Nachlassplan</a></li>
+							<li><a href="/beratung">Individuelle Beratung</a></li>
+						</ul>
 					</div>
 
 					<IconButton>
@@ -101,28 +130,41 @@
 						</a>
 					</IconButton>
 
-					<!-- <Button variant="raised">
-					
-						<Icon component={Svg} viewBox="0 0 24 24">
-							<path fill="currentColor" d={mdiAccount} />
-						</Icon>
-					</a>
-				</Button> -->
+					<!-- <div>
+						<IconButton on:click={() => menu.setOpen(true)}>
+							<Icon component={Svg} viewBox="0 0 24 24">
+								<path fill="currentColor" d={mdiMenu} />
+							</Icon>
+						</IconButton>
+
+						<MenuSurface bind:this={menu} anchorCorner="BOTTOM_LEFT">
+							<List>
+								<div
+									class="flex p-2 rounded items-center text-primary font-medium"
+									use:Ripple={{ surface: true, color: 'primary' }}
+								>
+									<a href="/testamentgenerator">Testament</a>
+								</div>
+
+								<div
+									class="flex p-2 rounded items-center text-primary font-medium"
+									use:Ripple={{ surface: true, color: 'primary' }}
+								>
+									<a href="/nachlassplan">Nachlassplan</a>
+								</div>
+							</List>
+						</MenuSurface> 
+					</div>-->
 				</div>
 			</nav>
 		</header>
 
-		<!-- <div class="flexy-dad">
-	{#each [...Array(24)].map((_v, i) => i + 1) as n}
-		<div class="mdc-elevation--z{n} flexy-boy">Elevation: {n}</div>
-	{/each}
-</div> -->
 		<main>
 			<slot><!-- optional fallback --></slot>
 		</main>
 
 		<footer class="mt-auto mdc-elevation--z8 py-3 bg-surface">
-			<div class="grid grid-cols-3">
+			<div class="grid md:grid-cols-3 text-center gap-2">
 				<div class="justify-self-center">
 					<div><b>Beyond</b></div>
 					<div>Rotebühlstraße</div>
