@@ -3,9 +3,6 @@
 	// import '@material/elevation/mdc-elevation';
 	// import Paper, { Title, Content } from '@smui/paper';
 
-	import TopAppBar, { Row, Section, Title } from '@smui/top-app-bar';
-	//import Drawer, { Content, Scrim, AppContent } from '@smui/drawer';
-
 	// for the icons
 	import { Icon } from '@smui/common';
 	import { Svg } from '@smui/common/elements';
@@ -13,21 +10,12 @@
 	import IconButton from '@smui/icon-button';
 	import Ripple from '@smui/ripple';
 
-	import Paper, { Subtitle, Content } from '@smui/paper';
-
 	import { mdiAccount, mdiMenu } from '@mdi/js';
 
 	import { onMount } from 'svelte';
 	import { supabase } from '$lib/supabaseClient';
 	import { goto } from '$app/navigation';
 	import { user_s, set_user } from '$lib/global-store';
-
-	import MenuSurface from '@smui/menu-surface';
-	import Textfield from '@smui/textfield';
-	import List, { Item, Separator, Text } from '@smui/list';
-
-	let menu: MenuSurface;
-	let clicked = 'nothing yet';
 
 	onMount(async () => {
 		const {
@@ -66,7 +54,7 @@
 				/>
 			</a>
 
-			<div class="flex flex-col justify-center hidden md:flex">
+			<div class="flex-col justify-center hidden md:flex">
 				<h1 class="mb-1 font-extrabold">beyond</h1>
 				<p class="">After Life Management</p>
 			</div>
@@ -74,7 +62,7 @@
 			<div class="grow" />
 			<nav>
 				<div class="float-right mr-2 flex flex-row">
-					<div class="float-right mr-2 flex flex-row hidden md:flex">
+					<div class="float-right mr-2  flex-row hidden md:flex">
 						<div
 							class="flex p-2 rounded items-center text-primary font-medium"
 							use:Ripple={{ surface: true, color: 'primary' }}
