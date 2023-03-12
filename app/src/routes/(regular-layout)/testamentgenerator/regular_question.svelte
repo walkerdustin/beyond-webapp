@@ -19,8 +19,8 @@
 		class="mdc-elevation--z8 rounded-md bg-blue-100 h-32 flex flex-row "
 		use:Ripple={{ surface: true, color: 'primary' }}
 	>
-		<button on:click={() => handle_question_answer(0)}>
-			<p class="text-l w-64 m-6  text-center self-center ">{option0}</p>
+		<button class="overflow-y-auto" on:click={() => handle_question_answer(0)}>
+			<p class="w-64 m-4  text-center self-center ">{option0}</p>
 		</button>
 	</div>
 
@@ -28,8 +28,8 @@
 		class="mdc-elevation--z8 rounded-md bg-blue-100 h-32 flex flex-row "
 		use:Ripple={{ surface: true, color: 'primary' }}
 	>
-		<button on:click={() => handle_question_answer(1)}>
-			<p class="text-l w-64 m-6 text-center">{option1}</p>
+		<button class="overflow-y-auto" on:click={() => handle_question_answer(1)}>
+			<p class="w-64 m-4 text-center">{option1}</p>
 		</button>
 	</div>
 </div>
