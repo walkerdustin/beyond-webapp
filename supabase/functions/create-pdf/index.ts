@@ -2,6 +2,8 @@
 // https://deno.land/manual/getting_started/setup_your_environment
 // This enables autocomplete, go to definition, etc.
 
+// ######### If there are errors in the import statements remember to activate the Deno extension in VS Code #########
+
 import { serve } from "https://deno.land/std@0.131.0/http/server.ts";
 // import { PDFDocument } from "https://cdn.skypack.dev/pdf-lib@^1.11.1?dts";
 import { html, tokens } from "https://deno.land/x/rusty_markdown/mod.ts";

@@ -60,7 +60,7 @@
 		<div class="m-4 flex flex-row flex-wrap">
 			{#each generatorSections as section, i}
 				<div class="my-auto mr-auto {activeSection === i ? 'font-bold' : ''}">
-					<button on:click={() => goto_section(i)}>{section}</button>
+					<button on:click={() => goto_section(i)}><span>{section}</span></button>
 				</div>
 				{#if i < numSections - 1}
 					<svg

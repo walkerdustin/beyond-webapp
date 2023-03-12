@@ -13,7 +13,7 @@
 	export let handle_question_answer: (option: 0 | 1) => void;
 </script>
 
-<h3 class="text-2xl mx-auto">{frage}</h3>
+<h2 class="mx-auto">{frage}</h2>
 <div class="flex flex-col md:flex-row m-8 justify-center gap-5 p-0">
 	<div
 		class="mdc-elevation--z8 rounded-md bg-blue-100 h-32 flex flex-row "
