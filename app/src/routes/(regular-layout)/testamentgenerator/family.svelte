@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Textfield from '@smui/textfield';
 	import Button, { Label } from '@smui/button';
+	import IconButton from '@smui/icon-button';
 	import Dialog, { Title, Content, Actions } from '@smui/dialog';
 	import { Svg } from '@smui/common/elements';
 	import { Icon } from '@smui/common';
@@ -204,9 +205,9 @@
 
 <div class="grid grid-cols-4 gap-2 mb-4 ml-4">
 	{#each family_members as member}
-		<p>{member.first_name}</p>
-		<p>{member.last_name}</p>
-		<p>{member.verhältnis}</p>
+		<p class="my-auto">{member.first_name}</p>
+		<p class="my-auto">{member.last_name}</p>
+		<p class="my-auto">{member.verhältnis}</p>
 		<p>
 			<!--  icon buton for modify and delete -->
 			<!-- we leave out the modify, as I dont know how to implement that yet -->
@@ -215,17 +216,16 @@
           <path fill="currentColor" d={mdiPencil} />
         </Icon>
       </Button> -->
-			<Button on:click={() => show_modify_dialog(member.id)}>
+			<IconButton class="p-1" on:click={() => show_modify_dialog(member.id)} size="button">
 				<Icon component={Svg} viewBox="0 0 24 24" width="20px" height="20px">
 					<path fill="currentColor" d={mdiPencil} />
 				</Icon>
-			</Button>
-			<Button on:click={() => delete_family_member(member.id)}>
+			</IconButton>
+			<IconButton on:click={() => delete_family_member(member.id)} size="button">
 				<Icon component={Svg} viewBox="0 0 24 24" width="20px" height="20px">
 					<path fill="currentColor" d={mdiDelete} />
 				</Icon>
-			</Button>
-			<span>{member.id}</span>
+			</IconButton>
 		</p>
 	{/each}
 	<div use:animationAction={fn_is_empty ? animation_name : ''}>
