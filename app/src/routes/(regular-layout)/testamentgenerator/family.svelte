@@ -203,7 +203,7 @@
 
 <h2 class="mx-auto mb-4">Tragen Sie Ihre Famillie ein</h2>
 
-<div class="grid grid-cols-4 gap-2 mb-4 ml-4">
+<div class="grid grid-cols-[1fr_1fr_8rem_auto] gap-x-2 pl-2 mb-4 w-full">
 	{#each family_members as member}
 		<p class="my-auto">{member.first_name}</p>
 		<p class="my-auto">{member.last_name}</p>
@@ -216,13 +216,23 @@
           <path fill="currentColor" d={mdiPencil} />
         </Icon>
       </Button> -->
-			<IconButton class="p-1" on:click={() => show_modify_dialog(member.id)} size="button">
-				<Icon component={Svg} viewBox="0 0 24 24" width="20px" height="20px">
+			<IconButton
+				on:click={() => show_modify_dialog(member.id)}
+				size="button"
+				class="text-primary"
+				style="padding:0px; width: 25px"
+			>
+				<Icon component={Svg} viewBox="0 0 21 21" width="20px" height="20px">
 					<path fill="currentColor" d={mdiPencil} />
 				</Icon>
 			</IconButton>
-			<IconButton on:click={() => delete_family_member(member.id)} size="button">
-				<Icon component={Svg} viewBox="0 0 24 24" width="20px" height="20px">
+			<IconButton
+				on:click={() => delete_family_member(member.id)}
+				size="button"
+				class="text-primary"
+				style="padding:0px; width: 25px"
+			>
+				<Icon component={Svg} viewBox="0 0 21 21" width="20px" height="20px">
 					<path fill="currentColor" d={mdiDelete} />
 				</Icon>
 			</IconButton>
@@ -248,7 +258,12 @@
 	</select>
 
 	<div class="my-auto mt-">
-		<Button on:click={() => add_family_member()}>hinzufügen</Button>
+		<span class="hidden md:block">
+			<Button on:click={() => add_family_member()}>hinzufügen</Button>
+		</span>
+		<span class="block md:hidden">
+			<Button on:click={() => add_family_member()}><span class="text-xl font-bold">+</span></Button>
+		</span>
 	</div>
 </div>
 
