@@ -59,30 +59,14 @@
 	class="my-12 mx-auto mdc-elevation--z8 flex flex-grow flex-col rounded-md bg-surface"
 	style="width: clamp(350px, 90%, 1000px);"
 >
-	<div class="m-4 flex flex-row flex-wrap">
-		{#each generatorSections as section, i}
-			<div class="my-auto mr-auto {activeSection === i ? 'font-bold' : ''}">
-				<button on:click={() => goto_section(i)}><span>{section}</span></button>
-			</div>
-			{#if i < numSections - 1}
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="25px"
-					height="25px"
-					viewBox="0 0 24 24"
-					fill="none"
-					class="m-auto"
-				>
-					<path
-						d="M10 16L14 12L10 8"
-						stroke="black"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					/>
-				</svg>
-			{/if}
-		{/each}
+	<div class="m-4 text-xs md:text-sm breadcrumbs">
+		<ul>
+			{#each generatorSections as section, i}
+				<li class="my-auto mr-auto {activeSection === i ? 'font-bold' : ''}">
+					<button on:click={() => goto_section(i)}><span>{section}</span></button>
+				</li>
+			{/each}
+		</ul>
 	</div>
 	<LinearProgress {progress} {closed} />
 	<div class="flex flex-row">
