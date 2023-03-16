@@ -7,6 +7,7 @@
 	import { Icon } from '@smui/common';
 	import { mdiPencil, mdiDelete } from '@mdi/js';
 
+	const tailwind_default_sm_breackpoint = 640;
 	import { createAnimationTriggerAction } from 'svelte-trigger-action';
 	import { supabase } from '$lib/supabaseClient';
 	import { onMount } from 'svelte';
@@ -199,16 +200,28 @@
 		console.log(data);
 		console.log(error);
 	}
+	// log if the windoow width changes
+	window.addEventListener('resize', () => {
+		console.log(window.innerWidth);
+		width = window.innerWidth;
+	});
+	let width = 600;
 </script>
 
 <h2 class="mx-auto mb-4">Tragen Sie Ihre Famillie ein</h2>
 
-<div class="grid grid-cols-[1fr_1fr_8rem_auto] gap-x-2 pl-2 mb-4 w-full">
+<div
+	class="grid  grid-cols-[1fr_1fr_auto]  sm:grid-cols-[1fr_1fr_8rem_auto] gap-x-1 px-2 mb-4 w-full "
+>
 	{#each family_members as member}
-		<p class="my-auto">{member.first_name}</p>
-		<p class="my-auto">{member.last_name}</p>
-		<p class="my-auto">{member.verhältnis}</p>
-		<p>
+		<p class="my-auto col-start-1 col-end-2  sm:col-auto">
+			{width >= tailwind_default_sm_breackpoint
+				? member.first_name
+				: [member.first_name, ', ', member.last_name].join('')}
+		</p>
+		<p class="my-auto col-start-1 col-end-2  sm:col-auto hidden sm:block">{member.last_name}</p>
+		<p class="my-auto col-start-2 col-end-3  sm:col-auto">{member.verhältnis}</p>
+		<p class="col-start-3 col-end-4  sm:col-auto self-center">
 			<!--  icon buton for modify and delete -->
 			<!-- we leave out the modify, as I dont know how to implement that yet -->
 			<!-- <Button>
@@ -238,10 +251,16 @@
 			</IconButton>
 		</p>
 	{/each}
-	<div use:animationAction={fn_is_empty ? animation_name : ''}>
+	<div
+		use:animationAction={fn_is_empty ? animation_name : ''}
+		class="col-start-1 col-end-2  sm:col-auto"
+	>
 		<Textfield class="wiggle animated" required bind:value={first_name} label="Vorname" />
 	</div>
-	<div use:animationAction={ln_is_empty ? animation_name : ''}>
+	<div
+		use:animationAction={ln_is_empty ? animation_name : ''}
+		class="col-start-2 col-end-3 sm:col-auto"
+	>
 		<Textfield required bind:value={last_name} label="Nachname" />
 	</div>
 
@@ -249,7 +268,7 @@
 		use:animationAction={v_is_empty ? animation_name : ''}
 		required
 		bind:value={selected_value}
-		class="select select-sm my-auto"
+		class="select select-sm my-auto col-start-1 col-end-2  sm:col-auto"
 	>
 		<option disabled selected>{auswählen}</option>
 		{#each verhältnis_list as verältnis}
@@ -257,11 +276,11 @@
 		{/each}
 	</select>
 
-	<div class="my-auto mt-">
-		<span class="hidden md:block">
+	<div class="my-auto">
+		<span class="block sm:hidden md:block">
 			<Button on:click={() => add_family_member()}>hinzufügen</Button>
 		</span>
-		<span class="block md:hidden">
+		<span class="hidden sm:block md:hidden">
 			<Button on:click={() => add_family_member()}><span class="text-xl font-bold">+</span></Button>
 		</span>
 	</div>
