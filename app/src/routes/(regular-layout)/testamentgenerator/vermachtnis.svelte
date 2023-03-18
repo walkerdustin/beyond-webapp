@@ -71,10 +71,12 @@
 		}
 	}
 	onMount(async () => {
+		console.log('####### Calling on Mount #######');
 		const { data, error } = await supabase
 			.from('vermachtnisse')
 			.select('*')
 			.eq('vermachtnis_of_user', user_s?.id);
+		console.log('data', data);
 		if (data) {
 			list_of_vermachtnisse = data.map((item) => {
 				return {
@@ -86,28 +88,41 @@
 				};
 			});
 		}
+		// get all family members from supabase
+		const { data: family_members_data, error: family_members_error } = await supabase
+			.from('family_members')
+			.select('*')
+			.eq('family_of_user', user_s?.id);
+		console.log('family_members_data', family_members_data);
+		console.log('family_members_error', family_members_error);
+		if (family_members_data) {
+			family_members.set(family_members_data);
+		}
 	});
+
+	console.log(list_of_vermachtnisse);
+	console.log($family_members);
 
 	// TODO: Icon for including and excluding circle
 </script>
 
-<h2 class="mx-auto mb-4 font-bold">Übersicht über Ihre Vermächntisse</h2>
-<div class="grid grid-cols-4 gap-2 mb-4 ml-4">
+<h2 class="mx-auto mb-4">Übersicht über Ihre Vermächntisse</h2>
+<div class="grid grid-cols-[2fr_2fr_1fr] gap-2 mb-4 mx-2">
 	<div class="font-bold">Vermächtnis</div>
-	<div class="font-bold">Vermächtnisnehmer</div>
-	<div class="font-bold">geschätzer Wert</div>
-	<div class="font-bold">als Teil des Erbes</div>
+	<div class="font-bold">an:</div>
+	<div class="font-bold">Wert</div>
+	<!-- <div class="font-bold">als Teil des Erbes</div> -->
 	<!-- if the list is empty show a hint for the hinzufügen button -->
 
 	{#each list_of_vermachtnisse as item}
-		<div class="">{item.vermachtnis}</div>
+		<div class="" style="word-break: break-all;">{item.vermachtnis}</div>
 		<!-- display firstname and lastname of the family member with the id  -->
-		<div class="">
+		<div class="" style="word-break: break-all;">
 			{$family_members.find((x) => x.id === item.vermachtnisnehmer)?.first_name}
 			{$family_members.find((x) => x.id === item.vermachtnisnehmer)?.last_name}
 		</div>
-		<div class="">{item.geschätzer_wert}€</div>
-		<div class="">&times;</div>
+		<div class="" style="word-break: break-all;">{item.geschätzer_wert}€</div>
+		<!-- <div class="">&times;</div> -->
 	{/each}
 </div>
 {#if list_of_vermachtnisse.length == 0}
