@@ -297,7 +297,9 @@
 >
 	<!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
 	<Title id="simple-title">Wollen Sie wirklich {name_of_person_to_delete} entfernen?</Title>
-	<Content id="simple-content">Alle erstellten Vermächtnisse werden auch gelöscht.</Content>
+	<Content id="simple-content"
+		>Alle erstellten Vermächtnisse für diesen Erben werden auch gelöscht.</Content
+	>
 	<Actions>
 		<Button on:click={() => (dialog_delete_choice = false)}>
 			<Label>Nein</Label>
