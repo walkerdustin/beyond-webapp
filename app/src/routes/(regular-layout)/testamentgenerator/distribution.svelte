@@ -199,7 +199,7 @@
 		current_percentage={Math.round(verfügbare_quote * 10 ** (ROUND_TO_PRECISION - 1)) /
 			10 ** (ROUND_TO_PRECISION - 1)}
 		{title}
-		disabled={true}
+		header_block={true}
 	/>
 	<!-- zu verteilender anteil    //   verfügbar    noch nicht verteilt        -->
 	<!-- <hr class="bg-black h-0.5 rounded max-w-3xl mx-5" /> -->

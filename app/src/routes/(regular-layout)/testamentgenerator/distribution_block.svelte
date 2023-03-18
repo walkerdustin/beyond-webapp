@@ -9,7 +9,7 @@
 	export let title: string;
 	export let gesetzliche_erbfolge: number | undefined = undefined;
 	export let pflichtanteil: number | undefined = undefined;
-	export let disabled: boolean = false;
+	export let header_block: boolean = false;
 	export let round_to_precision = 3;
 	export let verfügbare_quote = 100;
 
@@ -44,14 +44,14 @@
 and a linear progress bar for visual -->
 
 <div
-	class="{disabled
+	class="{header_block
 		? 'h-20'
 		: 'min-h-16'}  border-2 border-gray-50 rounded-md bg-white grid grid-cols-[1fr_auto_1fr] mdc-elevation--z4 px-2 md:px-4 max-w-3xl w-full"
 >
-	<p class="my-auto  {disabled ? 'font-bold' : ''}">{title}</p>
+	<p class="my-auto  {header_block ? 'font-bold' : ''}">{title}</p>
 	<div class="my-auto py-auto flex mx-1 md:mx-2">
 		<!-- <input bind:value={current_percentage} type="text" placeholder="Type here" class="input input-bordered input-primary w-xs" /> -->
-		{#if disabled}
+		{#if header_block}
 			<span class="font-bold">{current_percentage} %</span>
 		{:else}
 			<!-- <Textfield height="16px" style="width: 6rem; height: 2rem" /> -->
@@ -74,16 +74,16 @@ and a linear progress bar for visual -->
 				<span class="text-xs font-bold">&nbsp; {gesetzliche_erbfolge} %</span>
 			</div>
 		{/if}
-		{#if disabled}
+		{#if header_block}
 			<LinearProgress
 				progress={current_percentage / 100}
 				buffer={current_percentage}
 				indeterminate={false}
-				{disabled}
+				disabled={header_block}
 			/>
 		{:else}
 			<input
-				{disabled}
+				disabled={header_block}
 				bind:value={current_percentage}
 				type="range"
 				min="0"
