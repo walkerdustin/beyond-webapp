@@ -83,6 +83,10 @@ supabase login
 ```sh
 supabase gen types typescript --linked --schema public > supabase/types/supabase.ts
 ```
+or
+```sh
+supabase gen types typescript --linked --schema public > app/src/lib/database.types.ts
+```
 ## supabase edge functions
 For this to work some stuff needs to be installed and set up:
 - docker  
