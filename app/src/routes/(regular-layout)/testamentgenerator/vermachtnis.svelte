@@ -22,7 +22,7 @@
 	let clicked = 'Nothing yet.';
 	const auswählen = 'auswählen';
 
-	let temp_vermachtnis = 'Schmucksammulung';
+	let temp_vermachtnis = 'Schmuck';
 	let temp_vermachtnisnehmer: number;
 	let temp_geschätzer_wert: number | null = 2500;
 	let temp_als_teil_des_erbes = false;

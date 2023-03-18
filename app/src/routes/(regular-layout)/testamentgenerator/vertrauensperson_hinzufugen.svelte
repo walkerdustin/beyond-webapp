@@ -12,7 +12,7 @@
 
 <h3 class="font-bold mx-auto mb-4">Vertrauensperson hinzufügen</h3>
 
-<div class="mdc-elevation--z8  flex flex-row self-center p-2 rounded-md text-center mb-3">
+<div class="mdc-elevation--z8  flex flex-row self-center p-2 rounded-md text-center mb-3 mx-2">
 	<span class="my-auto mr-4">aus Liste auswählen:</span>
 	<select
 		required
