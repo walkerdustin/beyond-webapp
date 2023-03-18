@@ -77,7 +77,6 @@ and a linear progress bar for visual -->
 		{#if header_block}
 			<LinearProgress
 				progress={current_percentage / 100}
-				buffer={current_percentage}
 				indeterminate={false}
 				disabled={header_block}
 			/>
