@@ -191,7 +191,7 @@
 	console.log('summe_aktuelle_quote', summe_aktuelle_quote);
 </script>
 
-<div class="flex flex-col items-center justify-center px-8 w-full">
+<div class="flex flex-col items-center justify-center px-3 w-full gap-2 md:gap-4 ">
 	<h2 class="mx-auto">Bestimmen Sie die Erbverteilung</h2>
 
 	<DistributionBlock
@@ -220,6 +220,6 @@
 </div>
 
 <style>
-	/* @tailwind components;
-	@tailwind utilities; */
+	@tailwind components;
+	@tailwind utilities;
 </style>

@@ -33,7 +33,7 @@
 	// aka, the verfügbare_quote is never negative
 	// the tricky bit is that all distribution blocks are all active at the same time, so I need to figure out
 
-	function handle_slider_change(e) {
+	function handle_slider_change() {
 		if (verfügbare_quote <= 0) {
 			current_percentage = current_percentage + verfügbare_quote;
 		}
@@ -46,10 +46,10 @@ and a linear progress bar for visual -->
 <div
 	class="{disabled
 		? 'h-20'
-		: 'min-h-16'}  border-2 border-gray-50 rounded-md bg-white grid grid-cols-3 mdc-elevation--z4 my-4 px-4 max-w-3xl w-full"
+		: 'min-h-16'}  border-2 border-gray-50 rounded-md bg-white grid grid-cols-[1fr_auto_1fr] mdc-elevation--z4 px-2 md:px-4 max-w-3xl w-full"
 >
-	<p class="my-auto w-44  {disabled ? 'font-bold' : ''}">{title}</p>
-	<div class="my-auto">
+	<p class="my-auto  {disabled ? 'font-bold' : ''}">{title}</p>
+	<div class="my-auto py-auto flex mx-1 md:mx-2">
 		<!-- <input bind:value={current_percentage} type="text" placeholder="Type here" class="input input-bordered input-primary w-xs" /> -->
 		{#if disabled}
 			<span class="font-bold">{current_percentage} %</span>
@@ -57,9 +57,8 @@ and a linear progress bar for visual -->
 			<!-- <Textfield height="16px" style="width: 6rem; height: 2rem" /> -->
 			<FloatInput
 				bind:value={current_percentage}
-				height="16px"
 				suffix="%"
-				style="width: 6rem; height: 2rem"
+				classname="my-auto"
 				round_to_precicion={round_to_precision}
 			/>
 		{/if}
@@ -89,9 +88,10 @@ and a linear progress bar for visual -->
 				type="range"
 				min="0"
 				max="100"
-				class="range range-primary range-xs"
+				class="range range-primary range-xs text-sm"
+				style="font-size: 12px;"
 				on:change={(e) => {
-					handle_slider_change(e);
+					handle_slider_change();
 				}}
 			/>
 		{/if}
@@ -118,6 +118,6 @@ and a linear progress bar for visual -->
 	:global(.mdc-text-field) {
 		padding: 0px 8px;
 	}
-	/* @tailwind components;
-	@tailwind utilities; */
+	@tailwind components;
+	@tailwind utilities;
 </style>

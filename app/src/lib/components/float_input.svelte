@@ -7,6 +7,7 @@
 	export let suffix = '%';
 	export let style = '';
 	export let round_to_precicion = 3;
+	export let classname = '';
 
 	// ############ SORRY,
 	// the way I handle , and . is not very good
@@ -40,17 +41,47 @@
 	let pattern = '[0-9]+([.,][0-9]+)?';
 </script>
 
-<Textfield
+<input
+	type="text"
+	class="input input-bordered border border-primary border-solid w-20 px-4 input-sm sm:input-md flex-nowrap float-left {classname}"
 	{height}
 	{style}
 	variant="outlined"
 	bind:value={string_value}
 	{suffix}
 	pattern="[0-9]+([\.,][0-9]+)?"
-	input$onclick={(e) => alert(1)}
 	on:keypress={(e) => eval_keypress(e)}
 	on:focusout={(e) => {
 		string_value = e.target.value ? e.target.value.replace('.', ',') : '0';
 		update_value();
 	}}
 />
+
+<span>{suffix}</span>
+
+<!-- <Textfield
+	{height}
+	{style}
+	class="bg-primary text-sm"
+	variant="outlined"
+	bind:value={string_value}
+	{suffix}
+	pattern="[0-9]+([\.,][0-9]+)?"
+	on:keypress={(e) => eval_keypress(e)}
+	on:focusout={(e) => {
+		string_value = e.target.value ? e.target.value.replace('.', ',') : '0';
+		update_value();
+	}}
+/> -->
+<style>
+	span {
+		position: relative;
+		left: -15px;
+		width: 1px;
+		margin-top: auto;
+		margin-bottom: auto;
+	}
+
+	@tailwind components;
+	@tailwind utilities;
+</style>
