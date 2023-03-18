@@ -73,7 +73,20 @@
 		<span class="text-sm m-2">{progress * 100}%</span>
 		<div class="flex-grow" />
 
-		<IconButton component={Svg} viewBox="0 0 24 24" width="5px" height="5px"
+		<IconButton
+			component={Svg}
+			onclick={() => {
+				alert(1);
+			}}
+			on:click={() => {
+				alert(2);
+			}}
+			viewBox="0 0 24 24"
+			width="5px"
+			height="5px"
+			size="button"
+			class="text-primary"
+			style="padding:0px 5px 0px 0px ; width: 25px"
 			><path fill="currentColor" d={mdiCommentQuestionOutline} />
 		</IconButton>
 	</div>
