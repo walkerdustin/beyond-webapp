@@ -75,11 +75,8 @@
 
 		<IconButton
 			component={Svg}
-			onclick={() => {
-				alert(1);
-			}}
 			on:click={() => {
-				alert(2);
+				// alert(2);
 			}}
 			viewBox="0 0 24 24"
 			width="5px"
