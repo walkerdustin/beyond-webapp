@@ -58,7 +58,7 @@
 	<h2>Hier einloggen</h2>
 </div> -->
 
-<div class="mdc-elevation--z8 mx-auto m-3 w-96 bg-white rounded-lg p-3">
+<div class="mdc-elevation--z8 mx-auto m-4 w-80 sm:w-96 bg-white rounded-lg p-5">
 	<form on:submit|preventDefault={submit} class="flex flex-col gap-4">
 		<h2 class="font-bold mb-2 mx-auto">Hier einloggen</h2>
 		<TextField variant="filled" bind:value={email} label="email" type="email" required />
@@ -73,7 +73,13 @@
 			<Checkbox bind:checked={show_password} /> <span class="my-auto">passwort anzeigen</span>
 		</div>
 
-		<Button size="normal" fullwidth disabled={requestSent} variant="raised">einloggen</Button>
+		<Button
+			size="normal"
+			fullwidth
+			disabled={requestSent}
+			variant="raised"
+			class="w-64 mx-auto sm:w-72">einloggen</Button
+		>
 		{#if loginError}
 			<p class="text-red-700 mx-auto">{signUp_errorMessage}</p>
 		{/if}

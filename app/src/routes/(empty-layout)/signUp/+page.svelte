@@ -106,7 +106,7 @@
 	<h2 class="text-xl text-sky-400">Willkommen bei Beyond</h2>
 </div> -->
 
-<div class="mdc-elevation--z8 mx-auto m-4 mt-8 w-96 bg-white rounded-lg p-5">
+<div class="mdc-elevation--z8 mx-auto m-4 w-80 sm:w-96 bg-white rounded-lg p-5">
 	<form on:submit|preventDefault={submit} class="flex flex-col">
 		<h2 class="font-bold mb-2 mx-auto mb-4">Hier registrieren</h2>
 		<p>Ihre e-mail Adresse:</p>
@@ -134,7 +134,8 @@
 		<Button
 			fullwidth
 			disabled={requestSent || password_repeat_error || password_to_short}
-			variant="raised">registrieren</Button
+			variant="raised"
+			class="w-64 mx-auto sm:w-72">registrieren</Button
 		>
 
 		{#if loginError}
