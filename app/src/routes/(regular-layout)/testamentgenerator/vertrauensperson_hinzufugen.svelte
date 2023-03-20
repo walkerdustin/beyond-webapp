@@ -5,9 +5,22 @@
 	import { onMount } from 'svelte';
 	import Card from '@smui/card/src/Card.svelte';
 	import { family_members } from './testamentgenerator_store';
+	import { user_s } from '$lib/global-store';
 
 	export let handle_question_answer: (option: 0 | 1) => void;
 	let vertrauensperson_id = 0;
+	// get all family members from supabase
+	onMount(async () => {
+		const { data: family_members_data, error: family_members_error } = await supabase
+			.from('family_members')
+			.select('*')
+			.eq('family_of_user', user_s?.id);
+		console.log('family_members_data', family_members_data);
+		console.log('family_members_error', family_members_error);
+		if (family_members_data) {
+			family_members.set(family_members_data);
+		}
+	});
 </script>
 
 <h3 class="font-bold mx-auto mb-4">Vertrauensperson hinzufügen</h3>
