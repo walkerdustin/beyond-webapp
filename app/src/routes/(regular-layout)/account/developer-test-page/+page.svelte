@@ -12,32 +12,68 @@
 	import axios from 'axios';
 
 	async function test_pdf() {
-		const response = fetch(
-			'https://sypixpzppxx6inj5rlbmjp422q0uvalf.lambda-url.eu-central-1.on.aws/',
-			{
-				method: 'POST',
-
-				headers: {
-					'Content-Type': 'text/plain',
-					Authorization: 'asdfasdfasdf',
-					Accept: '*/*'
-				},
-				body: '# Testament of me    ## Chapter 1\n    other text'
-			}
-		);
-		// const response = await axios.post(
+		// const response = fetch(
 		// 	'https://sypixpzppxx6inj5rlbmjp422q0uvalf.lambda-url.eu-central-1.on.aws/',
-		// 	'# Testament of me    ## Chapter 1\n    other text',
 		// 	{
+		// 		method: 'POST',
+
 		// 		headers: {
 		// 			'Content-Type': 'text/plain',
-		// 			Accept: '*/*'
-		// 		}
+		// 			'User-Agent': 'PostmanRuntime/7.31.3',
+		// 			Accept: '*/*',
+		// 			'Accept-Encoding': 'gzip, deflate, br',
+		// 			Connection: 'keep-alive',
+		// 			Authorization: 'asdfasdfasdf'
+		// 		},
+		// 		body: '# Testament of me    ## Chapter 1\n    other text'
 		// 	}
 		// );
+
+		// var myHeaders = new Headers();
+		// myHeaders.append('Authorization', 'asdfasdfasdf');
+		// myHeaders.append('Accept', '*/*');
+		// myHeaders.append('Content-Type', 'text/plain');
+
+		// var raw = '# Testament of me\r\n## Chapter 1\r\nother text';
+
+		// var requestOptions = {
+		// 	method: 'POST',
+		// 	body: raw,
+		// 	headers: myHeaders
+		// };
+
+		// fetch(
+		// 	'https://sypixpzppxx6inj5rlbmjp422q0uvalf.lambda-url.eu-central-1.on.aws/',
+		// 	requestOptions
+		// )
+		// 	.then((response) => console.log(response))
+		// 	.catch((error) => console.log('error', error));
+
+		let data = '# Testament of me\r\n## Chapter 1\r\nother text';
+
+		let config = {
+			method: 'post',
+			maxBodyLength: Infinity,
+			url: 'https://sypixpzppxx6inj5rlbmjp422q0uvalf.lambda-url.eu-central-1.on.aws/',
+			headers: {
+				Authorization: 'asdfasdfasdf',
+				Accept: '*/*',
+				'Content-Type': 'text/plain'
+			},
+			data: data
+		};
+
+		axios
+			.request(config)
+			.then((response) => {
+				console.log(JSON.stringify(response.data));
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 		console.log('ok');
 
-		console.log(response);
+		// console.log(response);
 	}
 </script>
 
