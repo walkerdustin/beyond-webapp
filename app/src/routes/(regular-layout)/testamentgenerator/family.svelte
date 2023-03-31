@@ -134,13 +134,21 @@
 		}
 
 		// deltet the vermächtnis of the family member
+		console.log('deleting corresponding vermächtnisse _ version 2');
+		// const { data, error } = await supabase.from("vermachtnisse").delete().filter("to_family_member", "eq", id)
 		const { data, error } = await supabase
-			.from('vermächtnisse')
+			.from('vermachtnisse')
 			.delete()
 			.eq('to_family_member', id);
-
+		console.log('data and error of vermächtnisse delete call');
+		console.log(data, error);
 		family_members = family_members.filter((member) => member.id != id);
-		await supabase.from('family_members').delete().eq('id', id);
+		const { data: data_1, error: error_1 } = await supabase
+			.from('family_members')
+			.delete()
+			.eq('id', id);
+		console.log('data and error of delete call');
+		console.log(data_1, error_1);
 	}
 
 	let dialog_modify_is_open = false;
@@ -202,7 +210,6 @@
 	}
 	// log if the windoow width changes
 	window.addEventListener('resize', () => {
-		console.log(window.innerWidth);
 		width = window.innerWidth;
 	});
 	let width = 600;
