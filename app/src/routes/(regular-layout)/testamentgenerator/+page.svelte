@@ -18,6 +18,7 @@
 		transition_node,
 		transitions_network
 	} from '$lib/questionnaire';
+	import NichtVerfuegbar from './nicht_verfuegbar.svelte';
 
 	let data = get_questions();
 	let questions: questions_dict = data.questions;
@@ -87,6 +88,8 @@
 <div class="flex flex-grow flex-col min-h-96 items-center">
 	{#if current_question.typ == 'regular'}
 		<RegularQuestion {...current_question} {handle_question_answer} />
+	{:else if current_question.typ == 'not available'}
+		<NichtVerfuegbar {handle_question_answer} />
 	{:else if current_question.typ == 'Erben'}
 		<Family {handle_question_answer} />
 	{:else if current_question.typ == 'verteilung'}

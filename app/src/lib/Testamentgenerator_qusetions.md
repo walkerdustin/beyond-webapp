@@ -33,7 +33,7 @@
         %%info 'Wenn der Längerlebende Partner nach dem Tod des Zuerstversterbenden  vollumfänglich über das Vermögen verfügen kann, wird er als Vollerbe bezeichnet.Das gemeindschaftliche Erbe kann mit einigen Einschränkungen einhergehen. So soll verhindert werden, dass der längerlebende Ehepartner das Erbe komplett ausgeben darf, damit der Nachlass beim Tod des Längerlebenden möglichst ungeschmälert an die Nacherben übergeht." (ninebarc)'
 
     __00130(not available)
-        %% 'not available'
+        %%typ 'not available'
         %%frage 'Diese Option ist bei Beyond aktuell noch nicht verfügbar.'
         %%option0 ''
         %%option1 ''
