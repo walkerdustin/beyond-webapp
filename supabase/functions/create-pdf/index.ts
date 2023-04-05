@@ -45,9 +45,38 @@ serve(async (req) => {
 
   // create html from markdown
   const markdown = "# Testament\n## Kapitel 1\n Das ist mein Testament";
-  const tokenized = tokens(markdown);
-  const renderedHtml = html(tokenized);
+  // const tokenized = tokens(markdown);
+  // const renderedHtml = html(tokenized);
 
+  // call my aws lambda function to create a pdf from markdown
+  let myHeaders = new Headers();
+  myHeaders.append("Authorization", "asdfasdfasdf");
+  myHeaders.append("Accept", "*/*");
+  myHeaders.append("Content-Type", "text/plain");
+
+  let raw = markdown;
+
+  let requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+  };
+  let pdf_as_arrayBuffer: ArrayBuffer;
+  try {
+  let response = await fetch("https://sypixpzppxx6inj5rlbmjp422q0uvalf.lambda-url.eu-central-1.on.aws/", requestOptions)
+  pdf_as_arrayBuffer = await response.arrayBuffer()
+
+  } catch (error) {
+    console.log('error', error);
+    return new Response(JSON.stringify({ error: error.message }), {
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+      status: 400,
+    });
+  }
+
+  // write the pdf to local file system
+  // Deno.writeFile("test2.pdf", new Uint8Array(pdf_as_arrayBuffer));
+  // actually, we can not write to the local file system, because we are in a deno edge function
   
   try {
     // Create a Supabase client with the Auth context of the logged in user.
@@ -67,13 +96,16 @@ serve(async (req) => {
     console.log("supabaseClient", supabaseClient);
     const { data: { user } } = await supabaseClient.auth.getUser()
     const uid =  user?.id
+    let testament_path = ""
     if (uid) {
-        supabaseClient.storage.from("documents").upload(`${uid}/Testament.html`, renderedHtml);
+      testament_path =  `${uid}/Testament.html`
+      supabaseClient.storage.from("documents").upload(`${uid}/Testament.pdf`, pdf_as_arrayBuffer);
     } else {
-      supabaseClient.storage.from("documents").upload(`_forTestingAndDebugging/Testament.html`, renderedHtml);
+      testament_path =  `_forTestingAndDebugging/Testament.html`
+      supabaseClient.storage.from("documents").upload(`_forTestingAndDebugging/Testament.pdf`, pdf_as_arrayBuffer);
     }
 
-    return new Response(JSON.stringify({ message: 'success', testament: renderedHtml }), {
+    return new Response(JSON.stringify({ message: 'success', testament_path:  testament_path}), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
