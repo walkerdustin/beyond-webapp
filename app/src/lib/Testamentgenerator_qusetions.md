@@ -15,7 +15,7 @@
         %%typ 'regular'
         %%frage 'Wie ist Ihr Familienstand?'
         %%option0 'Verheiratet'
-        %%option1 'Nicht (mehr) verheiratet'
+        %%option1 'Hier ist Ihr offizieller Familienstand maßgeblich. Das bedeutet, dass selbst wenn Sie in fester Partnerschaft leben, nur eine Ehe Hier ist Ihr offizieller Familienstand maßgeblich. '
         %%info 'Hier ist Ihr offizieller Familienstand maßgeblich. Das bedeutet, dass selbst wenn Sie in fester Partnerschaft leben, nur eine Ehe oder eingetragene Lebenspartnerschaft für Ihr Testament entscheidend sind. (ninebarc)'
 
     __00110(gemeinsames T.?)

@@ -38,6 +38,7 @@ These extensions are neccessary
 - github copilot
 - Node.js Notebooks (REPL)
 - Material Icon Theme
+- Pretty TypeScript Errors
 
 
 # Usage
