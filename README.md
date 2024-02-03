@@ -17,8 +17,8 @@ Check out the infrastructure diagram in the [infrastructure diagram](#infrastruc
 Thanks to the simplicity of the architecture and the power of my hosting providers Netlify and Supabase,  
 My web app has the full DevOps workflow with continuous deployment built right in. If I create a pull request to main, a staging site is automatically deployed and online available for review.
 
-Another really cool Thing about this webapp is how I have done my CMS for storing and configuring the questions
-and answers for my questionaire. My CMS is basically a markdown file versioned through this git repository.
+Another cool thing about this WebApp is how I have done my CMS for storing and configuring the questions
+and answers for my questionnaire. My CMS is just a markdown file versioned through this git repository.
 [My Markdown file](./app\src\lib\Testamentgenerator_qusetions.md) has one code block with a mermaid tag. 
 mermaid is a cool extension, that can render flowcharts and everything. (I have also used this tool to make the architecture graph in this README).
 I use the flowchart syntax of mermaid, to represent my questionnaire.
