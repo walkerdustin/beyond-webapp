@@ -46,7 +46,7 @@ This looks like the following:
 ```
 In the file [questionnaire.ts](./app\src\lib\questionnaire.ts), I have created a compiler for this syntax.
 It compiles the questions to a javascript object.
-The exported function get_:questions() then returns the data and flow of the questionnaire into a questions and transitions array. 
+The exported function get_questions() then returns the data and flow of the questionnaire into a questions and transitions array. 
 ```js
 export function get_questions(): {
     questions: questions_dict;
