@@ -1,32 +1,156 @@
-# Beyond Web App
-Web app for our beyond Service
+# MeinNachlass.com WebApp
+Web app for our MeinNachlass.com Service
 
-www.service-beyond.de  
+Landingpage: [www.MeinNachlass.com](www.MeinNachlass.com)   
+WebApp: [app.Meinnachlass.com](app.Meinnachlass.com)  
 [![Netlify Status](https://api.netlify.com/api/v1/badges/45ba1b8d-677f-4139-a2bf-1cabdbd4eaaf/deploy-status)](https://app.netlify.com/sites/service-beyond/deploys)
 
-# Installation
-I use git lfs for large binary files like images and other media  
+I have solo developed this WebApp including frontend and backend.  
+I made the CSS and style of this website according to a proto.io prototype.  
+This website is built with svelte-kit and Supabase in a JAM-stack configuration.  
+The Sveltekit Frontend is compiled into a static website hosted on Netlify (CDN).  
+Supabase is a Backend as a service based on a Postgres DB.  
+Supabase is used for all Database stuff, Authentication and Authorisation and as a blob storage for PDFs.  
+I use a single aws lambda function for generating PDFs from markdown.  
+Check out the infrastructure diagram in the [infrastructure diagram](#infrastructure-diagram-id).  
+
+Thanks to the simplicity of the architecture and the power of my hosting providers Netlify and Supabase,  
+My web app has the full DevOps workflow with continuous deployment built right in. If I create a pull request to main, a staging site is automatically deployed and online available for review.
+
+Another really cool Thing about this webapp is how I have done my CMS for storing and configuring the questions
+and answers for my questionaire. My CMS is basically a markdown file versioned through this git repository.
+[My Markdown file](./app\src\lib\Testamentgenerator_qusetions.md) has one code block with a mermaid tag. 
+mermaid is a cool extension, that can render flowcharts and everything. (I have also used this tool to make the architecture graph in this README).
+I use the flowchart syntax of mermaid, to represent my questionnaire.
+I use my one extra syntax in the comments of the flowchart to encode extra information.
+The transitions of the questions are represented in the regular mermaid syntax.  
+With the mermaid extension in VsCode, this flowchart is automatically rendered as a graph.
+This allows me to edit the flow of my questionnaire in a simple process with quick feedback.  
+This looks like the following:
+```
+    flowchart TD;
+        %%Template
+    %%Questions
+    __00100(verheiratet?)
+        %%typ 'regular'
+        %%frage 'Wie ist Ihr Familienstand?'
+        %%option0 'Verheiratet'
+        %%option1 'Nicht (mehr) verheiratet'
+        %%info 'Hier ist Ihr offizieller Familienstand maßgeblich. Das bedeutet, dass selbst wenn Sie in fester Partnerschaft leben, nur eine Ehe oder eingetragene Lebenspartnerschaft für Ihr Testament entscheidend sind. (ninebarc)'
+
+    %%Transitions
+    __00100--ja-->__00110
+    __00100--nein-->__00200
+    __00110--gemeinsam-->__00120
+    __00110--alleine-->__00200
+```
+In the file [questionnaire.ts](./app\src\lib\questionnaire.ts), I have created a compiler for this syntax.
+It compiles the questions to a javascript object.
+The exported function get_:questions() then returns the data and flow of the questionnaire into a questions and transitions array. 
+```js
+export function get_questions(): {
+    questions: questions_dict;
+    transitions: transitions_network;
+}
+```
+
+- [MeinNachlass.com WebApp](#meinnachlasscom-webapp)
+  - [Installation](#installation)
+    - [docker + aws cli for development of supabase edge functions and aws lambda functions](#docker--aws-cli-for-development-of-supabase-edge-functions-and-aws-lambda-functions)
+    - [VS Code extensions](#vs-code-extensions)
+  - [Usage](#usage)
+    - [How to do Icons](#how-to-do-icons)
+    - [setup supabase](#setup-supabase)
+    - [generate typescript types for supabase](#generate-typescript-types-for-supabase)
+    - [supabase edge functions](#supabase-edge-functions)
+  - [run the Deno: Initialize Workspace Configuration command.](#run-the-deno-initialize-workspace-configuration-command)
+      - [usage](#usage-1)
+    - [material UI colors](#material-ui-colors)
+  - [Architecture](#architecture)
+    - [initial architecture idea](#initial-architecture-idea)
+    - [infrastructure diagram    {infrastructure-diagram-id}](#infrastructure-diagram----infrastructure-diagram-id)
+  - [Database structure](#database-structure)
+    - [What Views should my database generate?](#what-views-should-my-database-generate)
+    - [netlify](#netlify)
+    - [sveltekit](#sveltekit)
+    - [copilot is actually pretty good](#copilot-is-actually-pretty-good)
+- [development Journey](#development-journey)
+  - [install sveltekit](#install-sveltekit)
+  - [setup static adapter](#setup-static-adapter)
+  - [deploy with netlify](#deploy-with-netlify)
+  - [setup git LFS](#setup-git-lfs)
+    - [error when deploying](#error-when-deploying)
+  - [try out reusable components and routing](#try-out-reusable-components-and-routing)
+  - [check out UI Framworks](#check-out-ui-framworks)
+  - [link our custom domain](#link-our-custom-domain)
+  - [Evaluate UI Library](#evaluate-ui-library)
+  - [Trello Aufgaben überlegen](#trello-aufgaben-überlegen)
+  - [https://svelte.dev/tutorial/basics](#httpssveltedevtutorialbasics)
+  - [migrate Sveltekit](#migrate-sveltekit)
+  - [setup SMUI](#setup-smui)
+    - [Learn SCSS and SASS](#learn-scss-and-sass)
+    - [figure out and setup icons](#figure-out-and-setup-icons)
+    - [scss thing was not working](#scss-thing-was-not-working)
+  - [setup tailwind](#setup-tailwind)
+  - [reset css styles](#reset-css-styles)
+  - [stupid links are draggable and mess with dem being abel to be clicked.](#stupid-links-are-draggable-and-mess-with-dem-being-abel-to-be-clicked)
+  - [make the footer stick to bottom](#make-the-footer-stick-to-bottom)
+  - [try out the official tailwind installation, to fix bug](#try-out-the-official-tailwind-installation-to-fix-bug)
+  - [check out supabase ui](#check-out-supabase-ui)
+  - [do auth based on the supabase-js documentation](#do-auth-based-on-the-supabase-js-documentation)
+  - [connect supabase with my email server (mail.zoho.eu)](#connect-supabase-with-my-email-server-mailzohoeu)
+  - [stupid problem with supabase auth.](#stupid-problem-with-supabase-auth)
+  - [setup protected route with svelte await blocks](#setup-protected-route-with-svelte-await-blocks)
+  - [implement static optimized tailwind for production](#implement-static-optimized-tailwind-for-production)
+  - [make the password field have the correct type and have hidden characters](#make-the-password-field-have-the-correct-type-and-have-hidden-characters)
+  - [Create the Questionaire from a Human Readable and editable flow chart](#create-the-questionaire-from-a-human-readable-and-editable-flow-chart)
+    - [Requirements for storage](#requirements-for-storage)
+    - [Create a Questionaire from the data](#create-a-questionaire-from-the-data)
+  - [Generate a Pdf from the data of the questionaire](#generate-a-pdf-from-the-data-of-the-questionaire)
+    - [What do I need to create the pdf](#what-do-i-need-to-create-the-pdf)
+      - [ways to create a pdf in a deno function](#ways-to-create-a-pdf-in-a-deno-function)
+    - [I can not do it in deno on the edge](#i-can-not-do-it-in-deno-on-the-edge)
+    - [lambda function to convert markdown to pdf](#lambda-function-to-convert-markdown-to-pdf)
+    - [supabase edge functions](#supabase-edge-functions-1)
+      - [write to storage (from cloud function)](#write-to-storage-from-cloud-function)
+  - [Build a family tree](#build-a-family-tree)
+    - [Find the correct library](#find-the-correct-library)
+    - [YFIles / YWorks](#yfiles--yworks)
+  - [How to do testing in sveltekit](#how-to-do-testing-in-sveltekit)
+    - [Problem:](#problem)
+  - [Vitest is amazing](#vitest-is-amazing)
+  - [development of aws lambda function for generating pdf testamant from markdown](#development-of-aws-lambda-function-for-generating-pdf-testamant-from-markdown)
+    - [can I use local file system with aws lambda](#can-i-use-local-file-system-with-aws-lambda)
+    - [plan:](#plan)
+    - [How to make the edge function secure?](#how-to-make-the-edge-function-secure)
+    - [Using a random secret key seems like the best option, because it is the easiest to implement.](#using-a-random-secret-key-seems-like-the-best-option-because-it-is-the-easiest-to-implement)
+    - [env variable in supabase edge function](#env-variable-in-supabase-edge-function)
+
+
+
+## Installation
+I use git-lfs for large binary files like images and other media  
 install https://git-lfs.github.com/  
 
-git clone   link_to_repository  
-
-install dependencies and run server
+install dependencies and run the dev-server for the svelte-kit frontend
 ```bash
 cd app  
 npm install  
+npx smui-theme template src/theme
+npm run prepare
 npm run dev -- --open
 ```
-create your theme files with smui-theme > `npx smui-theme template src/theme`
+create your theme files with smui-theme > `npx smui-theme template src/theme`  
 Whenever you add a new SMUI package, run > `npm run prepare` again to rebuild your CSS file with the new component’s styles included.
 
-## docker + aws cli for developement of supabase edge functions and aws lambda functions
-
+### docker + aws cli for development of supabase edge functions and aws lambda functions
+I use docker only for my aws lambda function to 
 https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
 https://docs.docker.com/get-docker/
 
-## VS Code extensions
-These extensions are neccessary
+### VS Code extensions
+These extensions are necessary
 - German - Code Spell Checker
 - HTML CSS Support
 - Svelte for VS Code
@@ -40,9 +164,9 @@ These extensions are neccessary
 - Material Icon Theme
 
 
-# Usage
+## Usage
 
-## How to do Icons
+### How to do Icons
 choose icon from here https://materialdesignicons.com/  
 and import it in the script as follows   
 `import { mdiMenu } from '@mdi/js';`  
@@ -55,7 +179,7 @@ and then:
 </Icon>
 ```
 or download svg from here https://www.svgrepo.com/svg/485460/right-2
-## setup supabase
+### setup supabase
 https://supabase.com/docs/guides/cli  
 
 first you may need to install scoop
@@ -79,7 +203,7 @@ maybe also login to supabase with your cli token
 supabase login
 ```
 
-## generate typescript types for supabase
+### generate typescript types for supabase
 ```sh
 supabase gen types typescript --linked --schema public > supabase/types/supabase.ts
 ```
@@ -87,9 +211,9 @@ or
 ```sh
 supabase gen types typescript --linked --schema public > app/src/lib/database.types.ts
 ```
-## supabase edge functions
+### supabase edge functions
 For this to work some stuff needs to be installed and set up:
-- docker  
+- Docker  
  https://www.docker.com/products/docker-desktop/
 - deno (language server) 
  https://deno.land/#installation
@@ -97,34 +221,33 @@ For this to work some stuff needs to be installed and set up:
  run the Deno: Initialize Workspace Configuration command.
 - 
 
-### usage
+#### usage
 ```sh
 supabase functions -h
 ```
-  delete      Delete a Function from Supabase  
-  deploy      Deploy a Function to Supabase  
-  new         Create a new Function locally  
-  serve       Serve a Function locally  
+- delete- >      Delete a Function from Supabase  
+- deploy ->      Deploy a Function to Supabase  
+- new    ->      Create a new Function locally  
+- serve  ->      Serve a Function locally  
 ```sh
 supabase start
 ```
 
 to start the local supabase docker server
-## material UI colors
+### material UI colors
 need to be set in src/variables.scss and src/theme/_smui-theme.scss
 
-# Architecture
-## initial architecture idea
+## Architecture
+### initial architecture idea
 ![architecture](docs/images/architecture.PNG)
-Actually for now, we dont need any external data storage
-notion cms is replaced by a mermaid flowchart in the markdown file
+Actually, for now, we don't need any external data storage notion CMS is replaced by a mermaid flowchart in the markdown file
 
-## mermaid flowchart
-
+### infrastructure diagram    {infrastructure-diagram-id}
 
 if no diagram is shown, please install the mermaid extension for vs code
+
 ```mermaid
-graph BT
+flowchart BT
     sk[Svelte Kit]
     netlify[Netlify]
     subgraph supabase
@@ -138,18 +261,19 @@ graph BT
 
     subgraph cms
         direction LR
-        cmsq[Questions and options\n are written in\n a mermaid flowchart\n in\n Testamentgenerator.md]
+        cmsq[Questions and answers \n are written in\n a mermaid flowchart\n in\n Testamentgenerator.md]
     end
     subgraph styling
     direction LR
         smui[Material UI]
         tailwind[Tailwind]
+        daisyUi
     end
     styling --> sk
     sk --compile to static html and js --> netlify
     client --> supabase
     client --> sk
-    cmsq --> sk
+    cmsq --compiled to js object during build --> sk
     s-storage --> client
     auth --> client
     s-db --> client
@@ -157,20 +281,15 @@ graph BT
     edge --> s-storage
     edge --> s-db
     edge --> auth
-
-
-
-
-
 ```
 
-# Database structure
+## Database structure
 *if no diagram is shown, please install the mermaid extension for vs code*
 
 ```mermaid
 classDiagram
     Document <|-- User
-    Questions <|-- User
+    Question_Answers <|-- User
 
     class User {
         +id: string
@@ -211,10 +330,10 @@ answers of a User
 |q-id|0|
 |q-id|null|
 
-## netlify
+### netlify
 hosts static files (js, html, css, images, media)
 
-## sveltekit
+### sveltekit
 Startet with the SvelteKit demo app (simple ToDo app)  
 Typescript - Yes
 ESLint - Yes
@@ -226,12 +345,13 @@ Playwright - Yes
 
 ### copilot is actually pretty good
 ![flying with copilot](docs/images/flying.PNG)
-# developement Journey
+
+# development Journey
 
 ## install sveltekit
 ---
 https://kit.svelte.dev/  
-Startet with the SvelteKit demo app (simple ToDo app)  
+Started with the SvelteKit demo app (simple ToDo app)  
 Typescript - Yes
 ESLint - Yes
 Prettier - Yes
@@ -371,7 +491,7 @@ https://supabase.com/docs/reference/javascript/
 
 It just worked! first try! I am in disbelief!
 
-https://www.zoho.com/zeptomail/help/smtp-api.html#alink1
+https://www.zoho.com/zeptomail/help/smtp-api.html#alink1  
 SMTP Hostname is smtp.zoho.eu  
 Port number   is 465  
 SMTP username is email  
@@ -411,19 +531,19 @@ everytime we add a new class.
 i used a checkbox and some svelte interactivity
 
 
-# Create the Questionaire from a Human Readable and editable flow chart
+## Create the Questionaire from a Human Readable and editable flow chart
 To create the Testamentgenerator I need a set of questions and answer options.
 These Questions may be layed out in a DAG (directed asyclic graph).
 For example, there are more questions to answer, if you are married.
 
-## Requirements for storage
+### Requirements for storage
 - content needs to be accessible in the code in this repo.
 so either an api interface, or the data is saved in this repository.
 - content should be modifyable by my collegues
 - changes in shema need to be versioned
 - changes in content need to be versioned
 
-## Create a Questionaire from the data
+### Create a Questionaire from the data
 There is a nice function defined in the lib folder, that takes the markdown questions and options and creates a questionaire dictionary and the transitions from it.
 
 Read in the data from the +page.svelte file
@@ -431,7 +551,7 @@ Read in the data from the +page.svelte file
 I have a component, for the regular question type  
 Other components then handle the special cases
 
-# Generate a Pdf from the data of the questionaire
+## Generate a Pdf from the data of the questionaire
 RPC comes from user pressing a button  
     user gets shown a loading bar
     maybe we use some fake processing time, to make the service of creating the document seem more valuable.
@@ -441,7 +561,7 @@ upload the pdf to supabase storage
 rpc request from client resolves 
 depending on the processing processing time, the client inserts some extra waiting time
 
-## What do I need to create the pdf
+### What do I need to create the pdf
 I need the answers from the Testamentgenerator  
 I need extra data, like the name of the user 
 I need a pdf layout   
@@ -450,7 +570,7 @@ I need a pdf layout
     simple typography  
     beyond logo  
 
-### ways to create a pdf in a deno function 
+#### ways to create a pdf in a deno function 
 - pdf-lib
 
     https://gist.github.com/Hopding/8304b9f07c52904587f7b45fae4bcb8c 
@@ -458,10 +578,8 @@ I need a pdf layout
 
 - oder jsPDF https://github.com/parallax/jsPDF
 
-## I can not do it in deno on the edge
-## lambda function to convert markdown to pdf
-
-
+### I can not do it in deno on the edge
+### lambda function to convert markdown to pdf
 
 ### supabase edge functions
 use the best practices described here
@@ -474,9 +592,9 @@ like localhost or netlify previews
 make sure to set the correct policy on the storage bucket
 BECAUSE setting it to public is apparently not enough
 
-# Build a family tree
+## Build a family tree
 
-## Find the correct library
+### Find the correct library
 https://dzone.com/articles/top-6-javascript-family-tree-diagram-libraries
 
 https://balkan.app/FamilyTreeJS
@@ -518,7 +636,7 @@ https://www.youtube.com/watch?v=5bQD3dCoyHA
 ## Vitest is amazing
 
 
-# Developement of aws lambda function for generating pdf testamant from markdown
+## development of aws lambda function for generating pdf testamant from markdown
 https://docs.aws.amazon.com/lambda/latest/dg/images-create.html
 
 
@@ -531,7 +649,7 @@ inFile = open(localFilename, "r")
 
 
 
-## plan:
+### plan:
 - make simple hello world function mit berechtigung none, that I can call from browser and curl 
 ```bash
 curl https://4pcletpamvkbxlamf3nqc54mcy0qoplq.lambda-url.us-east-1.on.aws/ 
@@ -547,7 +665,8 @@ curl https://4pcletpamvkbxlamf3nqc54mcy0qoplq.lambda-url.us-east-1.on.aws/
 - in the function, we get the params from the event object as python dict with event["headers"]["secret_key"])
 
 - Now do the same thing with a docker container
-## How to make the edge function secure?
+
+### How to make the edge function secure?
 1. CORS?
 2. make function public, with an if clause checking for som secret key, which I set in the supabase edge function.
 3. use the supabase auth token, to check if the user is logged in, and then allow the function to run.
