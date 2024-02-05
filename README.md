@@ -218,6 +218,9 @@ flowchart BT
         tailwind[Tailwind]
         daisyUi
     end
+    subgraph aws_lambda
+        lambda_f[function to create pdfs from markdown]
+    end
     styling --> sk
     sk --compile to static html and js --> netlify
     client --> supabase
@@ -230,6 +233,7 @@ flowchart BT
     edge --> s-storage
     edge --> s-db
     edge --> auth
+    lambda_f --> edge
 ```
 
 ## Database structure
